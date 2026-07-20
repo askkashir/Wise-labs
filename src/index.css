@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ---- Track theming vars (default = neutral brand palette) ---- */
+    --track-primary: #4a2e3d; /* plum */
+    --track-accent: #2c7a70; /* teal */
+    --track-accent-2: #e38470; /* coral */
+    --track-ink: #ffffff; /* text on primary fills */
+    --track-soft: rgba(44, 122, 112, 0.1);
+    --track-glow: rgba(74, 46, 61, 0.25);
+
+    /* hero atmosphere (read by the 3D scene + overlays) */
+    --hero-bg-a: #f1e4d6;
+    --hero-bg-b: #e9dccb;
+    --hero-fog: rgba(74, 46, 61, 0.12);
+
+    /* ---- shadcn / radix tokens (beige + plum system) ---- */
+    --background: 31 49% 89%;
+    --foreground: 328 23% 24%;
+    --card: 0 0% 100%;
+    --card-foreground: 328 23% 24%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 328 23% 24%;
+    --primary: 328 23% 24%;
+    --primary-foreground: 31 49% 96%;
+    --secondary: 31 34% 84%;
+    --secondary-foreground: 328 23% 24%;
+    --muted: 31 30% 84%;
+    --muted-foreground: 328 12% 42%;
+    --accent: 172 47% 33%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 4 68% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 30 26% 80%;
+    --input: 30 26% 78%;
+    --ring: 172 47% 33%;
+    --radius: 0.85rem;
+  }
+
+  /* Track: Founder Flightpath — BLUE */
+  [data-track='founder'] {
+    --track-primary: #12294f;
+    --track-accent: #3b82f6;
+    --track-accent-2: #22d3ee;
+    --track-ink: #eaf2ff;
+    --track-soft: rgba(59, 130, 246, 0.12);
+    --track-glow: rgba(34, 211, 238, 0.35);
+    --hero-bg-a: #0c1b38;
+    --hero-bg-b: #123a6b;
+    --hero-fog: rgba(59, 130, 246, 0.18);
+    --ring: 217 91% 60%;
+  }
+
+  /* Track: Enterprise Flightpath — ORANGE */
+  [data-track='enterprise'] {
+    --track-primary: #b85c1a;
+    --track-accent: #e8823c;
+    --track-accent-2: #f5a623;
+    --track-ink: #fff6ec;
+    --track-soft: rgba(232, 130, 60, 0.14);
+    --track-glow: rgba(245, 166, 35, 0.35);
+    --hero-bg-a: #3a1f08;
+    --hero-bg-b: #7a3f12;
+    --hero-fog: rgba(232, 130, 60, 0.2);
+    --ring: 27 82% 51%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: 'cv11', 'ss01';
+    overflow-x: hidden;
+  }
+
+  /* Lenis */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  ::selection {
+    background: var(--track-accent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--track-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .container-wise {
+    @apply mx-auto w-full max-w-[1200px] px-6 md:px-10;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[11px] font-semibold uppercase tracking-eyebrow;
+    color: var(--track-accent);
+  }
+
+  /* animated color hand-off — used where we want the theme shift to feel liquid */
+  .theme-shift {
+    transition:
+      color 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Underline draw for nav/links */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 1.5px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover::after,
+  .link-underline[data-active='true']::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Track-tinted glass card */
+  .glass {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px) saturate(1.4);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .track-accent-text {
+    color: var(--track-accent);
+  }
+}
+
+/* Reduced motion: strip the expensive stuff */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
