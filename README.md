@@ -1,32 +1,54 @@
-# React + TypeScript + Vite
+# WISE Lab — Interactive Flagship Prototype
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A high-fidelity, front-end **prototype** for **WISE Lab (Women Innovation &
+Startup Empowerment Lab)** — Pakistan's national platform for women-led startups
+and MSMEs. Single-page, no backend.
 
-Currently, two official plugins are available:
+The centerpiece is an interactive 3D hero: an abstract particle figure that
+**morphs between three states** (neutral → Founder / blue → Enterprise / orange)
+and recolors the whole page as you switch tracks.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Run it locally
 
-## React Compiler
+Requirements: **Node.js 20+** and npm (no database, API keys, or `.env` needed —
+it's a fully static front-end).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# 1. clone
+git clone git@github.com:askkashir/Wise-labs.git
+cd Wise-labs        # (folder name may differ if you cloned via HTTPS)
 
-## Expanding the Oxlint configuration
+# 2. install dependencies
+npm install
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+# 3. start the dev server
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Then open the URL it prints (default **http://localhost:5173**).
+
+> Cloning over HTTPS instead? Use
+> `git clone https://github.com/askkashir/Wise-labs.git`
+
+## Other commands
+
+```bash
+npm run build     # production build into dist/
+npm run preview   # serve the production build locally
+```
+
+## Tech stack
+
+React + Vite + TypeScript · react-three-fiber / three.js (3D hero) ·
+Tailwind CSS · shadcn/ui + Radix (form) · Framer Motion · Lenis (smooth scroll).
+
+## Notes for reviewers
+
+- **The 3D hero needs a real, visible browser tab** to animate — browsers freeze
+  `requestAnimationFrame` in hidden/background tabs. Click the blue/orange track
+  selectors under the hero to see the figure morph and the page recolor.
+- Fully responsive; the track toggle works on touch. Honors
+  `prefers-reduced-motion`, and falls back gracefully if WebGL is unavailable.
+- The three.js scene is code-split and lazy-loaded, so the initial page is light.
+- Optional future hook: a real rigged GLB model can be dropped in via
+  `FIGURE_GLB_URL` in `src/components/Hero3D/HeroScene.tsx` — off by default.
