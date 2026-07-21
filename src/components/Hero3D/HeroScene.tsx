@@ -14,9 +14,9 @@ function useCounts() {
     if (typeof window === 'undefined') return { figure: 2400, field: 460 }
     const w = window.innerWidth
     const cores = navigator.hardwareConcurrency || 4
-    if (w < 640 || cores <= 4) return { figure: 1700, field: 260 }
-    if (w < 1024) return { figure: 2600, field: 380 }
-    return { figure: 3600, field: 520 }
+    if (w < 640 || cores <= 4) return { figure: 2200, field: 240 }
+    if (w < 1024) return { figure: 3800, field: 360 }
+    return { figure: 5400, field: 500 }
   }, [])
 }
 
