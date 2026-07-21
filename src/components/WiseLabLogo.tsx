@@ -1,8 +1,170 @@
+import { useEffect, useState } from 'react'
 import { motion, type Variants } from 'framer-motion'
 import { usePrefersReducedMotion } from '@/lib/useTrackState'
 import { cn } from '@/lib/utils'
 
 type Variant = 'color' | 'white' | 'black'
+
+/* ============================================================================
+   Real logo (raster). Drop the brand logo at public/wise-lab-logo.png.
+   - color : shown as-is
+   - white : CSS-filtered to solid white   (for dark backgrounds)
+   - black : CSS-filtered to solid near-black
+   A white background is auto-keyed to transparent so it composites cleanly on
+   any surface. If the file is missing, everything falls back to the SVG mark.
+   ========================================================================== */
+
+const LOGO_SRC = '/wise-lab-logo.png'
+// butterfly mark occupies ~ this fraction of the full lockup height (top-aligned)
+const MARK_ASPECT = 1.35
+
+const FILTER: Record<Variant, string | undefined> = {
+  color: undefined,
+  white: 'brightness(0) saturate(100%) invert(100%)',
+  black: 'brightness(0)',
+}
+
+// module-level singleton: load once, key white -> transparent, share the result
+let logoPromise: Promise<string | null> | null = null
+function getKeyedLogo(): Promise<string | null> {
+  if (!logoPromise) {
+    logoPromise = new Promise((resolve) => {
+      const img = new Image()
+      img.crossOrigin = 'anonymous'
+      img.onload = () => {
+        try {
+          const c = document.createElement('canvas')
+          c.width = img.naturalWidth
+          c.height = img.naturalHeight
+          const g = c.getContext('2d')!
+          g.drawImage(img, 0, 0)
+          const data = g.getImageData(0, 0, c.width, c.height)
+          const a = data.data
+          for (let i = 0; i < a.length; i += 4) {
+            if (a[i] > 242 && a[i + 1] > 242 && a[i + 2] > 242) a[i + 3] = 0
+          }
+          g.putImageData(data, 0, 0)
+          resolve(c.toDataURL('image/png'))
+        } catch {
+          resolve(null)
+        }
+      }
+      img.onerror = () => resolve(null)
+      img.src = LOGO_SRC
+    })
+  }
+  return logoPromise
+}
+
+// undefined = loading, null = missing/failed, string = keyed data URL
+function useKeyedLogo(): string | null | undefined {
+  const [src, setSrc] = useState<string | null | undefined>(undefined)
+  useEffect(() => {
+    let alive = true
+    getKeyedLogo().then((r) => {
+      if (alive) setSrc(r)
+    })
+    return () => {
+      alive = false
+    }
+  }, [])
+  return src
+}
+
+interface MarkProps {
+  variant?: Variant
+  animateIntro?: boolean
+  className?: string
+}
+
+/** Butterfly mark (used in the nav next to an HTML wordmark). */
+export function WiseMark({ variant = 'color', animateIntro = false, className }: MarkProps) {
+  const logo = useKeyedLogo()
+  const reduce = usePrefersReducedMotion()
+
+  if (logo === undefined || logo === null) {
+    return <WiseMarkSVG variant={variant} animateIntro={animateIntro} className={className} />
+  }
+
+  const intro =
+    animateIntro && !reduce
+      ? { initial: { opacity: 0, scale: 0.8 }, animate: { opacity: 1, scale: 1 } }
+      : {}
+
+  return (
+    <motion.div
+      {...intro}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className={cn('overflow-hidden', className)}
+      style={{ aspectRatio: String(MARK_ASPECT) }}
+    >
+      <img
+        src={logo}
+        alt="WISE Lab"
+        className="h-full w-full object-cover object-top"
+        style={{ filter: FILTER[variant] }}
+        draggable={false}
+      />
+    </motion.div>
+  )
+}
+
+interface LogoProps {
+  variant?: Variant
+  animateIntro?: boolean
+  showTagline?: boolean
+  /** rendered height of the full lockup in px */
+  size?: number
+  className?: string
+}
+
+/** Full stacked lockup: mark + wordmark + tagline. */
+export function WiseLabLogo({
+  variant = 'color',
+  animateIntro = false,
+  showTagline = true,
+  size = 108,
+  className,
+}: LogoProps) {
+  const logo = useKeyedLogo()
+  const reduce = usePrefersReducedMotion()
+
+  if (logo === undefined || logo === null) {
+    return (
+      <WiseLabLogoSVG
+        variant={variant}
+        animateIntro={animateIntro}
+        showTagline={showTagline}
+        size={size * 0.62}
+        className={className}
+      />
+    )
+  }
+
+  const intro =
+    animateIntro && !reduce
+      ? { initial: { opacity: 0, y: 12 }, animate: { opacity: 1, y: 0 } }
+      : {}
+
+  return (
+    <motion.img
+      {...intro}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      src={logo}
+      alt="WISE Lab — Her idea. Her enterprise."
+      className={cn('w-auto', className)}
+      style={{ height: size, filter: FILTER[variant] }}
+      draggable={false}
+    />
+  )
+}
+
+export default WiseLabLogo
+
+/* ============================================================================
+   SVG fallback (used only if the raster logo is missing). Faithful recreation
+   of the butterfly mark + wordmark.
+   ========================================================================== */
 
 interface Palette {
   wings: string
@@ -40,34 +202,14 @@ const PALETTES: Record<Variant, Palette> = {
   },
 }
 
-/* ---- Shared butterfly mark paths (symmetric about x=100) ---- */
-
-// Upper wing (plum) — left; right is mirrored via scale(-1,1)
 const WING =
   'M99,111 C84,86 57,88 41,71 C25,54 29,29 40,13 C54,35 76,45 89,65 C98,79 99,97 99,111 Z'
-
-// Lower leaf (teal) — left; right mirrored
-const LEAF =
-  'M97,108 C77,111 58,117 51,133 C66,121 84,115 98,111 Z'
-
-// Central coral flame — main plume with a forked base notch
+const LEAF = 'M97,108 C77,111 58,117 51,133 C66,121 84,115 98,111 Z'
 const FLAME_MAIN =
   'M100,112 C95,94 89,82 98,60 C103,46 95,35 101,19 C103,12 101,6 100,2 C98,8 96,15 97,25 C99,41 90,51 95,72 C98,89 95,100 100,112 Z'
-const FLAME_WISP =
-  'M104,110 C109,98 107,86 114,73 C111,89 113,100 106,110 Z'
+const FLAME_WISP = 'M104,110 C109,98 107,86 114,73 C111,89 113,100 106,110 Z'
 
-interface MarkProps {
-  variant?: Variant
-  animateIntro?: boolean
-  className?: string
-}
-
-/** Just the butterfly mark (used in the nav next to an HTML wordmark). */
-export function WiseMark({
-  variant = 'color',
-  animateIntro = false,
-  className,
-}: MarkProps) {
+function WiseMarkSVG({ variant = 'color', animateIntro = false, className }: MarkProps) {
   const p = PALETTES[variant]
   const reduce = usePrefersReducedMotion()
   const animate = animateIntro && !reduce
@@ -88,87 +230,45 @@ export function WiseMark({
     hidden: { opacity: 0, scaleY: 0.25, y: 12 },
     show: { opacity: 1, scaleY: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
   }
-
   const originBottom = {
     transformBox: 'fill-box' as const,
     transformOrigin: 'center bottom',
   }
 
   return (
-    <svg
-      viewBox="0 0 200 140"
-      className={className}
-      role="img"
-      aria-label="WISE Lab butterfly mark"
-      fill="none"
-    >
+    <svg viewBox="0 0 200 140" className={className} role="img" aria-label="WISE Lab" fill="none">
       <title>WISE Lab</title>
       <motion.g
         variants={animate ? group : undefined}
         initial={animate ? 'hidden' : false}
         animate={animate ? 'show' : undefined}
       >
-        {/* Plum wings */}
         <motion.g variants={animate ? wingsV : undefined} style={originBottom}>
           <path d={WING} fill={p.wings} />
           <path d={WING} fill={p.wings} transform="translate(200,0) scale(-1,1)" />
         </motion.g>
-        {/* Teal leaves */}
         <motion.g variants={animate ? leavesV : undefined} style={originBottom}>
           <path d={LEAF} fill={p.leaves} />
           <path d={LEAF} fill={p.leaves} transform="translate(200,0) scale(-1,1)" />
         </motion.g>
-        {/* Coral flame */}
         <motion.g variants={animate ? flameV : undefined} style={originBottom}>
           <path d={FLAME_MAIN} fill={p.flame} />
           <path d={FLAME_WISP} fill={p.flame} opacity={0.9} />
-          <path
-            d={FLAME_WISP}
-            fill={p.flame}
-            opacity={0.9}
-            transform="translate(200,0) scale(-1,1)"
-          />
+          <path d={FLAME_WISP} fill={p.flame} opacity={0.9} transform="translate(200,0) scale(-1,1)" />
         </motion.g>
       </motion.g>
     </svg>
   )
 }
 
-interface LogoProps {
-  variant?: Variant
-  animateIntro?: boolean
-  showTagline?: boolean
-  /** height of the butterfly mark in px; text scales from it */
-  size?: number
-  className?: string
-}
-
-/** Full stacked lockup: mark + WISE Lab wordmark + tagline. */
-export function WiseLabLogo({
-  variant = 'color',
-  animateIntro = false,
-  showTagline = true,
-  size = 92,
-  className,
-}: LogoProps) {
+function WiseLabLogoSVG({ variant = 'color', animateIntro = false, showTagline = true, size = 92, className }: LogoProps) {
   const p = PALETTES[variant]
   return (
     <div className={cn('inline-flex flex-col items-center', className)}>
-      <WiseMark
-        variant={variant}
-        animateIntro={animateIntro}
-        className="w-auto"
-        // svg aspect 200x140 -> width = height * 200/140
-        // set via style so it scales crisply
-      />
-      <style>{''}</style>
+      <WiseMarkSVG variant={variant} animateIntro={animateIntro} className="w-auto" />
       <div className="flex flex-col items-center leading-none" style={{ marginTop: size * 0.06 }}>
-        <div
-          className="font-sans font-bold tracking-tight"
-          style={{ fontSize: size * 0.44, lineHeight: 1 }}
-        >
-          <span style={{ color: p.wise }}>WISE</span>{' '}
-          <span style={{ color: p.lab }}>Lab</span>
+        <div className="font-sans font-bold tracking-tight" style={{ fontSize: size * 0.44, lineHeight: 1 }}>
+          <span style={{ color: p.wise }}>WISE</span> <span style={{ color: p.lab }}>Lab</span>
         </div>
         {showTagline && (
           <div
@@ -188,5 +288,3 @@ export function WiseLabLogo({
     </div>
   )
 }
-
-export default WiseLabLogo

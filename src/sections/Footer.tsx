@@ -16,7 +16,7 @@ export function Footer() {
       <div className="container-wise relative">
         <div className="grid gap-12 md:grid-cols-[1.3fr_1fr]">
           <div>
-            <WiseLabLogo variant="white" size={70} showTagline className="items-start" />
+            <WiseLabLogo variant="white" size={104} showTagline />
             <p className="mt-6 font-display text-2xl font-medium text-beige/90">
               Her idea. Her enterprise. Her flight.
             </p>

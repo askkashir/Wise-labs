@@ -107,6 +107,30 @@ export function sampleSilhouette(
   return out
 }
 
+/**
+ * Smear a figure into a hazy, "confused" cloud — she reads as present but
+ * unformed/undefined, then resolves into the crisp silhouette on selection.
+ */
+export function confuse(src: Float32Array, seed = 0x7f3a19): Float32Array {
+  const out = new Float32Array(src.length)
+  const rnd = rng(seed)
+  const count = src.length / 3
+  const gauss = () => {
+    let u = 0
+    let v = 0
+    while (u === 0) u = rnd()
+    while (v === 0) v = rnd()
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v)
+  }
+  for (let k = 0; k < count; k++) {
+    const i = k * 3
+    out[i] = src[i] + gauss() * 0.34
+    out[i + 1] = src[i + 1] + gauss() * 0.42
+    out[i + 2] = src[i + 2] + gauss() * 0.3
+  }
+  return out
+}
+
 /** Disperse a point cloud into a soft nebula (the "unformed potential" neutral). */
 export function disperse(src: Float32Array, seed = 0x1234abcd): Float32Array {
   const out = new Float32Array(src.length)

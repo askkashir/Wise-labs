@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 import { buildFigureTargets } from '@/lib/figures/generate'
-import { loadImage, makeSeeds, sampleSilhouette } from '@/lib/figures/sampleImage'
+import {
+  confuse,
+  loadImage,
+  makeSeeds,
+  sampleSilhouette,
+} from '@/lib/figures/sampleImage'
 
 export interface FigureTargets {
   count: number
@@ -49,9 +54,9 @@ export function useFigureTargets(count: number): FigureTargets | null {
         ])
         const founder = sampleSilhouette(imgF, count, { seed: 0x1001 })
         const enterprise = sampleSilhouette(imgE, count, { seed: 0x2002 })
-        // Neutral shows the crisp figure (muted plum) so there's an immediate,
-        // recognizable picture on load — the color/pose then shifts per track.
-        const neutral = new Float32Array(founder)
+        // Neutral = a "confused", hazy cloud of her — present but undefined —
+        // that resolves into the crisp figure once a path is chosen.
+        const neutral = confuse(founder)
         if (alive)
           setTargets({
             count,

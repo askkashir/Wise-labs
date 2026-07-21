@@ -12,17 +12,20 @@ const vertexShader = /* glsl */ `
   uniform float uTime;
   uniform float uSizeScale;
   uniform float uIdle;
+  uniform float uScatter;
   varying vec3 vColor;
   void main() {
     vColor = aColor;
     vec3 pos = position;
-    float d = uIdle * 0.026;
-    pos.x += sin(uTime * 0.5 + aSeed * 6.2831) * d;
-    pos.y += cos(uTime * 0.42 + aSeed * 6.2831) * d;
+    // idle drift, amplified while "confused" (neutral) for a searching feel
+    float d = uIdle * (0.024 + uScatter * 0.07);
+    pos.x += sin(uTime * (0.5 + uScatter * 0.5) + aSeed * 6.2831) * d;
+    pos.y += cos(uTime * (0.42 + uScatter * 0.5) + aSeed * 6.2831) * d;
     pos.z += sin(uTime * 0.6 + aSeed * 3.14) * d * 0.6;
     vec4 mv = modelViewMatrix * vec4(pos, 1.0);
     float tw = 0.9 + 0.16 * sin(uTime * 1.6 + aSeed * 40.0);
-    gl_PointSize = aSize * uSizeScale * tw * (2.1 / -mv.z);
+    // wispier while confused (neutral), bold once resolved into a path
+    gl_PointSize = aSize * uSizeScale * tw * (2.1 / -mv.z) * (1.0 - uScatter * 0.32);
     gl_Position = projectionMatrix * mv;
   }
 `
@@ -94,6 +97,7 @@ function FigurePoints({ targets }: { targets: FigureTargets }) {
       // ticking to be seen (some browsers/tabs throttle rAF to zero)
       uOpacity: { value: 1 },
       uIdle: { value: reduce ? 0 : 1 },
+      uScatter: { value: 1 },
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
@@ -111,6 +115,12 @@ function FigurePoints({ targets }: { targets: FigureTargets }) {
     const dt = Math.min(delta, 1 / 30)
     uniforms.uTime.value = state.clock.elapsedTime
     uniforms.uIdle.value = reduce ? 0 : 1
+    uniforms.uScatter.value = THREE.MathUtils.damp(
+      uniforms.uScatter.value,
+      track === 'neutral' ? 1 : 0,
+      3,
+      dt
+    )
 
     const target =
       track === 'founder'
