@@ -21,8 +21,8 @@ const vertexShader = /* glsl */ `
     pos.y += cos(uTime * 0.42 + aSeed * 6.2831) * d;
     pos.z += sin(uTime * 0.6 + aSeed * 3.14) * d * 0.6;
     vec4 mv = modelViewMatrix * vec4(pos, 1.0);
-    float tw = 0.84 + 0.2 * sin(uTime * 1.6 + aSeed * 40.0);
-    gl_PointSize = aSize * uSizeScale * tw * (1.0 / -mv.z);
+    float tw = 0.9 + 0.16 * sin(uTime * 1.6 + aSeed * 40.0);
+    gl_PointSize = aSize * uSizeScale * tw * (2.1 / -mv.z);
     gl_Position = projectionMatrix * mv;
   }
 `
@@ -90,7 +90,9 @@ function FigurePoints({ targets }: { targets: FigureTargets }) {
     () => ({
       uTime: { value: 0 },
       uSizeScale: { value: 1 },
-      uOpacity: { value: 0 },
+      // start fully visible so the figure never depends on the animation loop
+      // ticking to be seen (some browsers/tabs throttle rAF to zero)
+      uOpacity: { value: 1 },
       uIdle: { value: reduce ? 0 : 1 },
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -109,12 +111,6 @@ function FigurePoints({ targets }: { targets: FigureTargets }) {
     const dt = Math.min(delta, 1 / 30)
     uniforms.uTime.value = state.clock.elapsedTime
     uniforms.uIdle.value = reduce ? 0 : 1
-    uniforms.uOpacity.value = THREE.MathUtils.damp(
-      uniforms.uOpacity.value,
-      1,
-      3,
-      dt
-    )
 
     const target =
       track === 'founder'

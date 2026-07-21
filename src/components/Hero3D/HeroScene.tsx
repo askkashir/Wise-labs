@@ -39,6 +39,7 @@ export function HeroScene() {
 
   return (
     <Canvas
+      frameloop="always"
       camera={{ position: [0, 0.1, 7], fov: 42 }}
       dpr={[1, 1.75]}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
