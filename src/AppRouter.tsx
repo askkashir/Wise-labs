@@ -15,15 +15,16 @@ import { ApplyNowButton } from '@/components/ApplyNowButton'
 
 /**
  * Floating WhatsApp + Apply Now buttons on every public-facing route; hidden
- * only on /admin. Apply Now stays visible on /apply/* as a track switcher so
- * visitors can jump between application flows from anywhere.
+ * on /admin. Apply Now links straight to /apply/founder, so it's also
+ * hidden on any /apply/* page — no point showing a CTA to a page the
+ * visitor is already on (or already mid-application on a different track).
  */
 function GlobalChrome() {
   const { pathname } = useLocation()
   if (pathname.startsWith('/admin')) return null
   return (
     <>
-      <ApplyNowButton />
+      {!pathname.startsWith('/apply') && <ApplyNowButton />}
       <WhatsAppButton />
     </>
   )

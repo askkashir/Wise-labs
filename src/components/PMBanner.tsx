@@ -12,16 +12,12 @@ import { useTranslation } from 'react-i18next'
 export function PMBanner() {
   const { t } = useTranslation()
   return (
-    <div
-      className="relative w-full overflow-hidden border-b border-plum/10 bg-beige"
-    >
-      <div className="mx-auto max-w-3xl px-4">
-        <img
-          src="/pm-banner.jpg"
-          alt={t('pmBanner.text')}
-          className="block w-full h-auto"
-        />
-      </div>
+    <div className="relative w-full overflow-hidden border-b border-plum/10 bg-beige">
+      <img
+        src="/pm-banner.jpg"
+        alt={t('pmBanner.text')}
+        className="block w-full h-auto"
+      />
     </div>
   )
 }
