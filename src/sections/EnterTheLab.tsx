@@ -37,7 +37,7 @@ function getPillars(t: TFunction): Pillar[] {
       ),
       cta: t('buildTracks.enterprise.cta', 'Grow Your Enterprise'),
       color: '#E8823C',
-      href: '/apply/enterprise',
+      href: '/apply/founder',
       Icon: Store,
     },
     {
