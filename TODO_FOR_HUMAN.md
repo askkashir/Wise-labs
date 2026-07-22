@@ -41,17 +41,16 @@ native-speaker/design/legal review pass before this ships to production.
    PNG-exported with white keyed to transparent. This is a *rasterization*, not the original vector.
    If print-quality or the original .ai/.eps source is needed, get it from whoever produced the PDF.
 9. **i18n translations (UR/PS/PA)** — two separate things to know:
-   - **Coverage is partial by design.** Only Nav, Footer, the Become-a-Mentor section, the
-     WhatsApp button's aria-label, and DynamicForm's UI chrome (submit/error/success copy) are
-     wired to `react-i18next`. Hero, WiseJourney, BuildTracks, EnterTheLab, PowerCircle,
-     BehindTheWings, WiseConnect, and — importantly — the actual question text in all four
-     application form schemas (Founder/Enterprise/Mentor/Partner) still render in English
-     regardless of selected language. This was a deliberate choice: several landing-page sections
-     have framer-motion animations keyed to hardcoded English word arrays (see Hero.tsx), and
-     translating them without being able to visually verify the result in this environment risked
-     silently breaking working animations or shipping broken RTL layouts. Extending coverage to
-     the rest of the site is straightforward (same `useTranslation()` + locale-key pattern used
-     everywhere else) but needs a human with visual QA to do it safely.
+   - **Coverage is now site-wide.** Hero, WiseJourney, BuildTracks, EnterTheLab, PowerCircle,
+     BehindTheWings, WiseConnect, and all four application form schemas (Founder/Enterprise/
+     Mentor/Partner — including every field label, placeholder, help text, and option) are wired
+     to `react-i18next`. Form schema strings are translated via a derived-key layer
+     (`src/lib/forms/i18nKeys.ts`) rather than editing the schema files directly, so
+     `src/lib/forms/schemas/*.ts` remain the single English source of truth. Hero's word-by-word
+     headline animation now splits the *translated* string on spaces at render time instead of a
+     hardcoded English word array, so it keeps working regardless of language. Verified: all four
+     locales render with zero horizontal overflow, `<html dir>` flips to `rtl` for UR/PS/PA, and
+     the founder/enterprise/mentor/partner track sync still works with a language active.
    - **Translation quality**: every string that IS translated into Urdu, Pashto, and Punjabi is
      **machine-drafted**, not reviewed by native speakers. Each locale file
      (`src/i18n/locales/{ur,ps,pa}.json`) carries a top-level `"_meta": {"reviewStatus": "machine-

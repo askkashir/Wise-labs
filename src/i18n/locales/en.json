@@ -1,7 +1,4 @@
 {
-  "_meta": {
-    "reviewStatus": "machine-drafted source copy used for parity across locales — shipping without native-speaker review per TODO_FOR_HUMAN.md item 9"
-  },
   "nav": {
     "links": {
       "wise-journey": "The WISE Journey",
@@ -9,185 +6,11 @@
       "enter-the-lab": "Enter the Lab",
       "power-circle": "The Power Circle",
       "behind-the-wings": "Behind the Wings",
-      "become-a-mentor": "Become a Mentor",
-      "wise-connect": "WISE Connect"
+      "wise-connect": "WISE Connect",
+      "become-a-mentor": "Become a Mentor"
     },
     "cta": "Enter the Lab",
-    "home": "WISE Lab home",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu"
-  },
-  "pmBanner": {
-    "text": "Under the vision of the Honorable Prime Minister of Pakistan, WISE Lab is designed & funded by the Ministry of IT & Telecom & Ignite - National Technology Fund."
-  },
-  "applyNow": {
-    "cta": "Apply Now",
-    "close": "Close",
-    "chooseTrack": "Choose your track"
-  },
-  "hero": {
-    "eyebrow": "Women Innovation & Startup Empowerment Lab",
-    "headlineWords": ["Her", "idea.", "Her", "enterprise."],
-    "subheadline": "Where women-led ideas move from quiet potential to visible enterprise.",
-    "cta": "Enter the Lab",
-    "orPreview": "or preview a flight path ↓",
-    "trackToggleAria": "Choose a flight path to preview",
-    "credibilityLine": "Under the vision of the Honorable Prime Minister of Pakistan, WISE Lab is designed & funded by the Ministry of IT & Telecom & Ignite - National Technology Fund.",
-    "trustedBy": "Trusted by"
-  },
-  "buildTracks": {
-    "eyebrow": "Build Tracks",
-    "title": "Choose your flight path",
-    "subtitle": "Two tracks. One destination: women-led enterprise growth.",
-    "helper": "Select a track to preview it in the scene above — the whole page responds to your choice.",
-    "selected": "Selected",
-    "previewingAbove": "Previewing above ↑",
-    "founder": {
-      "kicker": "Startup Incubation",
-      "title": "Founder Flightpath",
-      "lead": "For women building scalable startups, tech-enabled ventures, and innovation-driven businesses.",
-      "body": "For women-led startups ready to move from idea, MVP, or early traction into structured growth — with business-model refinement, product validation, mentorship, pitch development, investor readiness, legal & financial guidance, market access, and ecosystem linkages.",
-      "motto": "From idea to investor-ready — unseen to undeniable.",
-      "cta": "Take Flight"
-    },
-    "enterprise": {
-      "kicker": "MSME Training",
-      "title": "Enterprise Flightpath",
-      "lead": "For women-led small businesses, home-based entrepreneurs, and micro-enterprises ready to grow.",
-      "body": "For women already building — from home-based setups and craft producers to food, beauty, fashion, education, and digital sellers. Practical skills in business planning, financial literacy, branding, pricing, customer management, digital marketing, and market access.",
-      "motto": "From skill to income — cocoon to flight.",
-      "cta": "Grow Your Enterprise"
-    }
-  },
-  "wiseJourney": {
-    "eyebrow": "The WISE Journey",
-    "title1": "From Cocoon",
-    "title2": "to Flight",
-    "intro": "Pakistan's premier platform, exclusively for women-led ideas — to find the room, the resources, and the recognition to become enterprises.",
-    "body1": "WISE Lab — Women Innovation and Startup Empowerment Lab — is a national flagship platform supporting women-led startups, entrepreneurs, and MSMEs across Pakistan. Built around the philosophy of transformation, it supports women at the most critical stages of their journey — when ideas are still forming, businesses are still finding direction, and founders are ready to move from hidden potential to visible impact.",
-    "quoteLine1": "Because her idea was never small.",
-    "quoteLine2": "The room was.",
-    "body2": "Through incubation, MSME training, mentorship, market access, investor readiness, digital enablement, and ecosystem partnerships, WISE Lab helps women transform their ideas into sustainable businesses — and their ambition into enterprise.",
-    "vision": {
-      "eyebrow": "The Flight Path",
-      "title": "Our Vision",
-      "body": "To become Pakistan's leading platform exclusively for women-led innovation and enterprise — enabling women across the country to transform ideas into sustainable businesses, access the right spaces, and contribute to inclusive digital and economic growth.",
-      "punchline": "A future where she doesn't wait for opportunity — she enters the room & builds it."
-    },
-    "mission": {
-      "eyebrow": "The WISE Way",
-      "title": "Our Mission",
-      "body": "To empower women entrepreneurs, startups, and MSMEs with structured incubation, practical business training, mentorship, market linkages, investor readiness, digital tools, and ecosystem access — from the cocoon stage of potential to the flight stage of enterprise.",
-      "punchline": "Nurture the idea. Expand the room. Launch the enterprise."
-    }
-  },
-  "enterTheLab": {
-    "eyebrow": "Enter the Lab",
-    "title1": "Your idea deserves",
-    "title2": "the right room",
-    "intro": "Building a startup, growing a small business, mentoring founders, or partnering for impact — your WISE journey starts here. If your idea has felt too early, too quiet, too small, or too unseen, this is your invitation to bring it into the room.",
-    "closing": "Your next chapter starts inside the Lab.",
-    "pillars": {
-      "founder": {
-        "title": "Founder Flightpath",
-        "body": "For women founders and startup teams ready for incubation, validation, mentorship, pitch development, and investor readiness.",
-        "cta": "Take Flight"
-      },
-      "enterprise": {
-        "title": "Enterprise Flightpath",
-        "body": "For women-led small businesses and home-based entrepreneurs seeking business training, digital skills, visibility, and market access.",
-        "cta": "Grow Your Enterprise"
-      },
-      "mentor": {
-        "title": "Guide Her Growth",
-        "body": "For experts, founders, investors, trainers, and professionals who want to guide women entrepreneurs through practical support.",
-        "cta": "Become a Mentor"
-      },
-      "partner": {
-        "title": "Open the Ecosystem",
-        "body": "For organizations ready to collaborate on women-led innovation, enterprise, access, and inclusive growth.",
-        "cta": "Partner with WISE"
-      }
-    }
-  },
-  "powerCircle": {
-    "eyebrow": "The Power Circle",
-    "title": "The ecosystem behind her enterprise",
-    "intro": "A premier alliance committed to women-led innovation, access, enterprise, and inclusive growth — because when the right rooms open, women-led businesses don't just enter them. They transform them.",
-    "consortiumLabel": "Built by a consortium of change-makers",
-    "partners": {
-      "jazzworld": { "name": "JazzWorld", "role": "Consortium Lead" },
-      "mmbl": { "name": "Mobilink Microfinance Bank", "role": "Co-Lead Partner" },
-      "changeMechanics": { "name": "Change Mechanics", "role": "Managing Partner" }
-    },
-    "designedFundedBy": "Designed & funded by",
-    "ministry": "Ministry of IT & Telecom",
-    "ignite": "Ignite — National Technology Fund",
-    "chips": {
-      "academic": "Academic",
-      "corporate": "Corporate",
-      "development": "Development",
-      "financial": "Financial",
-      "media": "Media",
-      "investorNetworks": "Investor Networks",
-      "training": "Training",
-      "marketAccess": "Market Access",
-      "community": "Community"
-    },
-    "closingLine": "Her idea was never small. The ecosystem around it needed to expand.",
-    "cta": "Join the Power Circle"
-  },
-  "behindTheWings": {
-    "eyebrow": "Behind the Wings",
-    "title1": "The women helping",
-    "title2": "her take flight",
-    "intro": "WISE Lab is led by a multidisciplinary team across incubation, entrepreneurship development, partnerships, communications, training, technology, and ecosystem engagement — building the space where she can become a founder.",
-    "director": {
-      "name": "Ms. Muneaza Jamil Durrani",
-      "title": "Programme Director",
-      "bio": "Leads WISE Lab's programme direction — setting the vision, standards, and day-to-day execution that help women entrepreneurs access mentorship, markets, capital readiness, and the right room to grow. She is the founding member of the team building the platform.",
-      "linkedinAria": "Muneaza Jamil Durrani on LinkedIn (opens in a new tab)"
-    },
-    "moreComingSoon": "More of the crew is joining soon. Every flight needs wings — this is the team building them."
-  },
-  "wiseConnect": {
-    "eyebrow": "WISE Connect",
-    "title": "Start the conversation",
-    "intro": "Have a question, idea, partnership proposal, media inquiry, or opportunity to share? Sometimes the next stage of growth begins with one conversation.",
-    "location": { "label": "Location", "value": "AIOU, Sector H-8, Islamabad" },
-    "email": { "label": "Email" },
-    "web": { "label": "Web" },
-    "follow": "Follow",
-    "socialAria": "WISE Lab on {{label}} (opens in a new tab)",
-    "fields": {
-      "fullName": "Full name",
-      "fullNamePlaceholder": "Your name",
-      "email": "Email",
-      "emailPlaceholder": "you@email.com",
-      "inquiryType": "Inquiry type",
-      "message": "Message",
-      "messagePlaceholder": "Tell us about your idea, business, or proposal…"
-    },
-    "inquiryTypes": {
-      "startupFounder": "Startup/Founder",
-      "msmeBusiness": "MSME/Business",
-      "mentorship": "Mentorship",
-      "partnership": "Partnership",
-      "media": "Media",
-      "other": "Other"
-    },
-    "errors": {
-      "name": "Please enter your name.",
-      "email": "Please enter your email.",
-      "invalidEmail": "Please enter a valid email.",
-      "inquiry": "Please choose an inquiry type.",
-      "message": "Please add a short message."
-    },
-    "submit": "Send your inquiry",
-    "successTitle": "Thank you, {{name}}.",
-    "successBody": "Your inquiry is in. We'll be in touch soon.",
-    "successPunchline": "The right conversation can open the next door.",
-    "sendAnother": "Send another inquiry"
+    "home": "WISE Lab home"
   },
   "language": {
     "label": "Language",
@@ -244,41 +67,6 @@
     "removeRow": "Remove row",
     "chooseOne": "Choose one"
   },
-  "applyPage": {
-    "backToWiseLab": "Back to WISE Lab"
-  },
-  "blogPage": {
-    "backToWiseLab": "Back to WISE Lab",
-    "eyebrow": "WISE Lab Journal",
-    "title": "Stories from the Lab",
-    "intro": "Founder journeys, ecosystem news, and updates from Pakistan's women-led innovation and enterprise movement.",
-    "unconfigured": "The blog isn't connected to a live backend yet. Once Supabase is provisioned (see TODO_FOR_HUMAN.md) and posts are published, they'll appear here.",
-    "empty": "No posts published yet — check back soon.",
-    "readMore": "Read more"
-  },
-  "blogPostPage": {
-    "backToJournal": "Back to the Journal"
-  },
-  "admin": {
-    "common": {
-      "loading": "Loading…",
-      "signOut": "Sign out"
-    },
-    "nav": {
-      "title": "Admin",
-      "dashboard": "Dashboard",
-      "submissions": "Submissions",
-      "blog": "Blog"
-    },
-    "login": {
-      "title": "WISE Lab Admin",
-      "unconfigured": "The admin backend isn't configured yet. Provision Supabase and set env vars (see TODO_FOR_HUMAN.md) before signing in.",
-      "email": "Email",
-      "password": "Password",
-      "signIn": "Sign in",
-      "signingIn": "Signing in…"
-    }
-  },
   "liveStats": {
     "eyebrow": "WISE Lab, in numbers",
     "title": "Momentum you can measure",
@@ -291,267 +79,573 @@
     "minutes": "min",
     "seconds": "sec"
   },
+  "hero": {
+    "headline": "Her idea. Her enterprise.",
+    "eyebrow": "Women Innovation & Startup Empowerment Lab",
+    "subheadline": "Where women-led ideas move from quiet potential to visible enterprise.",
+    "previewHint": "or preview a flight path ↓",
+    "credibility": "Under the vision of the Honorable Prime Minister of Pakistan, WISE Lab is designed & funded by the Ministry of IT & Telecom & Ignite - National Technology Fund.",
+    "trustedBy": "Trusted by"
+  },
+  "wiseJourney": {
+    "eyebrow": "The WISE Journey",
+    "title1": "From Cocoon",
+    "title2": "to Flight",
+    "intro": "Pakistan's premier platform, exclusively for women-led ideas — to find the room, the resources, and the recognition to become enterprises.",
+    "body1": "WISE Lab — Women Innovation and Startup Empowerment Lab — is a national flagship platform supporting women-led startups, entrepreneurs, and MSMEs across Pakistan. Built around the philosophy of transformation, it supports women at the most critical stages of their journey — when ideas are still forming, businesses are still finding direction, and founders are ready to move from hidden potential to visible impact.",
+    "quoteLine1": "Because her idea was never small.",
+    "quoteLine2": "The room was.",
+    "body2": "Through incubation, MSME training, mentorship, market access, investor readiness, digital enablement, and ecosystem partnerships, WISE Lab helps women transform their ideas into sustainable businesses — and their ambition into enterprise.",
+    "vision": {
+      "eyebrow": "The Flight Path",
+      "title": "Our Vision",
+      "body": "To become Pakistan's leading platform exclusively for women-led innovation and enterprise — enabling women across the country to transform ideas into sustainable businesses, access the right spaces, and contribute to inclusive digital and economic growth.",
+      "line": "A future where she doesn't wait for opportunity — she enters the room & builds it."
+    },
+    "mission": {
+      "eyebrow": "The WISE Way",
+      "title": "Our Mission",
+      "body": "To empower women entrepreneurs, startups, and MSMEs with structured incubation, practical business training, mentorship, market linkages, investor readiness, digital tools, and ecosystem access — from the cocoon stage of potential to the flight stage of enterprise.",
+      "line": "Nurture the idea. Expand the room. Launch the enterprise."
+    }
+  },
+  "buildTracks": {
+    "founder": {
+      "kicker": "Startup Incubation",
+      "title": "Founder Flightpath",
+      "lead": "For women building scalable startups, tech-enabled ventures, and innovation-driven businesses.",
+      "body": "For women-led startups ready to move from idea, MVP, or early traction into structured growth — with business-model refinement, product validation, mentorship, pitch development, investor readiness, legal & financial guidance, market access, and ecosystem linkages.",
+      "motto": "From idea to investor-ready — unseen to undeniable.",
+      "cta": "Take Flight"
+    },
+    "enterprise": {
+      "kicker": "MSME Training",
+      "title": "Enterprise Flightpath",
+      "lead": "For women-led small businesses, home-based entrepreneurs, and micro-enterprises ready to grow.",
+      "body": "For women already building — from home-based setups and craft producers to food, beauty, fashion, education, and digital sellers. Practical skills in business planning, financial literacy, branding, pricing, customer management, digital marketing, and market access.",
+      "motto": "From skill to income — cocoon to flight.",
+      "cta": "Grow Your Enterprise"
+    },
+    "title": "Choose your flight path",
+    "subtitle": "Two tracks. One destination: women-led enterprise growth.",
+    "hint": "Select a track to preview it in the scene above — the whole page responds to your choice.",
+    "previewingAbove": "Previewing above ↑",
+    "selected": "Selected"
+  },
+  "enterTheLab": {
+    "founder": {
+      "title": "Founder Flightpath",
+      "body": "For women founders and startup teams ready for incubation, validation, mentorship, pitch development, and investor readiness."
+    },
+    "enterprise": {
+      "title": "Enterprise Flightpath",
+      "body": "For women-led small businesses and home-based entrepreneurs seeking business training, digital skills, visibility, and market access."
+    },
+    "mentor": {
+      "title": "Guide Her Growth",
+      "body": "For experts, founders, investors, trainers, and professionals who want to guide women entrepreneurs through practical support."
+    },
+    "partner": {
+      "title": "Open the Ecosystem",
+      "body": "For organizations ready to collaborate on women-led innovation, enterprise, access, and inclusive growth.",
+      "cta": "Partner with WISE"
+    },
+    "title1": "Your idea deserves",
+    "title2": "the right room",
+    "intro": "Building a startup, growing a small business, mentoring founders, or partnering for impact — your WISE journey starts here. If your idea has felt too early, too quiet, too small, or too unseen, this is your invitation to bring it into the room.",
+    "closingLine": "Your next chapter starts inside the Lab."
+  },
+  "powerCircle": {
+    "partners": {
+      "jazz": "Consortium Lead",
+      "mobilink": "Co-Lead Partner",
+      "changeMechanics": "Managing Partner"
+    },
+    "chips": {
+      "academic": "Academic",
+      "corporate": "Corporate",
+      "development": "Development",
+      "financial": "Financial",
+      "media": "Media",
+      "investorNetworks": "Investor Networks",
+      "training": "Training",
+      "marketAccess": "Market Access",
+      "community": "Community"
+    },
+    "title": "The ecosystem behind her enterprise",
+    "intro": "A premier alliance committed to women-led innovation, access, enterprise, and inclusive growth — because when the right rooms open, women-led businesses don't just enter them. They transform them.",
+    "consortiumLabel": "Built by a consortium of change-makers",
+    "designedFundedBy": "Designed & funded by",
+    "closingLine": "Her idea was never small. The ecosystem around it needed to expand.",
+    "cta": "Join the Power Circle"
+  },
+  "behindTheWings": {
+    "title1": "The women helping",
+    "title2": "her take flight",
+    "intro": "WISE Lab is led by a multidisciplinary team across incubation, entrepreneurship development, partnerships, communications, training, technology, and ecosystem engagement — building the space where she can become a founder.",
+    "team": {
+      "name": "Ms. Muneaza Jamil Durrani",
+      "role": "Programme Director",
+      "linkedinLabel": "Muneaza Jamil Durrani on LinkedIn",
+      "bio": "Leads WISE Lab's programme direction — setting the vision, standards, and day-to-day execution that help women entrepreneurs access mentorship, markets, capital readiness, and the right room to grow. She is the founding member of the team building the platform."
+    },
+    "comingSoon": "More of the crew is joining soon. Every flight needs wings — this is the team building them."
+  },
+  "wiseConnect": {
+    "errors": {
+      "name": "Please enter your name.",
+      "email": "Please enter your email.",
+      "inquiry": "Please choose an inquiry type.",
+      "message": "Please add a short message."
+    },
+    "title": "Start the conversation",
+    "intro": "Have a question, idea, partnership proposal, media inquiry, or opportunity to share? Sometimes the next stage of growth begins with one conversation.",
+    "location": "Location",
+    "email": "Email",
+    "web": "Web",
+    "follow": "Follow",
+    "socialAriaLabel": "WISE Lab on {{label}} (opens in a new tab)",
+    "thankYou": "Thank you, {{name}}.",
+    "inquiryReceived": "Your inquiry is in. We'll be in touch soon.",
+    "closingLine": "The right conversation can open the next door.",
+    "sendAnother": "Send another inquiry",
+    "fullName": "Full name",
+    "fullNamePlaceholder": "Your name",
+    "inquiryType": "Inquiry type",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your idea, business, or proposal…",
+    "submit": "Send your inquiry",
+    "inquiryTypes": {
+      "startupFounder": "Startup/Founder",
+      "msmeBusiness": "MSME/Business",
+      "mentorship": "Mentorship",
+      "partnership": "Partnership",
+      "media": "Media",
+      "other": "Other"
+    }
+  },
+  "apply": {
+    "backToWiseLab": "Back to WISE Lab"
+  },
   "forms": {
     "founder": {
-      "meta": {
-        "title": "Founder Flightpath — Incubation Application",
-        "subtitle": "For women founders and startup teams ready for incubation, validation, mentorship, pitch development, and investor readiness.",
-        "submitLabel": "Submit application",
-        "successTitle": "Thank you, {{name}}.",
-        "successBody": "Your Founder Flightpath application is in. Our team will review it and reach out about next steps."
-      },
+      "title": "Founder Flightpath — Incubation Application",
+      "subtitle": "For women founders and startup teams ready for incubation, validation, mentorship, pitch development, and investor readiness.",
+      "submitLabel": "Submit application",
+      "successTitle": "Thank you, {firstName}.",
+      "successBody": "Your Founder Flightpath application is in. Our team will review it and reach out about next steps.",
       "sections": {
-        "startup-basics": { "title": "Startup basics" },
-        "idea-overview": { "title": "Idea overview" },
-        "team-details": { "title": "Team details" },
-        "previous-experience": { "title": "Previous experience" },
-        "availability": { "title": "Availability" },
-        "funding": { "title": "Funding / investment" },
-        "contact-information": { "title": "Contact information" },
-        "how-did-you-hear": { "title": "How did you hear about WISE Lab" },
-        "commitment": { "title": "Commitment statement" }
-      },
-      "common": {
-        "options": { "yes": "Yes", "no": "No" }
-      },
-      "startupName": { "label": "Startup name", "placeholder": "Your startup or venture name" },
-      "vertical": {
-        "label": "Business / Innovation vertical",
-        "options": {
-          "ecommerce": "E-Commerce / Online Store",
-          "fashion-apparel": "Fashion & Apparel",
-          "beauty-wellness": "Beauty, Wellness & Personal Care",
-          "food-beverages": "Food & Beverages / Home-Based Food Business",
-          "handicrafts": "Handicrafts / Artisanal Products",
-          "education-training": "Education & Training (EdTech, Skills, Tutoring)",
-          "health-wellness": "Health & Wellness (HealthTech, Fitness, Nutrition)",
-          "social-enterprise": "Social Enterprise / Community Impact",
-          "creative-industries": "Creative Industries (Design, Content, Photography, Crafts)",
-          "services": "Services (Event Management, Marketing, Consultancy)",
-          "others": "Others"
+        "startup-basics": {
+          "title": "Startup basics"
+        },
+        "idea-overview": {
+          "title": "Idea overview"
+        },
+        "team-details": {
+          "title": "Team details"
+        },
+        "previous-experience": {
+          "title": "Previous experience"
+        },
+        "availability": {
+          "title": "Availability"
+        },
+        "funding": {
+          "title": "Funding / investment"
+        },
+        "contact-information": {
+          "title": "Contact information"
+        },
+        "how-did-you-hear": {
+          "title": "How did you hear about WISE Lab"
+        },
+        "commitment": {
+          "title": "Commitment statement"
         }
       },
-      "stage": {
-        "label": "Startup stage",
-        "options": {
-          "idea": "Idea",
-          "prototype": "Prototype",
-          "mvp": "MVP",
-          "established": "Established Product/Service"
+      "fields": {
+        "startupName": {
+          "label": "Startup name",
+          "placeholder": "Your startup or venture name"
+        },
+        "vertical": {
+          "label": "Business / Innovation vertical",
+          "options": {
+            "ecommerce": "E-Commerce / Online Store",
+            "fashion-apparel": "Fashion & Apparel",
+            "beauty-wellness": "Beauty, Wellness & Personal Care",
+            "food-beverages": "Food & Beverages / Home-Based Food Business",
+            "handicrafts": "Handicrafts / Artisanal Products",
+            "education-training": "Education & Training (EdTech, Skills, Tutoring)",
+            "health-wellness": "Health & Wellness (HealthTech, Fitness, Nutrition)",
+            "social-enterprise": "Social Enterprise / Community Impact",
+            "creative-industries": "Creative Industries (Design, Content, Photography, Crafts)",
+            "services": "Services (Event Management, Marketing, Consultancy)",
+            "others": "Others"
+          }
+        },
+        "stage": {
+          "label": "Startup stage",
+          "options": {
+            "idea": "Idea",
+            "prototype": "Prototype",
+            "mvp": "MVP",
+            "established": "Established Product/Service"
+          }
+        },
+        "establishmentYear": {
+          "label": "Startup establishment year",
+          "placeholder": "e.g. 2023"
+        },
+        "ideaBrief": {
+          "label": "Idea brief",
+          "placeholder": "A short summary of your idea"
+        },
+        "productDescription": {
+          "label": "Product / service description"
+        },
+        "valueProposition": {
+          "label": "Value proposition",
+          "helpText": "What problem are you solving, and how is your solution unique?"
+        },
+        "targetMarket": {
+          "label": "Target market"
+        },
+        "customers": {
+          "label": "Customers"
+        },
+        "competition": {
+          "label": "Competition"
+        },
+        "coreStrength": {
+          "label": "Core strength / innovation"
+        },
+        "marketingStrategy": {
+          "label": "Marketing and sales strategy"
+        },
+        "onlinePresence": {
+          "label": "Online presence",
+          "placeholder": "Website / Facebook / Instagram / TikTok / Other"
+        },
+        "revenueStreams": {
+          "label": "Revenue streams"
+        },
+        "team": {
+          "label": "Team members",
+          "columns": {
+            "name": "Name",
+            "role": "Role",
+            "qualification": "Qualification",
+            "skillset": "Skillset / Expertise",
+            "city": "City",
+            "age": "Age"
+          }
+        },
+        "hasLaunchedBusiness": {
+          "label": "Have you launched or managed a business before?",
+          "options": {
+            "yes": "Yes",
+            "no": "No"
+          }
+        },
+        "previousBusinessName": {
+          "label": "Name of previous business"
+        },
+        "hasIncubationExperience": {
+          "label": "Have you been part of any incubation / training program before?",
+          "options": {
+            "yes": "Yes",
+            "no": "No"
+          }
+        },
+        "incubationDetails": {
+          "label": "Incubation / training program details"
+        },
+        "availableFullYear": {
+          "label": "Will you be available for the next full year to incubate your startup at WISE Lab Islamabad?",
+          "options": {
+            "yes": "Yes",
+            "no": "No"
+          }
+        },
+        "hasFunding": {
+          "label": "Have you received funding / investment before?",
+          "options": {
+            "yes": "Yes",
+            "no": "No"
+          }
+        },
+        "fundingDetails": {
+          "label": "Funding / investment details"
+        },
+        "primaryFounderName": {
+          "label": "Point of contact / primary founder"
+        },
+        "contactNumber": {
+          "label": "Contact number"
+        },
+        "email": {
+          "label": "Email",
+          "patternMessage": "Please enter a valid email."
+        },
+        "cityProvince": {
+          "label": "City / Province"
+        },
+        "gender": {
+          "label": "Gender",
+          "options": {
+            "female": "Female",
+            "male": "Male",
+            "other": "Other",
+            "prefer-not-to-say": "Prefer not to say"
+          }
+        },
+        "referralSource": {
+          "label": "How did you hear about WISE Lab?",
+          "options": {
+            "social-media": "Social Media",
+            "peer-referral": "Peer Referral",
+            "email": "Email",
+            "print-electronic-media": "Print / Electronic Media",
+            "others": "Others"
+          }
+        },
+        "commitmentConsent": {
+          "label": "I confirm my commitment to actively participate, attend mentoring sessions, and contribute to the growth of Pakistan’s women entrepreneurship ecosystem."
         }
-      },
-      "establishmentYear": { "label": "Startup establishment year", "placeholder": "e.g. 2023" },
-      "ideaBrief": { "label": "Idea brief", "placeholder": "A short summary of your idea" },
-      "productDescription": { "label": "Product / service description" },
-      "valueProposition": {
-        "label": "Value proposition",
-        "helpText": "What problem are you solving, and how is your solution unique?"
-      },
-      "targetMarket": { "label": "Target market" },
-      "customers": { "label": "Customers" },
-      "competition": { "label": "Competition" },
-      "coreStrength": { "label": "Core strength / innovation" },
-      "marketingStrategy": { "label": "Marketing and sales strategy" },
-      "onlinePresence": { "label": "Online presence", "placeholder": "Website / Facebook / Instagram / TikTok / Other" },
-      "revenueStreams": { "label": "Revenue streams" },
-      "team": {
-        "label": "Team members",
-        "columns": {
-          "name": "Name",
-          "role": "Role",
-          "qualification": "Qualification",
-          "skillset": "Skillset / Expertise",
-          "city": "City",
-          "age": "Age"
-        }
-      },
-      "hasLaunchedBusiness": { "label": "Have you launched or managed a business before?" },
-      "previousBusinessName": { "label": "Name of previous business" },
-      "hasIncubationExperience": { "label": "Have you been part of any incubation / training program before?" },
-      "incubationDetails": { "label": "Incubation / training program details" },
-      "availableFullYear": { "label": "Will you be available for the next full year to incubate your startup at WISE Lab Islamabad?" },
-      "hasFunding": { "label": "Have you received funding / investment before?" },
-      "fundingDetails": { "label": "Funding / investment details" },
-      "primaryFounderName": { "label": "Point of contact / primary founder" },
-      "contactNumber": { "label": "Contact number" },
-      "email": { "label": "Email", "patternMessage": "Please enter a valid email." },
-      "cityProvince": { "label": "City / Province" },
-      "gender": {
-        "label": "Gender",
-        "options": {
-          "female": "Female",
-          "male": "Male",
-          "other": "Other",
-          "prefer-not-to-say": "Prefer not to say"
-        }
-      },
-      "referralSource": {
-        "label": "How did you hear about WISE Lab?",
-        "options": {
-          "social-media": "Social Media",
-          "peer-referral": "Peer Referral",
-          "email": "Email",
-          "print-electronic-media": "Print / Electronic Media",
-          "others": "Others"
-        }
-      },
-      "commitmentConsent": {
-        "label": "I confirm my commitment to actively participate, attend mentoring sessions, and contribute to the growth of Pakistan’s women entrepreneurship ecosystem."
       }
     },
     "enterprise": {
-      "meta": {
-        "title": "Enterprise Flightpath — MSME Training Application",
-        "subtitle": "For women-led small businesses and home-based entrepreneurs seeking business training, digital skills, visibility, and market access.",
-        "submitLabel": "Submit application",
-        "successTitle": "Thank you, {{name}}.",
-        "successBody": "Your Enterprise Flightpath application is in. Our team will review it and reach out about next steps."
-      },
+      "title": "Enterprise Flightpath — MSME Training Application",
+      "subtitle": "For women-led small businesses and home-based entrepreneurs seeking business training, digital skills, visibility, and market access.",
+      "submitLabel": "Submit application",
+      "successTitle": "Thank you, {firstName}.",
+      "successBody": "Your Enterprise Flightpath application is in. Our team will review it and reach out about next steps.",
       "sections": {
-        "business-basics": { "title": "Business basics" },
-        "contact-information": { "title": "Contact information" },
-        "how-did-you-hear": { "title": "How did you hear about WISE Lab" },
-        "commitment": { "title": "Commitment statement" }
-      },
-      "businessName": { "label": "Business name" },
-      "vertical": {
-        "label": "Business vertical",
-        "options": {
-          "ecommerce": "E-Commerce / Online Store",
-          "fashion-apparel": "Fashion & Apparel",
-          "beauty-wellness": "Beauty, Wellness & Personal Care",
-          "food-beverages": "Food & Beverages / Home-Based Food Business",
-          "handicrafts": "Handicrafts / Artisanal Products",
-          "education-training": "Education & Training",
-          "health-wellness": "Health & Wellness",
-          "creative-industries": "Creative Industries",
-          "services": "Services",
-          "others": "Others"
+        "business-basics": {
+          "title": "Business basics"
+        },
+        "contact-information": {
+          "title": "Contact information"
+        },
+        "how-did-you-hear": {
+          "title": "How did you hear about WISE Lab"
+        },
+        "commitment": {
+          "title": "Commitment statement"
         }
       },
-      "yearsOperating": { "label": "Years in operation" },
-      "businessDescription": { "label": "What does your business do?" },
-      "trainingNeeds": {
-        "label": "What training or support are you looking for?",
-        "helpText": "Business planning, financial literacy, branding, pricing, digital marketing, e-commerce, etc."
-      },
-      "primaryContactName": { "label": "Primary contact name" },
-      "contactNumber": { "label": "Contact number" },
-      "email": { "label": "Email", "patternMessage": "Please enter a valid email." },
-      "cityProvince": { "label": "City / Province" },
-      "gender": {
-        "label": "Gender",
-        "options": {
-          "female": "Female",
-          "male": "Male",
-          "other": "Other",
-          "prefer-not-to-say": "Prefer not to say"
+      "fields": {
+        "businessName": {
+          "label": "Business name"
+        },
+        "vertical": {
+          "label": "Business vertical",
+          "options": {
+            "ecommerce": "E-Commerce / Online Store",
+            "fashion-apparel": "Fashion & Apparel",
+            "beauty-wellness": "Beauty, Wellness & Personal Care",
+            "food-beverages": "Food & Beverages / Home-Based Food Business",
+            "handicrafts": "Handicrafts / Artisanal Products",
+            "education-training": "Education & Training",
+            "health-wellness": "Health & Wellness",
+            "creative-industries": "Creative Industries",
+            "services": "Services",
+            "others": "Others"
+          }
+        },
+        "yearsOperating": {
+          "label": "Years in operation"
+        },
+        "businessDescription": {
+          "label": "What does your business do?"
+        },
+        "trainingNeeds": {
+          "label": "What training or support are you looking for?",
+          "helpText": "Business planning, financial literacy, branding, pricing, digital marketing, e-commerce, etc."
+        },
+        "primaryContactName": {
+          "label": "Primary contact name"
+        },
+        "contactNumber": {
+          "label": "Contact number"
+        },
+        "email": {
+          "label": "Email",
+          "patternMessage": "Please enter a valid email."
+        },
+        "cityProvince": {
+          "label": "City / Province"
+        },
+        "gender": {
+          "label": "Gender",
+          "options": {
+            "female": "Female",
+            "male": "Male",
+            "other": "Other",
+            "prefer-not-to-say": "Prefer not to say"
+          }
+        },
+        "referralSource": {
+          "label": "How did you hear about WISE Lab?",
+          "options": {
+            "social-media": "Social Media",
+            "peer-referral": "Peer Referral",
+            "email": "Email",
+            "print-electronic-media": "Print / Electronic Media",
+            "others": "Others"
+          }
+        },
+        "commitmentConsent": {
+          "label": "I confirm my commitment to actively participate and contribute to the growth of Pakistan’s women entrepreneurship ecosystem."
         }
-      },
-      "referralSource": {
-        "label": "How did you hear about WISE Lab?",
-        "options": {
-          "social-media": "Social Media",
-          "peer-referral": "Peer Referral",
-          "email": "Email",
-          "print-electronic-media": "Print / Electronic Media",
-          "others": "Others"
-        }
-      },
-      "commitmentConsent": {
-        "label": "I confirm my commitment to actively participate and contribute to the growth of Pakistan’s women entrepreneurship ecosystem."
       }
     },
     "mentor": {
-      "meta": {
-        "title": "Guide Her Growth — Become a Mentor",
-        "subtitle": "For experts, founders, investors, trainers, and professionals who want to guide women entrepreneurs through practical support.",
-        "submitLabel": "Submit mentor application",
-        "successTitle": "Thank you, {{name}}.",
-        "successBody": "Your mentor application is in. Our team will review it and reach out about next steps."
-      },
+      "title": "Guide Her Growth — Become a Mentor",
+      "subtitle": "For experts, founders, investors, trainers, and professionals who want to guide women entrepreneurs through practical support.",
+      "submitLabel": "Submit mentor application",
+      "successTitle": "Thank you, {firstName}.",
+      "successBody": "Your mentor application is in. Our team will review it and reach out about next steps.",
       "sections": {
-        "mentor-basics": { "title": "About you" },
-        "contact-information": { "title": "Contact information" },
-        "commitment": { "title": "Commitment statement" }
-      },
-      "fullName": { "label": "Full name" },
-      "currentRole": { "label": "Current role / title" },
-      "organization": { "label": "Organization" },
-      "expertiseAreas": {
-        "label": "Areas of expertise",
-        "options": {
-          "business-strategy": "Business Strategy",
-          "finance-investment": "Finance & Investment",
-          "marketing-branding": "Marketing & Branding",
-          "product-tech": "Product & Technology",
-          "legal": "Legal",
-          "operations": "Operations",
-          "sales-market-access": "Sales & Market Access",
-          "other": "Other"
+        "mentor-basics": {
+          "title": "About you"
+        },
+        "contact-information": {
+          "title": "Contact information"
+        },
+        "commitment": {
+          "title": "Commitment statement"
         }
       },
-      "yearsExperience": { "label": "Years of relevant experience" },
-      "motivation": { "label": "Why do you want to mentor with WISE Lab?" },
-      "availability": {
-        "label": "Weekly availability",
-        "options": {
-          "1-2-hours": "1–2 hours / week",
-          "3-5-hours": "3–5 hours / week",
-          "5-plus-hours": "5+ hours / week"
+      "fields": {
+        "fullName": {
+          "label": "Full name"
+        },
+        "currentRole": {
+          "label": "Current role / title"
+        },
+        "organization": {
+          "label": "Organization"
+        },
+        "expertiseAreas": {
+          "label": "Areas of expertise",
+          "options": {
+            "business-strategy": "Business Strategy",
+            "finance-investment": "Finance & Investment",
+            "marketing-branding": "Marketing & Branding",
+            "product-tech": "Product & Technology",
+            "legal": "Legal",
+            "operations": "Operations",
+            "sales-market-access": "Sales & Market Access",
+            "other": "Other"
+          }
+        },
+        "yearsExperience": {
+          "label": "Years of relevant experience"
+        },
+        "motivation": {
+          "label": "Why do you want to mentor with WISE Lab?"
+        },
+        "availability": {
+          "label": "Weekly availability",
+          "options": {
+            "1-2-hours": "1–2 hours / week",
+            "3-5-hours": "3–5 hours / week",
+            "5-plus-hours": "5+ hours / week"
+          }
+        },
+        "contactNumber": {
+          "label": "Contact number"
+        },
+        "email": {
+          "label": "Email",
+          "patternMessage": "Please enter a valid email."
+        },
+        "linkedin": {
+          "label": "LinkedIn profile",
+          "placeholder": "https://linkedin.com/in/…"
+        },
+        "cityProvince": {
+          "label": "City / Province"
+        },
+        "commitmentConsent": {
+          "label": "I confirm my commitment to actively mentor and support women entrepreneurs through WISE Lab."
         }
-      },
-      "contactNumber": { "label": "Contact number" },
-      "email": { "label": "Email", "patternMessage": "Please enter a valid email." },
-      "linkedin": { "label": "LinkedIn profile", "placeholder": "https://linkedin.com/in/…" },
-      "cityProvince": { "label": "City / Province" },
-      "commitmentConsent": {
-        "label": "I confirm my commitment to actively mentor and support women entrepreneurs through WISE Lab."
       }
     },
     "partner": {
-      "meta": {
-        "title": "Open the Ecosystem — Partner with WISE",
-        "subtitle": "For organizations ready to collaborate on women-led innovation, enterprise, access, and inclusive growth.",
-        "submitLabel": "Submit partnership inquiry",
-        "successTitle": "Thank you, {{name}}.",
-        "successBody": "Your partnership inquiry is in. Our team will review it and reach out about next steps."
-      },
+      "title": "Open the Ecosystem — Partner with WISE",
+      "subtitle": "For organizations ready to collaborate on women-led innovation, enterprise, access, and inclusive growth.",
+      "submitLabel": "Submit partnership inquiry",
+      "successTitle": "Thank you, {firstName}.",
+      "successBody": "Your partnership inquiry is in. Our team will review it and reach out about next steps.",
       "sections": {
-        "organization-basics": { "title": "Organization" },
-        "contact-information": { "title": "Contact information" },
-        "commitment": { "title": "Commitment statement" }
-      },
-      "organizationName": { "label": "Organization name" },
-      "partnerCategory": {
-        "label": "Partner category",
-        "options": {
-          "academic": "Academic Partner",
-          "corporate": "Corporate Partner",
-          "development": "Development Partner",
-          "financial": "Financial Partner",
-          "media": "Media Partner",
-          "investor-network": "Investor Network",
-          "training": "Training Partner",
-          "market-access": "Market Access Partner",
-          "community": "Community Partner",
-          "other": "Other"
+        "organization-basics": {
+          "title": "Organization"
+        },
+        "contact-information": {
+          "title": "Contact information"
+        },
+        "commitment": {
+          "title": "Commitment statement"
         }
       },
-      "website": { "label": "Website", "placeholder": "https://…" },
-      "proposedCollaboration": { "label": "What kind of collaboration are you proposing?" },
-      "contributionAreas": {
-        "label": "Key contribution areas",
-        "helpText": "Skills, markets, finance, mentorship, ecosystem support, etc."
-      },
-      "contactName": { "label": "Point of contact" },
-      "contactRole": { "label": "Role / title" },
-      "contactNumber": { "label": "Contact number" },
-      "email": { "label": "Email", "patternMessage": "Please enter a valid email." },
-      "cityProvince": { "label": "City / Province" },
-      "commitmentConsent": {
-        "label": "I confirm this organization is committed to collaborating in good faith on WISE Lab’s mission to advance women-led innovation and enterprise."
+      "fields": {
+        "organizationName": {
+          "label": "Organization name"
+        },
+        "partnerCategory": {
+          "label": "Partner category",
+          "options": {
+            "academic": "Academic Partner",
+            "corporate": "Corporate Partner",
+            "development": "Development Partner",
+            "financial": "Financial Partner",
+            "media": "Media Partner",
+            "investor-network": "Investor Network",
+            "training": "Training Partner",
+            "market-access": "Market Access Partner",
+            "community": "Community Partner",
+            "other": "Other"
+          }
+        },
+        "website": {
+          "label": "Website",
+          "placeholder": "https://…"
+        },
+        "proposedCollaboration": {
+          "label": "What kind of collaboration are you proposing?"
+        },
+        "contributionAreas": {
+          "label": "Key contribution areas",
+          "helpText": "Skills, markets, finance, mentorship, ecosystem support, etc."
+        },
+        "contactName": {
+          "label": "Point of contact"
+        },
+        "contactRole": {
+          "label": "Role / title"
+        },
+        "contactNumber": {
+          "label": "Contact number"
+        },
+        "email": {
+          "label": "Email",
+          "patternMessage": "Please enter a valid email."
+        },
+        "cityProvince": {
+          "label": "City / Province"
+        },
+        "commitmentConsent": {
+          "label": "I confirm this organization is committed to collaborating in good faith on WISE Lab’s mission to advance women-led innovation and enterprise."
+        }
       }
     }
+  },
+  "applyNow": {
+    "cta": "Apply Now",
+    "close": "Close",
+    "chooseTrack": "Choose your track"
   }
 }

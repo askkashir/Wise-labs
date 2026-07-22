@@ -14,16 +14,19 @@ export function BehindTheWings() {
       <div className="container-wise relative">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <Reveal className="lg:col-span-7">
-            <p className="eyebrow">{t('behindTheWings.eyebrow')}</p>
+            <p className="eyebrow">{t('nav.links.behind-the-wings', 'Behind the Wings')}</p>
             <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-plum">
-              {t('behindTheWings.title1')}
+              {t('behindTheWings.title1', 'The women helping')}
               <br />
-              {t('behindTheWings.title2')}
+              {t('behindTheWings.title2', 'her take flight')}
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-5">
             <p className="text-pretty leading-relaxed text-plum/70">
-              {t('behindTheWings.intro')}
+              {t(
+                'behindTheWings.intro',
+                'WISE Lab is led by a multidisciplinary team across incubation, entrepreneurship development, partnerships, communications, training, technology, and ecosystem engagement — building the space where she can become a founder.'
+              )}
             </p>
           </Reveal>
         </div>
@@ -59,24 +62,29 @@ export function BehindTheWings() {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <h3 className="font-display text-2xl font-bold text-plum">
-                    {t('behindTheWings.director.name')}
+                    {t('behindTheWings.team.name', 'Ms. Muneaza Jamil Durrani')}
                   </h3>
                   <p className="mt-1 text-sm font-semibold uppercase tracking-[0.14em] text-teal">
-                    {t('behindTheWings.director.title')}
+                    {t('behindTheWings.team.role', 'Programme Director')}
                   </p>
                 </div>
                 <a
-                  href="https://www.linkedin.com/in/muneaza-j-durrani-35a85810"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={t('behindTheWings.director.linkedinAria')}
+                  href="#"
+                  aria-label={t(
+                    'behindTheWings.team.linkedinLabel',
+                    'Muneaza Jamil Durrani on LinkedIn'
+                  )}
+                  onClick={(e) => e.preventDefault()}
                   className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-plum/15 text-plum transition-colors hover:border-teal hover:bg-teal hover:text-white"
                 >
                   <LinkedinIcon className="h-5 w-5" />
                 </a>
               </div>
               <p className="mt-5 leading-relaxed text-plum/70">
-                {t('behindTheWings.director.bio')}
+                {t(
+                  'behindTheWings.team.bio',
+                  "Leads WISE Lab's programme direction — setting the vision, standards, and day-to-day execution that help women entrepreneurs access mentorship, markets, capital readiness, and the right room to grow. She is the founding member of the team building the platform."
+                )}
               </p>
             </div>
           </motion.div>
@@ -100,7 +108,10 @@ export function BehindTheWings() {
               ))}
             </div>
             <p className="max-w-md text-center text-[15px] text-plum/60 sm:text-right">
-              {t('behindTheWings.moreComingSoon')}
+              {t(
+                'behindTheWings.comingSoon',
+                'More of the crew is joining soon. Every flight needs wings — this is the team building them.'
+              )}
             </p>
           </div>
         </Reveal>

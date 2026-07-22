@@ -5,80 +5,76 @@ import type { FormSchema } from '../types'
  * Drafted from the Content Brief's Power Circle section: consortium /
  * supporting partner categories (Academic, Corporate, Development,
  * Financial, Media, Investor Networks, Training, Market Access, Community).
- *
- * All human-readable `label`/`title`/`placeholder`/`helpText` strings are
- * i18n key paths (looked up via `t()` in DynamicForm.tsx), not literal
- * English — see src/i18n/locales/en.json under `forms.partner`. The
- * `name`/`dimension` values below are stable analytics keys and are never
- * translated.
  */
 export const partnerFormSchema: FormSchema = {
   track: 'partner',
-  title: 'forms.partner.meta.title',
-  subtitle: 'forms.partner.meta.subtitle',
+  title: 'Open the Ecosystem — Partner with WISE',
+  subtitle:
+    'For organizations ready to collaborate on women-led innovation, enterprise, access, and inclusive growth.',
   themeTrack: 'neutral',
-  submitLabel: 'forms.partner.meta.submitLabel',
-  successTitle: 'forms.partner.meta.successTitle',
-  successBody: 'forms.partner.meta.successBody',
+  submitLabel: 'Submit partnership inquiry',
+  successTitle: 'Thank you, {firstName}.',
+  successBody:
+    'Your partnership inquiry is in. Our team will review it and reach out about next steps.',
   sections: [
     {
       id: 'organization-basics',
-      title: 'forms.partner.sections.organization-basics.title',
+      title: 'Organization',
       fields: [
-        { name: 'organizationName', label: 'forms.partner.organizationName.label', type: 'text', required: true },
+        { name: 'organizationName', label: 'Organization name', type: 'text', required: true },
         {
           name: 'partnerCategory',
-          label: 'forms.partner.partnerCategory.label',
+          label: 'Partner category',
           type: 'select',
           required: true,
           analytics: { dimension: 'partnerCategory', kind: 'categorical' },
           options: [
-            { value: 'academic', label: 'forms.partner.partnerCategory.options.academic' },
-            { value: 'corporate', label: 'forms.partner.partnerCategory.options.corporate' },
-            { value: 'development', label: 'forms.partner.partnerCategory.options.development' },
-            { value: 'financial', label: 'forms.partner.partnerCategory.options.financial' },
-            { value: 'media', label: 'forms.partner.partnerCategory.options.media' },
-            { value: 'investor-network', label: 'forms.partner.partnerCategory.options.investor-network' },
-            { value: 'training', label: 'forms.partner.partnerCategory.options.training' },
-            { value: 'market-access', label: 'forms.partner.partnerCategory.options.market-access' },
-            { value: 'community', label: 'forms.partner.partnerCategory.options.community' },
-            { value: 'other', label: 'forms.partner.partnerCategory.options.other' },
+            { value: 'academic', label: 'Academic Partner' },
+            { value: 'corporate', label: 'Corporate Partner' },
+            { value: 'development', label: 'Development Partner' },
+            { value: 'financial', label: 'Financial Partner' },
+            { value: 'media', label: 'Media Partner' },
+            { value: 'investor-network', label: 'Investor Network' },
+            { value: 'training', label: 'Training Partner' },
+            { value: 'market-access', label: 'Market Access Partner' },
+            { value: 'community', label: 'Community Partner' },
+            { value: 'other', label: 'Other' },
           ],
         },
-        { name: 'website', label: 'forms.partner.website.label', type: 'url', placeholder: 'forms.partner.website.placeholder' },
+        { name: 'website', label: 'Website', type: 'url', placeholder: 'https://…' },
         {
           name: 'proposedCollaboration',
-          label: 'forms.partner.proposedCollaboration.label',
+          label: 'What kind of collaboration are you proposing?',
           type: 'textarea',
           required: true,
         },
         {
           name: 'contributionAreas',
-          label: 'forms.partner.contributionAreas.label',
+          label: 'Key contribution areas',
           type: 'textarea',
           required: true,
-          helpText: 'forms.partner.contributionAreas.helpText',
+          helpText: 'Skills, markets, finance, mentorship, ecosystem support, etc.',
         },
       ],
     },
     {
       id: 'contact-information',
-      title: 'forms.partner.sections.contact-information.title',
+      title: 'Contact information',
       fields: [
-        { name: 'contactName', label: 'forms.partner.contactName.label', type: 'text', required: true },
-        { name: 'contactRole', label: 'forms.partner.contactRole.label', type: 'text', required: true },
-        { name: 'contactNumber', label: 'forms.partner.contactNumber.label', type: 'tel', required: true },
+        { name: 'contactName', label: 'Point of contact', type: 'text', required: true },
+        { name: 'contactRole', label: 'Role / title', type: 'text', required: true },
+        { name: 'contactNumber', label: 'Contact number', type: 'tel', required: true },
         {
           name: 'email',
-          label: 'forms.partner.email.label',
+          label: 'Email',
           type: 'email',
           required: true,
           pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-          patternMessage: 'forms.partner.email.patternMessage',
+          patternMessage: 'Please enter a valid email.',
         },
         {
           name: 'cityProvince',
-          label: 'forms.partner.cityProvince.label',
+          label: 'City / Province',
           type: 'text',
           required: true,
           analytics: { dimension: 'city', kind: 'categorical' },
@@ -87,11 +83,12 @@ export const partnerFormSchema: FormSchema = {
     },
     {
       id: 'commitment',
-      title: 'forms.partner.sections.commitment.title',
+      title: 'Commitment statement',
       fields: [
         {
           name: 'commitmentConsent',
-          label: 'forms.partner.commitmentConsent.label',
+          label:
+            'I confirm this organization is committed to collaborating in good faith on WISE Lab’s mission to advance women-led innovation and enterprise.',
           type: 'consent',
           required: true,
         },

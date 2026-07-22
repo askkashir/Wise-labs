@@ -1,63 +1,100 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import { ArrowUpRight, Rocket, Store, Compass, Network } from 'lucide-react'
+import type { TFunction } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
 
 const MotionLink = motion(Link)
 
-const PILLARS = [
-  {
-    i18nKey: 'founder',
-    color: '#2E7D7B',
-    href: '/apply/founder',
-    Icon: Rocket,
-  },
-  {
-    i18nKey: 'enterprise',
-    color: '#E8823C',
-    href: '/apply/enterprise',
-    Icon: Store,
-  },
-  {
-    i18nKey: 'mentor',
-    color: '#2C7A70',
-    href: '/apply/mentor',
-    Icon: Compass,
-  },
-  {
-    i18nKey: 'partner',
-    color: '#E38470',
-    href: '/apply/partner',
-    Icon: Network,
-  },
-] as const
+interface Pillar {
+  title: string
+  body: string
+  cta: string
+  color: string
+  href: string
+  Icon: typeof Rocket
+}
+
+function getPillars(t: TFunction): Pillar[] {
+  return [
+    {
+      title: t('enterTheLab.founder.title', 'Founder Flightpath'),
+      body: t(
+        'enterTheLab.founder.body',
+        'For women founders and startup teams ready for incubation, validation, mentorship, pitch development, and investor readiness.'
+      ),
+      cta: t('buildTracks.founder.cta', 'Take Flight'),
+      color: '#2E7D7B',
+      href: '/apply/founder',
+      Icon: Rocket,
+    },
+    {
+      title: t('enterTheLab.enterprise.title', 'Enterprise Flightpath'),
+      body: t(
+        'enterTheLab.enterprise.body',
+        'For women-led small businesses and home-based entrepreneurs seeking business training, digital skills, visibility, and market access.'
+      ),
+      cta: t('buildTracks.enterprise.cta', 'Grow Your Enterprise'),
+      color: '#E8823C',
+      href: '/apply/enterprise',
+      Icon: Store,
+    },
+    {
+      title: t('enterTheLab.mentor.title', 'Guide Her Growth'),
+      body: t(
+        'enterTheLab.mentor.body',
+        'For experts, founders, investors, trainers, and professionals who want to guide women entrepreneurs through practical support.'
+      ),
+      cta: t('mentorSection.cta', 'Become a Mentor'),
+      color: '#2C7A70',
+      href: '/apply/mentor',
+      Icon: Compass,
+    },
+    {
+      title: t('enterTheLab.partner.title', 'Open the Ecosystem'),
+      body: t(
+        'enterTheLab.partner.body',
+        'For organizations ready to collaborate on women-led innovation, enterprise, access, and inclusive growth.'
+      ),
+      cta: t('enterTheLab.partner.cta', 'Partner with WISE'),
+      color: '#E38470',
+      href: '/apply/partner',
+      Icon: Network,
+    },
+  ]
+}
 
 export function EnterTheLab() {
   const { t } = useTranslation()
+  const PILLARS = getPillars(t)
+
   return (
     <section id="enter-the-lab" className="relative overflow-hidden py-28 md:py-36">
       <div className="grain" />
       <div className="container-wise relative">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <Reveal className="lg:col-span-7">
-            <p className="eyebrow">{t('enterTheLab.eyebrow')}</p>
+            <p className="eyebrow">{t('nav.links.enter-the-lab', 'Enter the Lab')}</p>
             <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-plum">
-              {t('enterTheLab.title1')}
+              {t('enterTheLab.title1', 'Your idea deserves')}
               <br />
-              {t('enterTheLab.title2')}
+              {t('enterTheLab.title2', 'the right room')}
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-5">
             <p className="text-pretty leading-relaxed text-plum/70">
-              {t('enterTheLab.intro')}
+              {t(
+                'enterTheLab.intro',
+                'Building a startup, growing a small business, mentoring founders, or partnering for impact — your WISE journey starts here. If your idea has felt too early, too quiet, too small, or too unseen, this is your invitation to bring it into the room.'
+              )}
             </p>
           </Reveal>
         </div>
 
         <RevealGroup className="mt-14 grid gap-5 sm:grid-cols-2">
           {PILLARS.map((p) => (
-            <RevealItem key={p.i18nKey}>
+            <RevealItem key={p.title}>
               <MotionLink
                 to={p.href}
                 whileHover={{ y: -5 }}
@@ -82,16 +119,16 @@ export function EnterTheLab() {
                   />
                 </div>
                 <h3 className="mt-6 font-display text-2xl font-semibold text-plum">
-                  {t(`enterTheLab.pillars.${p.i18nKey}.title`)}
+                  {p.title}
                 </h3>
                 <p className="mt-3 flex-1 text-[15px] leading-relaxed text-plum/65">
-                  {t(`enterTheLab.pillars.${p.i18nKey}.body`)}
+                  {p.body}
                 </p>
                 <span
                   className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
                   style={{ color: p.color }}
                 >
-                  {t(`enterTheLab.pillars.${p.i18nKey}.cta`)}
+                  {p.cta}
                   <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </span>
               </MotionLink>
@@ -101,7 +138,7 @@ export function EnterTheLab() {
 
         <Reveal delay={0.1}>
           <p className="mt-12 text-center font-display text-xl font-medium italic text-plum/70">
-            {t('enterTheLab.closing')}
+            {t('enterTheLab.closingLine', 'Your next chapter starts inside the Lab.')}
           </p>
         </Reveal>
       </div>

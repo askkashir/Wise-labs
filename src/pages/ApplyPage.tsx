@@ -6,6 +6,7 @@ import { Reveal } from '@/components/Reveal'
 import { DynamicForm } from '@/components/DynamicForm'
 import { WiseMark } from '@/components/WiseLabLogo'
 import { getFormSchema } from '@/lib/forms/schemas'
+import { tSubtitle, tTitle } from '@/lib/forms/i18nKeys'
 
 /**
  * /apply/:track — dedicated application page for each of the four Enter
@@ -38,19 +39,19 @@ export function ApplyPage() {
             className="group inline-flex items-center gap-2 text-sm font-semibold text-plum/60 transition-colors hover:text-plum"
           >
             <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-0.5" />
-            {t('applyPage.backToWiseLab')}
+            {t('apply.backToWiseLab', 'Back to WISE Lab')}
           </Link>
 
           <div className="mt-8 flex items-center gap-3">
             <WiseMark className="h-10 w-auto" />
           </div>
 
-          <p className="eyebrow mt-8">{t('enterTheLab.eyebrow')}</p>
+          <p className="eyebrow mt-8">{t('nav.links.enter-the-lab', 'Enter the Lab')}</p>
           <h1 className="mt-3 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-bold leading-[1.05] text-plum">
-            {t(schema.title)}
+            {tTitle(t, schema)}
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-plum/70">
-            {t(schema.subtitle)}
+            {tSubtitle(t, schema)}
           </p>
         </Reveal>
 
