@@ -38,11 +38,24 @@ native-speaker/design/legal review pass before this ships to production.
    from `WISE Lab Logo Reveal.pdf` (vector Illustrator source, no embedded raster) at 300dpi and
    PNG-exported with white keyed to transparent. This is a *rasterization*, not the original vector.
    If print-quality or the original .ai/.eps source is needed, get it from whoever produced the PDF.
-9. **i18n translations (UR/PS/PA)**: Urdu, Pashto, and Punjabi strings in `src/i18n/locales/` are
-   **machine-drafted**, not reviewed by native speakers. Every non-English string is flagged with a
-   `// TODO: native review` comment or equivalent marker in the locale JSON (see Phase 9 log for the
-   exact mechanism used). Do not ship to production without a native-speaker review pass, especially
-   for RTL (Urdu/Pashto) layout and any legal/commitment-statement copy in the Founder Flightpath form.
+9. **i18n translations (UR/PS/PA)** — two separate things to know:
+   - **Coverage is partial by design.** Only Nav, Footer, the Become-a-Mentor section, the
+     WhatsApp button's aria-label, and DynamicForm's UI chrome (submit/error/success copy) are
+     wired to `react-i18next`. Hero, WiseJourney, BuildTracks, EnterTheLab, PowerCircle,
+     BehindTheWings, WiseConnect, and — importantly — the actual question text in all four
+     application form schemas (Founder/Enterprise/Mentor/Partner) still render in English
+     regardless of selected language. This was a deliberate choice: several landing-page sections
+     have framer-motion animations keyed to hardcoded English word arrays (see Hero.tsx), and
+     translating them without being able to visually verify the result in this environment risked
+     silently breaking working animations or shipping broken RTL layouts. Extending coverage to
+     the rest of the site is straightforward (same `useTranslation()` + locale-key pattern used
+     everywhere else) but needs a human with visual QA to do it safely.
+   - **Translation quality**: every string that IS translated into Urdu, Pashto, and Punjabi is
+     **machine-drafted**, not reviewed by native speakers. Each locale file
+     (`src/i18n/locales/{ur,ps,pa}.json`) carries a top-level `"_meta": {"reviewStatus": "machine-
+     drafted, NOT reviewed..."}` key as a machine-readable flag. Do not ship to production without
+     a native-speaker review pass — especially for the commitment-statement consent checkbox
+     copy, which has legal/ethical weight.
 10. **Live stats + countdown**: shipped behind a feature flag (`VITE_FEATURE_LIVE_STATS`, default
     off) because there is no real data source. When ready, wire it to real numbers and flip the flag.
 11. **Partner logo fetching**: implemented as a config-driven list (`src/lib/partners.ts`) rather than

@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next'
 import { WiseLabLogo } from '@/components/WiseLabLogo'
 import { NAV_LINKS } from '@/lib/nav'
 
 export function Footer() {
+  const { t } = useTranslation()
   return (
     <footer
       className="relative overflow-hidden pt-20 pb-10 text-beige"
@@ -18,7 +20,7 @@ export function Footer() {
           <div>
             <WiseLabLogo variant="white" size={104} showTagline />
             <p className="mt-6 font-display text-2xl font-medium text-beige/90">
-              Her idea. Her enterprise. Her flight.
+              {t('footer.tagline')}
             </p>
           </div>
 
@@ -29,7 +31,7 @@ export function Footer() {
                 href={`#${l.id}`}
                 className="link-underline text-sm font-medium text-beige/70 transition-colors hover:text-beige"
               >
-                {l.label}
+                {t(`nav.links.${l.id}`, l.label)}
               </a>
             ))}
           </nav>
@@ -45,11 +47,8 @@ export function Footer() {
         </div>
 
         <div className="mt-8 space-y-1.5 border-t border-beige/10 pt-8 text-sm text-beige/55">
-          <p>Under the vision of the Prime Minister of Pakistan.</p>
-          <p>
-            Designed &amp; funded by the Ministry of IT &amp; Telecom and Ignite —
-            National Technology Fund.
-          </p>
+          <p>{t('footer.underVision')}</p>
+          <p>{t('footer.fundedBy')}</p>
           <p className="pt-1">
             <a href="#" onClick={(e) => e.preventDefault()} className="link-underline text-coral">
               wiselab.org.pk
@@ -58,10 +57,8 @@ export function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col items-start justify-between gap-3 text-sm text-beige/45 sm:flex-row sm:items-center">
-          <p>
-            © 2026 WISE Lab — Women Innovation and Startup Empowerment Lab.
-          </p>
-          <p className="font-display italic text-beige/60">From cocoon to flight.</p>
+          <p>{t('footer.copyright')}</p>
+          <p className="font-display italic text-beige/60">{t('footer.closingLine')}</p>
         </div>
       </div>
     </footer>

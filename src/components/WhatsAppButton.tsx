@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { usePrefersReducedMotion } from '@/lib/useTrackState'
 
 const FALLBACK_NUMBER = '+923000000000'
@@ -19,6 +20,7 @@ function toWaLink(rawNumber: string) {
  * looks real to a site visitor). See TODO_FOR_HUMAN.md item 6.
  */
 export function WhatsAppButton() {
+  const { t } = useTranslation()
   const reduce = usePrefersReducedMotion()
   const configured = import.meta.env.VITE_WHATSAPP_NUMBER
   const number = configured || (import.meta.env.DEV ? FALLBACK_NUMBER : '')
@@ -30,7 +32,7 @@ export function WhatsAppButton() {
       href={toWaLink(number)}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat with WISE Lab on WhatsApp"
+      aria-label={t('whatsapp.ariaLabel')}
       initial={reduce ? false : { scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 1 }}

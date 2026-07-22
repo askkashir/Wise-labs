@@ -29,7 +29,7 @@ Ambiguous/unspecified inputs are never blockers. Default sensibly, ship, and rec
 - [x] Phase 6 — Admin portal (auth-gated, submissions table, blog CRUD) — built alongside Phase 4 routing since routes/pages are one unit of work; see log
 - [x] Phase 7 — Blog management (public list/detail pages + admin CRUD wired to schema) — built alongside Phase 4/6 for the same reason
 - [x] Phase 8 — Become-a-Mentor section/page + floating WhatsApp button + PM banner in Footer
-- [ ] Phase 9 — Multilingual EN/UR/PS/PA with RTL support; live stats/countdown behind feature flag; partner logo fetching
+- [x] Phase 9 — Multilingual EN/UR/PS/PA with RTL support (partial coverage, see log); live stats/countdown behind feature flag; partner logo config module
 - [ ] Phase 10 — Finalize: full verification pass, TODO_FOR_HUMAN.md finalize, push to fork, open PR cross-repo
 
 ## Key repo facts (recon, don't re-derive)

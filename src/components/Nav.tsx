@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { WiseMark } from './WiseLabLogo'
 import { Button } from './ui/button'
 import { MagneticButton } from './MagneticButton'
+import { LanguageSwitcher } from './LanguageSwitcher'
 import { NAV_LINKS } from '@/lib/nav'
 import { useTrack } from '@/lib/useTrackState'
 import { cn } from '@/lib/utils'
 
 export function Nav() {
+  const { t } = useTranslation()
   const { track } = useTrack()
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState<string>('hero')
@@ -66,7 +69,7 @@ export function Nav() {
         <nav className="container-wise flex h-[68px] items-center justify-between gap-6">
           <a
             href="#hero"
-            aria-label="WISE Lab home"
+            aria-label={t('nav.home')}
             className="flex items-center gap-2.5"
           >
             <WiseMark variant={logoVariant} className="h-9 w-auto" />
@@ -100,12 +103,13 @@ export function Nav() {
                   active === l.id && (lightText ? 'text-white' : 'text-plum')
                 )}
               >
-                {l.label}
+                {t(`nav.links.${l.id}`, l.label)}
               </a>
             ))}
           </div>
 
           <div className="flex items-center gap-2">
+            <LanguageSwitcher light={lightText} className="hidden sm:inline-flex" />
             <MagneticButton className="hidden sm:inline-flex" strength={0.4}>
               <Button
                 asChild
@@ -113,7 +117,7 @@ export function Nav() {
                 className="h-10 px-5"
                 style={{ background: 'var(--track-primary)', color: 'var(--track-ink)' }}
               >
-                <a href="#enter-the-lab">Enter the Lab</a>
+                <a href="#enter-the-lab">{t('nav.cta')}</a>
               </Button>
             </MagneticButton>
 
@@ -174,17 +178,20 @@ export function Nav() {
                     transition={{ delay: 0.1 + i * 0.05 }}
                     className="border-b border-plum/10 py-3.5 font-display text-xl font-medium text-plum"
                   >
-                    {l.label}
+                    {t(`nav.links.${l.id}`, l.label)}
                   </motion.a>
                 ))}
+              </div>
+              <div className="mt-6">
+                <LanguageSwitcher />
               </div>
               <a
                 href="#enter-the-lab"
                 onClick={() => setMenuOpen(false)}
-                className="mt-8 flex h-12 items-center justify-center rounded-full text-sm font-semibold"
+                className="mt-4 flex h-12 items-center justify-center rounded-full text-sm font-semibold"
                 style={{ background: 'var(--track-primary)', color: 'var(--track-ink)' }}
               >
-                Enter the Lab
+                {t('nav.cta')}
               </a>
             </motion.aside>
           </motion.div>

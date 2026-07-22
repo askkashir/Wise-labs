@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import './i18n'
 import { AppRouter } from './AppRouter.tsx'
 
 // Note: StrictMode is intentionally omitted — its double-mount can leave

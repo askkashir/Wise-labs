@@ -185,3 +185,55 @@ conceptual phase.
   code, so the banner reinforces copy that was already there rather than introducing a new claim).
 - Verified: `npx tsc -b --force`, `npm run build`, `npm run lint` all clean (same 4 pre-existing-
   category fast-refresh warnings, one is the new `useAdminAuth.tsx` from Phase 4/6/7).
+
+## Phase 9 — i18n (EN/UR/PS/PA + RTL), live stats/countdown flag, partner config
+- **i18n infrastructure** (`react-i18next` + `i18next`, newly installed): `src/i18n/index.ts` sets
+  up 4 locale bundles, persists the chosen language to `localStorage`, and keeps
+  `<html lang>`/`<html dir>` in sync via `applyLanguageToDocument` (fired on init and on every
+  `languageChanged` event) — this is what actually flips the page to RTL for Urdu/Pashto/Punjabi,
+  not just a CSS class. `src/components/LanguageSwitcher.tsx` is a Select-based switcher (reusing
+  the existing shadcn Select) mounted in both the desktop nav bar and the mobile slide-in menu.
+  Added Noto Nastaliq Urdu as a webfont and a `[dir='rtl'] body { font-family: ... }` rule in
+  `index.css` so RTL script actually renders instead of tofu/fallback glyphs.
+- **Translation coverage — partial, and this is a deliberate, disclosed scope decision, not an
+  oversight.** The landing page has deeply choreographed, per-word/per-character framer-motion
+  entrance animations (Hero.tsx's `words` array is animated letter-group-by-letter with staggered
+  delays; several other sections have similar hardcoded copy tied to animation timing). Machine-
+  translating every string across the whole site in one pass risked either (a) silently breaking
+  those animations by changing string/word-count assumptions the animation math depends on, or
+  (b) shipping visually broken RTL layouts in sections never designed with RTL in mind, with no
+  way to verify visually in this environment. Chose a smaller, fully-correct, fully-wired subset
+  over a larger, unverified one:
+  - **Translated and wired**: Nav (links, home aria-label, CTA, mobile menu), Footer (tagline,
+    PM-vision copy, funded-by line, copyright, closing line), the new BecomeAMentor section
+    (Phase 8), WhatsAppButton's aria-label, and all of DynamicForm's chrome strings (submit/
+    sending/validation errors/success-fallback-name/submit-another/add-row/remove-row/choose-one)
+    — meaning every one of the four application forms (Founder/Enterprise/Mentor/Partner) is
+    already RTL- and translation-aware for all its non-schema-driven UI.
+  - **Left in English, not yet wired to i18n**: Hero's animated headline/subcopy, WiseJourney,
+    BuildTracks, EnterTheLab's card copy, PowerCircle, BehindTheWings, WiseConnect's field labels,
+    and the Founder/Enterprise/Mentor/Partner form *schemas themselves* (question text, e.g.
+    "What problem are you solving?") — these still render in English regardless of selected
+    language. Flagged explicitly in TODO_FOR_HUMAN.md item 9 with a concrete list of what's left.
+  - The locale JSON files themselves (`ur.json`/`ps.json`/`pa.json`) all carry a `"_meta":
+    {"reviewStatus": "machine-drafted, NOT reviewed by a native speaker..."}` key as a
+    machine-readable flag, in addition to the TODO_FOR_HUMAN.md callout — so the flag survives
+    even if someone greps the JSON directly instead of reading the markdown.
+- **Live stats + countdown** (`src/lib/stats.ts` + `src/sections/LiveStats.tsx`): real
+  Supabase-derived counts (applications/cities/mentors, computed from the same `analytics` map
+  every submission carries) plus a countdown timer. Gated behind `VITE_FEATURE_LIVE_STATS`
+  (default `false`) and **not mounted in `App.tsx`** — there's no real application-cycle deadline
+  to count down to, so `getNextCycleDeadline()` defaults to "30 days from first page load,
+  persisted per session" rather than a fabricated hardcoded date. A human flips the flag and adds
+  `<LiveStats />` to the landing page once real numbers/dates exist (TODO_FOR_HUMAN.md item 10).
+- **Partner logo fetching** (`src/lib/partners.ts`): a config-driven `Partner[]` module
+  (name/role/logoUrl/href) intended as the single place partner data lives, ready to swap for a
+  real fetch or Supabase table later without touching any component. Deliberately did NOT rewire
+  the existing `PowerCircle.tsx` section to consume it — that section's hardcoded partner cards
+  already work correctly and rewiring them for no visible behavior change (all `logoUrl: null`
+  today, since no real partner logo URLs were provided) would be pure risk with no benefit.
+  Flagged in TODO_FOR_HUMAN.md item 11.
+- Verified: `npx tsc -b --force`, `npm run build`, `npm run lint` all clean (same 4 pre-existing-
+  category warnings). Validated all 4 locale JSON files parse correctly. Confirmed via grep that
+  `LiveStats`/`partners.ts` are intentionally not wired into `App.tsx`/`PowerCircle.tsx` (dead
+  code by design, not by accident) so a reviewer doesn't mistake this for an incomplete wire-up.

@@ -1,24 +1,13 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { ArrowUpRight, Compass, Handshake, Lightbulb } from 'lucide-react'
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
 
 const WAYS_TO_HELP = [
-  {
-    Icon: Lightbulb,
-    title: 'Share your expertise',
-    body: 'Guide founders through business strategy, product, finance, marketing, or legal questions in focused mentoring sessions.',
-  },
-  {
-    Icon: Handshake,
-    title: 'Open your network',
-    body: 'Connect women-led startups and MSMEs to investors, customers, partners, and opportunities they wouldn’t otherwise reach.',
-  },
-  {
-    Icon: Compass,
-    title: 'Shape the ecosystem',
-    body: 'Help set the standard for what women-led enterprise support looks like in Pakistan — one founder relationship at a time.',
-  },
-]
+  { key: 'share', Icon: Lightbulb },
+  { key: 'network', Icon: Handshake },
+  { key: 'shape', Icon: Compass },
+] as const
 
 /**
  * Dedicated "Become a Mentor" promotional section on the landing page —
@@ -28,6 +17,7 @@ const WAYS_TO_HELP = [
  * living inside the 4-card grid.
  */
 export function BecomeAMentor() {
+  const { t } = useTranslation()
   return (
     <section
       id="become-a-mentor"
@@ -42,19 +32,17 @@ export function BecomeAMentor() {
           <div className="lg:col-span-6">
             <Reveal>
               <p className="eyebrow" style={{ color: '#2C7A70' }}>
-                Guide Her Growth
+                {t('mentorSection.eyebrow')}
               </p>
               <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-plum">
-                Become a mentor.
+                {t('mentorSection.title1')}
                 <br />
-                Help her take flight.
+                {t('mentorSection.title2')}
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-plum/70">
-                For experts, founders, investors, trainers, and professionals who want
-                to guide women entrepreneurs through practical, hands-on support —
-                from first idea to investor-ready enterprise.
+                {t('mentorSection.body')}
               </p>
             </Reveal>
             <Reveal delay={0.15}>
@@ -63,7 +51,7 @@ export function BecomeAMentor() {
                 className="mt-10 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
                 style={{ background: '#2C7A70' }}
               >
-                Become a Mentor
+                {t('mentorSection.cta')}
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
             </Reveal>
@@ -71,18 +59,18 @@ export function BecomeAMentor() {
 
           <div className="lg:col-span-6">
             <RevealGroup className="space-y-4" stagger={0.08}>
-              {WAYS_TO_HELP.map(({ Icon, title, body }) => (
-                <RevealItem key={title}>
+              {WAYS_TO_HELP.map(({ key, Icon }) => (
+                <RevealItem key={key}>
                   <div className="flex gap-4 rounded-2xl border border-plum/10 bg-white p-6 shadow-card">
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal/10 text-teal">
                       <Icon className="h-6 w-6" strokeWidth={1.6} />
                     </span>
                     <div>
                       <h3 className="font-display text-lg font-semibold text-plum">
-                        {title}
+                        {t(`mentorSection.ways.${key}.title`)}
                       </h3>
                       <p className="mt-1.5 text-[15px] leading-relaxed text-plum/65">
-                        {body}
+                        {t(`mentorSection.ways.${key}.body`)}
                       </p>
                     </div>
                   </div>

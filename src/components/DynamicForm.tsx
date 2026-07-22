@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { CheckCircle2, Plus, Send, Trash2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -33,6 +34,7 @@ interface DynamicFormProps {
 }
 
 export function DynamicForm({ schema }: DynamicFormProps) {
+  const { t } = useTranslation()
   const fields = useMemo(() => allFields(schema), [schema])
   const [values, setValues] = useState<Values>({})
   const [errors, setErrors] = useState<Errors>({})
@@ -66,12 +68,12 @@ export function DynamicForm({ schema }: DynamicFormProps) {
       }
 
       if (field.type === 'consent') {
-        if (field.required && val !== true) e[field.name] = 'This confirmation is required.'
+        if (field.required && val !== true) e[field.name] = t('form.consentRequiredError')
         continue
       }
 
       if (field.required && (val === undefined || val === null || String(val).trim() === '')) {
-        e[field.name] = 'This field is required.'
+        e[field.name] = t('form.requiredError')
         continue
       }
 
@@ -94,7 +96,7 @@ export function DynamicForm({ schema }: DynamicFormProps) {
       await submitApplication(payload)
       setSent(true)
     } catch {
-      setSubmitError('Something went wrong sending your application. Please try again.')
+      setSubmitError(t('form.submitError'))
     } finally {
       setSubmitting(false)
     }
@@ -129,7 +131,7 @@ export function DynamicForm({ schema }: DynamicFormProps) {
                 <CheckCircle2 className="h-10 w-10 text-[var(--track-accent)]" />
               </motion.div>
               <h3 className="mt-6 font-display text-2xl font-bold text-plum">
-                {schema.successTitle.replace('{firstName}', firstName || 'friend')}
+                {schema.successTitle.replace('{firstName}', firstName || t('form.successFallbackName'))}
               </h3>
               <p className="mt-2 max-w-xs text-plum/65">{schema.successBody}</p>
               <button
@@ -141,7 +143,7 @@ export function DynamicForm({ schema }: DynamicFormProps) {
                 }}
                 className="mt-8 text-sm font-semibold text-plum/60 underline underline-offset-4 hover:text-plum"
               >
-                Submit another application
+                {t('form.submitAnother')}
               </button>
             </motion.div>
           ) : (
@@ -189,7 +191,7 @@ export function DynamicForm({ schema }: DynamicFormProps) {
                 disabled={submitting}
                 style={{ background: 'var(--track-primary)', color: 'var(--track-ink)' }}
               >
-                {submitting ? 'Sending…' : schema.submitLabel}
+                {submitting ? t('form.sending') : schema.submitLabel}
                 <Send className="h-4 w-4" />
               </Button>
             </motion.form>
@@ -211,6 +213,7 @@ function FormField({
   error?: string
   onChange: (val: unknown) => void
 }) {
+  const { t } = useTranslation()
   if (field.type === 'table') {
     return (
       <TableField field={field} value={(value as Record<string, string>[]) ?? []} error={error} onChange={onChange} />
@@ -259,7 +262,7 @@ function FormField({
       {field.type === 'select' && (
         <Select value={(value as string) ?? ''} onValueChange={onChange}>
           <SelectTrigger id={field.name} aria-invalid={!!error}>
-            <SelectValue placeholder={field.placeholder ?? 'Choose one'} />
+            <SelectValue placeholder={field.placeholder ?? t('form.chooseOne')} />
           </SelectTrigger>
           <SelectContent>
             {field.options?.map((opt) => (
@@ -314,6 +317,7 @@ function TableField({
   error?: string
   onChange: (val: Record<string, string>[]) => void
 }) {
+  const { t } = useTranslation()
   const columns = field.columns ?? []
   const rows = value.length > 0 ? value : [emptyTableRow(columns)]
 
@@ -359,7 +363,7 @@ function TableField({
                 onClick={() => removeRow(idx)}
                 className="flex items-center gap-1.5 text-[13px] font-semibold text-destructive sm:col-span-2 sm:justify-self-start"
               >
-                <Trash2 className="h-3.5 w-3.5" /> Remove row
+                <Trash2 className="h-3.5 w-3.5" /> {t('form.removeRow')}
               </button>
             )}
           </div>
@@ -370,7 +374,7 @@ function TableField({
         onClick={addRow}
         className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[var(--track-accent)]"
       >
-        <Plus className="h-3.5 w-3.5" /> Add another
+        <Plus className="h-3.5 w-3.5" /> {t('form.addRow')}
       </button>
       <ErrorMessage error={error} />
     </div>

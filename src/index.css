@@ -83,6 +83,13 @@
     overflow-x: hidden;
   }
 
+  /* Urdu / Pashto / Punjabi (Shahmukhi) — Noto Nastaliq Urdu covers all three
+     scripts reasonably; a native-script-specific font per language would be
+     a further refinement (see TODO_FOR_HUMAN.md). */
+  [dir='rtl'] body {
+    font-family: 'Noto Nastaliq Urdu', 'Inter', sans-serif;
+  }
+
   /* Lenis */
   html.lenis,
   html.lenis body {
