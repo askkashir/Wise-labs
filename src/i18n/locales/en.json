@@ -1,0 +1,78 @@
+{
+  "nav": {
+    "links": {
+      "wise-journey": "The WISE Journey",
+      "build-tracks": "Build Tracks",
+      "enter-the-lab": "Enter the Lab",
+      "power-circle": "The Power Circle",
+      "behind-the-wings": "Behind the Wings",
+      "wise-connect": "WISE Connect"
+    },
+    "cta": "Enter the Lab",
+    "home": "WISE Lab home"
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "ur": "اردو",
+    "ps": "پښتو",
+    "pa": "پنجابی"
+  },
+  "mentorSection": {
+    "eyebrow": "Guide Her Growth",
+    "title1": "Become a mentor.",
+    "title2": "Help her take flight.",
+    "body": "For experts, founders, investors, trainers, and professionals who want to guide women entrepreneurs through practical, hands-on support — from first idea to investor-ready enterprise.",
+    "cta": "Become a Mentor",
+    "ways": {
+      "share": {
+        "title": "Share your expertise",
+        "body": "Guide founders through business strategy, product, finance, marketing, or legal questions in focused mentoring sessions."
+      },
+      "network": {
+        "title": "Open your network",
+        "body": "Connect women-led startups and MSMEs to investors, customers, partners, and opportunities they wouldn't otherwise reach."
+      },
+      "shape": {
+        "title": "Shape the ecosystem",
+        "body": "Help set the standard for what women-led enterprise support looks like in Pakistan — one founder relationship at a time."
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Her idea. Her enterprise. Her flight.",
+    "underVision": "Under the vision of the Prime Minister of Pakistan.",
+    "fundedBy": "Designed & funded by the Ministry of IT & Telecom and Ignite — National Technology Fund.",
+    "copyright": "© 2026 WISE Lab — Women Innovation and Startup Empowerment Lab.",
+    "closingLine": "From cocoon to flight."
+  },
+  "whatsapp": {
+    "ariaLabel": "Chat with WISE Lab on WhatsApp"
+  },
+  "form": {
+    "submit": "Submit application",
+    "sending": "Sending…",
+    "requiredMark": "*",
+    "requiredError": "This field is required.",
+    "consentRequiredError": "This confirmation is required.",
+    "invalidEmailError": "Please enter a valid email.",
+    "submitError": "Something went wrong sending your application. Please try again.",
+    "successFallbackName": "friend",
+    "submitAnother": "Submit another application",
+    "addRow": "Add another",
+    "removeRow": "Remove row",
+    "chooseOne": "Choose one"
+  },
+  "liveStats": {
+    "eyebrow": "WISE Lab, in numbers",
+    "title": "Momentum you can measure",
+    "applications": "Applications received",
+    "cities": "Cities represented",
+    "mentors": "Mentors onboard",
+    "countdownLabel": "Next application cycle closes in",
+    "days": "days",
+    "hours": "hrs",
+    "minutes": "min",
+    "seconds": "sec"
+  }
+}

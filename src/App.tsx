@@ -8,6 +8,7 @@ import { BuildTracks } from '@/sections/BuildTracks'
 import { EnterTheLab } from '@/sections/EnterTheLab'
 import { PowerCircle } from '@/sections/PowerCircle'
 import { BehindTheWings } from '@/sections/BehindTheWings'
+import { BecomeAMentor } from '@/sections/BecomeAMentor'
 import { WiseConnect } from '@/sections/WiseConnect'
 import { Footer } from '@/sections/Footer'
 
@@ -24,6 +25,7 @@ function App() {
             <EnterTheLab />
             <PowerCircle />
             <BehindTheWings />
+            <BecomeAMentor />
             <WiseConnect />
           </main>
           <Footer />

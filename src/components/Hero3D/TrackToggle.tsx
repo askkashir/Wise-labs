@@ -22,9 +22,9 @@ const OPTIONS: Option[] = [
     kicker: 'Startup Incubation',
     title: 'Founder Flightpath',
     sub: 'Scalable, tech-enabled ventures',
-    primary: '#2f6bd4',
-    soft: 'rgba(59,130,246,0.12)',
-    ink: '#0c1b38',
+    primary: '#2e7d7b',
+    soft: 'rgba(46,125,123,0.12)',
+    ink: '#0f3d3b',
     Icon: Rocket,
   },
   {

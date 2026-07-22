@@ -1,13 +1,17 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { ArrowUpRight, Rocket, Store, Compass, Network } from 'lucide-react'
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
+
+const MotionLink = motion(Link)
 
 const PILLARS = [
   {
     title: 'Founder Flightpath',
     body: 'For women founders and startup teams ready for incubation, validation, mentorship, pitch development, and investor readiness.',
     cta: 'Take Flight',
-    color: '#3B82F6',
+    color: '#2E7D7B',
+    href: '/apply/founder',
     Icon: Rocket,
   },
   {
@@ -15,6 +19,7 @@ const PILLARS = [
     body: 'For women-led small businesses and home-based entrepreneurs seeking business training, digital skills, visibility, and market access.',
     cta: 'Grow Your Enterprise',
     color: '#E8823C',
+    href: '/apply/enterprise',
     Icon: Store,
   },
   {
@@ -22,6 +27,7 @@ const PILLARS = [
     body: 'For experts, founders, investors, trainers, and professionals who want to guide women entrepreneurs through practical support.',
     cta: 'Become a Mentor',
     color: '#2C7A70',
+    href: '/apply/mentor',
     Icon: Compass,
   },
   {
@@ -29,6 +35,7 @@ const PILLARS = [
     body: 'For organizations ready to collaborate on women-led innovation, enterprise, access, and inclusive growth.',
     cta: 'Partner with WISE',
     color: '#E38470',
+    href: '/apply/partner',
     Icon: Network,
   },
 ]
@@ -60,8 +67,8 @@ export function EnterTheLab() {
         <RevealGroup className="mt-14 grid gap-5 sm:grid-cols-2">
           {PILLARS.map((p) => (
             <RevealItem key={p.title}>
-              <motion.a
-                href="#wise-connect"
+              <MotionLink
+                to={p.href}
                 whileHover={{ y: -5 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 24 }}
                 className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-plum/10 bg-white p-8 shadow-card transition-shadow duration-500 hover:shadow-card-hover"
@@ -96,7 +103,7 @@ export function EnterTheLab() {
                   {p.cta}
                   <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </span>
-              </motion.a>
+              </MotionLink>
             </RevealItem>
           ))}
         </RevealGroup>

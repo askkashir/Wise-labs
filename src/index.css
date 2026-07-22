@@ -40,18 +40,18 @@
     --radius: 0.85rem;
   }
 
-  /* Track: Founder Flightpath — BLUE */
+  /* Track: Founder Flightpath — TEAL */
   [data-track='founder'] {
-    --track-primary: #12294f;
-    --track-accent: #3b82f6;
-    --track-accent-2: #22d3ee;
-    --track-ink: #eaf2ff;
-    --track-soft: rgba(59, 130, 246, 0.12);
-    --track-glow: rgba(34, 211, 238, 0.35);
-    --hero-bg-a: #0c1b38;
-    --hero-bg-b: #123a6b;
-    --hero-fog: rgba(59, 130, 246, 0.18);
-    --ring: 217 91% 60%;
+    --track-primary: #0f3d3b;
+    --track-accent: #2e7d7b;
+    --track-accent-2: #4fd1c5;
+    --track-ink: #eafffb;
+    --track-soft: rgba(46, 125, 123, 0.12);
+    --track-glow: rgba(79, 209, 197, 0.35);
+    --hero-bg-a: #0b2320;
+    --hero-bg-b: #154a47;
+    --hero-fog: rgba(46, 125, 123, 0.18);
+    --ring: 175 46% 30%;
   }
 
   /* Track: Enterprise Flightpath — ORANGE */
@@ -81,6 +81,13 @@
     @apply bg-background text-foreground font-sans;
     font-feature-settings: 'cv11', 'ss01';
     overflow-x: hidden;
+  }
+
+  /* Urdu / Pashto / Punjabi (Shahmukhi) — Noto Nastaliq Urdu covers all three
+     scripts reasonably; a native-script-specific font per language would be
+     a further refinement (see TODO_FOR_HUMAN.md). */
+  [dir='rtl'] body {
+    font-family: 'Noto Nastaliq Urdu', 'Inter', sans-serif;
   }
 
   /* Lenis */
