@@ -15,6 +15,11 @@
   "pmBanner": {
     "text": "Under the vision of the Honorable Prime Minister of Pakistan, WISE Lab is designed & funded by the Ministry of IT & Telecom & Ignite - National Technology Fund."
   },
+  "applyNow": {
+    "cta": "Apply Now",
+    "close": "Close",
+    "chooseTrack": "Choose your track"
+  },
   "hero": {
     "eyebrow": "Women Innovation & Startup Empowerment Lab",
     "headlineWords": ["Her", "idea.", "Her", "enterprise."],
@@ -221,12 +226,18 @@
     "requiredError": "This field is required.",
     "consentRequiredError": "This confirmation is required.",
     "invalidEmailError": "Please enter a valid email.",
+    "invalidValueError": "Invalid value.",
+    "tableMinRowsError": "Please add at least one row.",
+    "tableIncompleteError": "Please complete all required fields in the table.",
     "submitError": "Something went wrong sending your application. Please try again.",
     "successFallbackName": "friend",
     "submitAnother": "Submit another application",
     "addRow": "Add another",
     "removeRow": "Remove row",
     "chooseOne": "Choose one"
+  },
+  "applyPage": {
+    "backToWiseLab": "Back to WISE Lab"
   },
   "liveStats": {
     "eyebrow": "WISE Lab, in numbers",
@@ -239,5 +250,268 @@
     "hours": "hrs",
     "minutes": "min",
     "seconds": "sec"
+  },
+  "forms": {
+    "founder": {
+      "meta": {
+        "title": "Founder Flightpath — Incubation Application",
+        "subtitle": "For women founders and startup teams ready for incubation, validation, mentorship, pitch development, and investor readiness.",
+        "submitLabel": "Submit application",
+        "successTitle": "Thank you, {{name}}.",
+        "successBody": "Your Founder Flightpath application is in. Our team will review it and reach out about next steps."
+      },
+      "sections": {
+        "startup-basics": { "title": "Startup basics" },
+        "idea-overview": { "title": "Idea overview" },
+        "team-details": { "title": "Team details" },
+        "previous-experience": { "title": "Previous experience" },
+        "availability": { "title": "Availability" },
+        "funding": { "title": "Funding / investment" },
+        "contact-information": { "title": "Contact information" },
+        "how-did-you-hear": { "title": "How did you hear about WISE Lab" },
+        "commitment": { "title": "Commitment statement" }
+      },
+      "common": {
+        "options": { "yes": "Yes", "no": "No" }
+      },
+      "startupName": { "label": "Startup name", "placeholder": "Your startup or venture name" },
+      "vertical": {
+        "label": "Business / Innovation vertical",
+        "options": {
+          "ecommerce": "E-Commerce / Online Store",
+          "fashion-apparel": "Fashion & Apparel",
+          "beauty-wellness": "Beauty, Wellness & Personal Care",
+          "food-beverages": "Food & Beverages / Home-Based Food Business",
+          "handicrafts": "Handicrafts / Artisanal Products",
+          "education-training": "Education & Training (EdTech, Skills, Tutoring)",
+          "health-wellness": "Health & Wellness (HealthTech, Fitness, Nutrition)",
+          "social-enterprise": "Social Enterprise / Community Impact",
+          "creative-industries": "Creative Industries (Design, Content, Photography, Crafts)",
+          "services": "Services (Event Management, Marketing, Consultancy)",
+          "others": "Others"
+        }
+      },
+      "stage": {
+        "label": "Startup stage",
+        "options": {
+          "idea": "Idea",
+          "prototype": "Prototype",
+          "mvp": "MVP",
+          "established": "Established Product/Service"
+        }
+      },
+      "establishmentYear": { "label": "Startup establishment year", "placeholder": "e.g. 2023" },
+      "ideaBrief": { "label": "Idea brief", "placeholder": "A short summary of your idea" },
+      "productDescription": { "label": "Product / service description" },
+      "valueProposition": {
+        "label": "Value proposition",
+        "helpText": "What problem are you solving, and how is your solution unique?"
+      },
+      "targetMarket": { "label": "Target market" },
+      "customers": { "label": "Customers" },
+      "competition": { "label": "Competition" },
+      "coreStrength": { "label": "Core strength / innovation" },
+      "marketingStrategy": { "label": "Marketing and sales strategy" },
+      "onlinePresence": { "label": "Online presence", "placeholder": "Website / Facebook / Instagram / TikTok / Other" },
+      "revenueStreams": { "label": "Revenue streams" },
+      "team": {
+        "label": "Team members",
+        "columns": {
+          "name": "Name",
+          "role": "Role",
+          "qualification": "Qualification",
+          "skillset": "Skillset / Expertise",
+          "city": "City",
+          "age": "Age"
+        }
+      },
+      "hasLaunchedBusiness": { "label": "Have you launched or managed a business before?" },
+      "previousBusinessName": { "label": "Name of previous business" },
+      "hasIncubationExperience": { "label": "Have you been part of any incubation / training program before?" },
+      "incubationDetails": { "label": "Incubation / training program details" },
+      "availableFullYear": { "label": "Will you be available for the next full year to incubate your startup at WISE Lab Islamabad?" },
+      "hasFunding": { "label": "Have you received funding / investment before?" },
+      "fundingDetails": { "label": "Funding / investment details" },
+      "primaryFounderName": { "label": "Point of contact / primary founder" },
+      "contactNumber": { "label": "Contact number" },
+      "email": { "label": "Email", "patternMessage": "Please enter a valid email." },
+      "cityProvince": { "label": "City / Province" },
+      "gender": {
+        "label": "Gender",
+        "options": {
+          "female": "Female",
+          "male": "Male",
+          "other": "Other",
+          "prefer-not-to-say": "Prefer not to say"
+        }
+      },
+      "referralSource": {
+        "label": "How did you hear about WISE Lab?",
+        "options": {
+          "social-media": "Social Media",
+          "peer-referral": "Peer Referral",
+          "email": "Email",
+          "print-electronic-media": "Print / Electronic Media",
+          "others": "Others"
+        }
+      },
+      "commitmentConsent": {
+        "label": "I confirm my commitment to actively participate, attend mentoring sessions, and contribute to the growth of Pakistan’s women entrepreneurship ecosystem."
+      }
+    },
+    "enterprise": {
+      "meta": {
+        "title": "Enterprise Flightpath — MSME Training Application",
+        "subtitle": "For women-led small businesses and home-based entrepreneurs seeking business training, digital skills, visibility, and market access.",
+        "submitLabel": "Submit application",
+        "successTitle": "Thank you, {{name}}.",
+        "successBody": "Your Enterprise Flightpath application is in. Our team will review it and reach out about next steps."
+      },
+      "sections": {
+        "business-basics": { "title": "Business basics" },
+        "contact-information": { "title": "Contact information" },
+        "how-did-you-hear": { "title": "How did you hear about WISE Lab" },
+        "commitment": { "title": "Commitment statement" }
+      },
+      "businessName": { "label": "Business name" },
+      "vertical": {
+        "label": "Business vertical",
+        "options": {
+          "ecommerce": "E-Commerce / Online Store",
+          "fashion-apparel": "Fashion & Apparel",
+          "beauty-wellness": "Beauty, Wellness & Personal Care",
+          "food-beverages": "Food & Beverages / Home-Based Food Business",
+          "handicrafts": "Handicrafts / Artisanal Products",
+          "education-training": "Education & Training",
+          "health-wellness": "Health & Wellness",
+          "creative-industries": "Creative Industries",
+          "services": "Services",
+          "others": "Others"
+        }
+      },
+      "yearsOperating": { "label": "Years in operation" },
+      "businessDescription": { "label": "What does your business do?" },
+      "trainingNeeds": {
+        "label": "What training or support are you looking for?",
+        "helpText": "Business planning, financial literacy, branding, pricing, digital marketing, e-commerce, etc."
+      },
+      "primaryContactName": { "label": "Primary contact name" },
+      "contactNumber": { "label": "Contact number" },
+      "email": { "label": "Email", "patternMessage": "Please enter a valid email." },
+      "cityProvince": { "label": "City / Province" },
+      "gender": {
+        "label": "Gender",
+        "options": {
+          "female": "Female",
+          "male": "Male",
+          "other": "Other",
+          "prefer-not-to-say": "Prefer not to say"
+        }
+      },
+      "referralSource": {
+        "label": "How did you hear about WISE Lab?",
+        "options": {
+          "social-media": "Social Media",
+          "peer-referral": "Peer Referral",
+          "email": "Email",
+          "print-electronic-media": "Print / Electronic Media",
+          "others": "Others"
+        }
+      },
+      "commitmentConsent": {
+        "label": "I confirm my commitment to actively participate and contribute to the growth of Pakistan’s women entrepreneurship ecosystem."
+      }
+    },
+    "mentor": {
+      "meta": {
+        "title": "Guide Her Growth — Become a Mentor",
+        "subtitle": "For experts, founders, investors, trainers, and professionals who want to guide women entrepreneurs through practical support.",
+        "submitLabel": "Submit mentor application",
+        "successTitle": "Thank you, {{name}}.",
+        "successBody": "Your mentor application is in. Our team will review it and reach out about next steps."
+      },
+      "sections": {
+        "mentor-basics": { "title": "About you" },
+        "contact-information": { "title": "Contact information" },
+        "commitment": { "title": "Commitment statement" }
+      },
+      "fullName": { "label": "Full name" },
+      "currentRole": { "label": "Current role / title" },
+      "organization": { "label": "Organization" },
+      "expertiseAreas": {
+        "label": "Areas of expertise",
+        "options": {
+          "business-strategy": "Business Strategy",
+          "finance-investment": "Finance & Investment",
+          "marketing-branding": "Marketing & Branding",
+          "product-tech": "Product & Technology",
+          "legal": "Legal",
+          "operations": "Operations",
+          "sales-market-access": "Sales & Market Access",
+          "other": "Other"
+        }
+      },
+      "yearsExperience": { "label": "Years of relevant experience" },
+      "motivation": { "label": "Why do you want to mentor with WISE Lab?" },
+      "availability": {
+        "label": "Weekly availability",
+        "options": {
+          "1-2-hours": "1–2 hours / week",
+          "3-5-hours": "3–5 hours / week",
+          "5-plus-hours": "5+ hours / week"
+        }
+      },
+      "contactNumber": { "label": "Contact number" },
+      "email": { "label": "Email", "patternMessage": "Please enter a valid email." },
+      "linkedin": { "label": "LinkedIn profile", "placeholder": "https://linkedin.com/in/…" },
+      "cityProvince": { "label": "City / Province" },
+      "commitmentConsent": {
+        "label": "I confirm my commitment to actively mentor and support women entrepreneurs through WISE Lab."
+      }
+    },
+    "partner": {
+      "meta": {
+        "title": "Open the Ecosystem — Partner with WISE",
+        "subtitle": "For organizations ready to collaborate on women-led innovation, enterprise, access, and inclusive growth.",
+        "submitLabel": "Submit partnership inquiry",
+        "successTitle": "Thank you, {{name}}.",
+        "successBody": "Your partnership inquiry is in. Our team will review it and reach out about next steps."
+      },
+      "sections": {
+        "organization-basics": { "title": "Organization" },
+        "contact-information": { "title": "Contact information" },
+        "commitment": { "title": "Commitment statement" }
+      },
+      "organizationName": { "label": "Organization name" },
+      "partnerCategory": {
+        "label": "Partner category",
+        "options": {
+          "academic": "Academic Partner",
+          "corporate": "Corporate Partner",
+          "development": "Development Partner",
+          "financial": "Financial Partner",
+          "media": "Media Partner",
+          "investor-network": "Investor Network",
+          "training": "Training Partner",
+          "market-access": "Market Access Partner",
+          "community": "Community Partner",
+          "other": "Other"
+        }
+      },
+      "website": { "label": "Website", "placeholder": "https://…" },
+      "proposedCollaboration": { "label": "What kind of collaboration are you proposing?" },
+      "contributionAreas": {
+        "label": "Key contribution areas",
+        "helpText": "Skills, markets, finance, mentorship, ecosystem support, etc."
+      },
+      "contactName": { "label": "Point of contact" },
+      "contactRole": { "label": "Role / title" },
+      "contactNumber": { "label": "Contact number" },
+      "email": { "label": "Email", "patternMessage": "Please enter a valid email." },
+      "cityProvince": { "label": "City / Province" },
+      "commitmentConsent": {
+        "label": "I confirm this organization is committed to collaborating in good faith on WISE Lab’s mission to advance women-led innovation and enterprise."
+      }
+    }
   }
 }

@@ -56,14 +56,14 @@ export function DynamicForm({ schema }: DynamicFormProps) {
         const rows = (val as Record<string, string>[] | undefined) ?? []
         const minRows = field.minRows ?? 0
         if (field.required && rows.length < Math.max(minRows, 1)) {
-          e[field.name] = 'Please add at least one row.'
+          e[field.name] = t('form.tableMinRowsError')
           continue
         }
         const columns = field.columns ?? []
         const rowInvalid = rows.some((row) =>
           columns.some((c) => c.required && !String(row[c.key] ?? '').trim())
         )
-        if (rowInvalid) e[field.name] = 'Please complete all required fields in the table.'
+        if (rowInvalid) e[field.name] = t('form.tableIncompleteError')
         continue
       }
 
@@ -78,7 +78,7 @@ export function DynamicForm({ schema }: DynamicFormProps) {
       }
 
       if (field.pattern && val && !field.pattern.test(String(val))) {
-        e[field.name] = field.patternMessage ?? 'Invalid value.'
+        e[field.name] = field.patternMessage ? t(field.patternMessage) : t('form.invalidValueError')
       }
     }
     setErrors(e)
@@ -131,9 +131,9 @@ export function DynamicForm({ schema }: DynamicFormProps) {
                 <CheckCircle2 className="h-10 w-10 text-[var(--track-accent)]" />
               </motion.div>
               <h3 className="mt-6 font-display text-2xl font-bold text-plum">
-                {schema.successTitle.replace('{firstName}', firstName || t('form.successFallbackName'))}
+                {t(schema.successTitle, { name: firstName || t('form.successFallbackName') })}
               </h3>
-              <p className="mt-2 max-w-xs text-plum/65">{schema.successBody}</p>
+              <p className="mt-2 max-w-xs text-plum/65">{t(schema.successBody)}</p>
               <button
                 type="button"
                 onClick={() => {
@@ -160,10 +160,10 @@ export function DynamicForm({ schema }: DynamicFormProps) {
                 <div key={section.id} className="space-y-5">
                   <div>
                     <h3 className="font-display text-lg font-semibold text-plum">
-                      {section.title}
+                      {t(section.title)}
                     </h3>
                     {section.description && (
-                      <p className="mt-1 text-sm text-plum/60">{section.description}</p>
+                      <p className="mt-1 text-sm text-plum/60">{t(section.description)}</p>
                     )}
                   </div>
                   {section.fields.map((field) =>
@@ -191,7 +191,7 @@ export function DynamicForm({ schema }: DynamicFormProps) {
                 disabled={submitting}
                 style={{ background: 'var(--track-primary)', color: 'var(--track-ink)' }}
               >
-                {submitting ? t('form.sending') : schema.submitLabel}
+                {submitting ? t('form.sending') : t(schema.submitLabel)}
                 <Send className="h-4 w-4" />
               </Button>
             </motion.form>
@@ -232,7 +232,7 @@ function FormField({
             className="mt-0.5"
           />
           <Label htmlFor={field.name} className="normal-case text-[14px] font-normal leading-relaxed text-plum/80">
-            {field.label}
+            {t(field.label)}
           </Label>
         </div>
         <ErrorMessage error={error} />
@@ -243,17 +243,17 @@ function FormField({
   return (
     <div className="space-y-2">
       <Label htmlFor={field.name}>
-        {field.label}
+        {t(field.label)}
         {field.required && <span className="text-[var(--track-accent)]"> *</span>}
       </Label>
-      {field.helpText && <p className="text-[13px] text-plum/55">{field.helpText}</p>}
+      {field.helpText && <p className="text-[13px] text-plum/55">{t(field.helpText)}</p>}
 
       {field.type === 'textarea' && (
         <Textarea
           id={field.name}
           value={(value as string) ?? ''}
           onChange={(e) => onChange(e.target.value)}
-          placeholder={field.placeholder}
+          placeholder={field.placeholder ? t(field.placeholder) : undefined}
           maxLength={field.maxLength}
           aria-invalid={!!error}
         />
@@ -262,12 +262,12 @@ function FormField({
       {field.type === 'select' && (
         <Select value={(value as string) ?? ''} onValueChange={onChange}>
           <SelectTrigger id={field.name} aria-invalid={!!error}>
-            <SelectValue placeholder={field.placeholder ?? t('form.chooseOne')} />
+            <SelectValue placeholder={field.placeholder ? t(field.placeholder) : t('form.chooseOne')} />
           </SelectTrigger>
           <SelectContent>
             {field.options?.map((opt) => (
               <SelectItem key={opt.value} value={opt.value}>
-                {opt.label}
+                {t(opt.label)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -283,7 +283,7 @@ function FormField({
           {field.options?.map((opt) => (
             <label key={opt.value} className="flex items-center gap-2 text-sm font-medium text-plum/80">
               <RadioGroupItem value={opt.value} id={`${field.name}-${opt.value}`} />
-              {opt.label}
+              {t(opt.label)}
             </label>
           ))}
         </RadioGroup>
@@ -295,7 +295,7 @@ function FormField({
           type={field.type}
           value={(value as string) ?? ''}
           onChange={(e) => onChange(e.target.value)}
-          placeholder={field.placeholder}
+          placeholder={field.placeholder ? t(field.placeholder) : undefined}
           maxLength={field.maxLength}
           aria-invalid={!!error}
         />
@@ -334,7 +334,7 @@ function TableField({
   return (
     <div className="space-y-3">
       <Label>
-        {field.label}
+        {t(field.label)}
         {field.required && <span className="text-[var(--track-accent)]"> *</span>}
       </Label>
       <div className="space-y-4">
@@ -346,14 +346,14 @@ function TableField({
             {columns.map((col) => (
               <div key={col.key} className="space-y-1.5">
                 <Label htmlFor={`${field.name}-${idx}-${col.key}`} className="text-[11px]">
-                  {col.label}
+                  {t(col.label)}
                 </Label>
                 <Input
                   id={`${field.name}-${idx}-${col.key}`}
                   type={col.type === 'number' ? 'number' : 'text'}
                   value={row[col.key] ?? ''}
                   onChange={(e) => updateRow(idx, col.key, e.target.value)}
-                  placeholder={col.placeholder}
+                  placeholder={col.placeholder ? t(col.placeholder) : undefined}
                 />
               </div>
             ))}

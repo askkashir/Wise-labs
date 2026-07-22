@@ -6,89 +6,93 @@ import type { FormSchema } from '../types'
  * trainers, and professionals who want to guide women entrepreneurs through
  * practical support." Uses `themeTrack: 'neutral'` since mentor/partner
  * aren't part of the founder/enterprise track-color system.
+ *
+ * All human-readable `label`/`title`/`placeholder`/`helpText` strings are
+ * i18n key paths (looked up via `t()` in DynamicForm.tsx), not literal
+ * English — see src/i18n/locales/en.json under `forms.mentor`. The
+ * `name`/`dimension` values below are stable analytics keys and are never
+ * translated.
  */
 export const mentorFormSchema: FormSchema = {
   track: 'mentor',
-  title: 'Guide Her Growth — Become a Mentor',
-  subtitle:
-    'For experts, founders, investors, trainers, and professionals who want to guide women entrepreneurs through practical support.',
+  title: 'forms.mentor.meta.title',
+  subtitle: 'forms.mentor.meta.subtitle',
   themeTrack: 'neutral',
-  submitLabel: 'Submit mentor application',
-  successTitle: 'Thank you, {firstName}.',
-  successBody:
-    'Your mentor application is in. Our team will review it and reach out about next steps.',
+  submitLabel: 'forms.mentor.meta.submitLabel',
+  successTitle: 'forms.mentor.meta.successTitle',
+  successBody: 'forms.mentor.meta.successBody',
   sections: [
     {
       id: 'mentor-basics',
-      title: 'About you',
+      title: 'forms.mentor.sections.mentor-basics.title',
       fields: [
-        { name: 'fullName', label: 'Full name', type: 'text', required: true },
-        { name: 'currentRole', label: 'Current role / title', type: 'text', required: true },
-        { name: 'organization', label: 'Organization', type: 'text' },
+        { name: 'fullName', label: 'forms.mentor.fullName.label', type: 'text', required: true },
+        { name: 'currentRole', label: 'forms.mentor.currentRole.label', type: 'text', required: true },
+        { name: 'organization', label: 'forms.mentor.organization.label', type: 'text' },
         {
           name: 'expertiseAreas',
-          label: 'Areas of expertise',
+          label: 'forms.mentor.expertiseAreas.label',
           type: 'select',
           required: true,
           analytics: { dimension: 'expertise', kind: 'categorical' },
           options: [
-            { value: 'business-strategy', label: 'Business Strategy' },
-            { value: 'finance-investment', label: 'Finance & Investment' },
-            { value: 'marketing-branding', label: 'Marketing & Branding' },
-            { value: 'product-tech', label: 'Product & Technology' },
-            { value: 'legal', label: 'Legal' },
-            { value: 'operations', label: 'Operations' },
-            { value: 'sales-market-access', label: 'Sales & Market Access' },
-            { value: 'other', label: 'Other' },
+            { value: 'business-strategy', label: 'forms.mentor.expertiseAreas.options.business-strategy' },
+            { value: 'finance-investment', label: 'forms.mentor.expertiseAreas.options.finance-investment' },
+            { value: 'marketing-branding', label: 'forms.mentor.expertiseAreas.options.marketing-branding' },
+            { value: 'product-tech', label: 'forms.mentor.expertiseAreas.options.product-tech' },
+            { value: 'legal', label: 'forms.mentor.expertiseAreas.options.legal' },
+            { value: 'operations', label: 'forms.mentor.expertiseAreas.options.operations' },
+            { value: 'sales-market-access', label: 'forms.mentor.expertiseAreas.options.sales-market-access' },
+            { value: 'other', label: 'forms.mentor.expertiseAreas.options.other' },
           ],
         },
         {
           name: 'yearsExperience',
-          label: 'Years of relevant experience',
+          label: 'forms.mentor.yearsExperience.label',
           type: 'number',
           required: true,
         },
         {
           name: 'motivation',
-          label: 'Why do you want to mentor with WISE Lab?',
+          label: 'forms.mentor.motivation.label',
           type: 'textarea',
           required: true,
         },
         {
           name: 'availability',
-          label: 'Weekly availability',
+          label: 'forms.mentor.availability.label',
           type: 'select',
           required: true,
           options: [
-            { value: '1-2-hours', label: '1–2 hours / week' },
-            { value: '3-5-hours', label: '3–5 hours / week' },
-            { value: '5-plus-hours', label: '5+ hours / week' },
+            { value: '1-2-hours', label: 'forms.mentor.availability.options.1-2-hours' },
+            { value: '3-5-hours', label: 'forms.mentor.availability.options.3-5-hours' },
+            { value: '5-plus-hours', label: 'forms.mentor.availability.options.5-plus-hours' },
           ],
         },
       ],
     },
     {
       id: 'contact-information',
-      title: 'Contact information',
+      title: 'forms.mentor.sections.contact-information.title',
       fields: [
-        { name: 'contactNumber', label: 'Contact number', type: 'tel', required: true },
+        { name: 'contactNumber', label: 'forms.mentor.contactNumber.label', type: 'tel', required: true },
         {
           name: 'email',
-          label: 'Email',
+          label: 'forms.mentor.email.label',
           type: 'email',
           required: true,
           pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-          patternMessage: 'Please enter a valid email.',
+          patternMessage: 'forms.mentor.email.patternMessage',
         },
         {
           name: 'linkedin',
-          label: 'LinkedIn profile',
+          label: 'forms.mentor.linkedin.label',
           type: 'url',
-          placeholder: 'https://linkedin.com/in/…',
+          placeholder: 'forms.mentor.linkedin.placeholder',
         },
         {
           name: 'cityProvince',
-          label: 'City / Province',
+          label: 'forms.mentor.cityProvince.label',
           type: 'text',
           required: true,
           analytics: { dimension: 'city', kind: 'categorical' },
@@ -97,12 +101,11 @@ export const mentorFormSchema: FormSchema = {
     },
     {
       id: 'commitment',
-      title: 'Commitment statement',
+      title: 'forms.mentor.sections.commitment.title',
       fields: [
         {
           name: 'commitmentConsent',
-          label:
-            'I confirm my commitment to actively mentor and support women entrepreneurs through WISE Lab.',
+          label: 'forms.mentor.commitmentConsent.label',
           type: 'consent',
           required: true,
         },

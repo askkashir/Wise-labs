@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
 import { DynamicForm } from '@/components/DynamicForm'
 import { WiseMark } from '@/components/WiseLabLogo'
@@ -14,6 +15,7 @@ import { getFormSchema } from '@/lib/forms/schemas'
  * uses on the landing page.
  */
 export function ApplyPage() {
+  const { t } = useTranslation()
   const { track } = useParams<{ track: string }>()
   const schema = getFormSchema(track)
 
@@ -36,19 +38,19 @@ export function ApplyPage() {
             className="group inline-flex items-center gap-2 text-sm font-semibold text-plum/60 transition-colors hover:text-plum"
           >
             <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-0.5" />
-            Back to WISE Lab
+            {t('applyPage.backToWiseLab')}
           </Link>
 
           <div className="mt-8 flex items-center gap-3">
             <WiseMark className="h-10 w-auto" />
           </div>
 
-          <p className="eyebrow mt-8">Enter the Lab</p>
+          <p className="eyebrow mt-8">{t('enterTheLab.eyebrow')}</p>
           <h1 className="mt-3 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-bold leading-[1.05] text-plum">
-            {schema.title}
+            {t(schema.title)}
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-plum/70">
-            {schema.subtitle}
+            {t(schema.subtitle)}
           </p>
         </Reveal>
 

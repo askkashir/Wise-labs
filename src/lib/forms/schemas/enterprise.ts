@@ -8,127 +8,130 @@ import type { FormSchema } from '../types'
  * seeking business training, digital skills, visibility, and market access."
  * Mirrors the Founder schema's shape/sections where sensible so the two
  * forms feel like one system.
+ *
+ * All human-readable `label`/`title`/`placeholder`/`helpText` strings are
+ * i18n key paths (looked up via `t()` in DynamicForm.tsx), not literal
+ * English — see src/i18n/locales/en.json under `forms.enterprise`. The
+ * `name`/`dimension` values below are stable analytics keys and are never
+ * translated.
  */
 export const enterpriseFormSchema: FormSchema = {
   track: 'enterprise',
-  title: 'Enterprise Flightpath — MSME Training Application',
-  subtitle:
-    'For women-led small businesses and home-based entrepreneurs seeking business training, digital skills, visibility, and market access.',
+  title: 'forms.enterprise.meta.title',
+  subtitle: 'forms.enterprise.meta.subtitle',
   themeTrack: 'enterprise',
-  submitLabel: 'Submit application',
-  successTitle: 'Thank you, {firstName}.',
-  successBody:
-    'Your Enterprise Flightpath application is in. Our team will review it and reach out about next steps.',
+  submitLabel: 'forms.enterprise.meta.submitLabel',
+  successTitle: 'forms.enterprise.meta.successTitle',
+  successBody: 'forms.enterprise.meta.successBody',
   sections: [
     {
       id: 'business-basics',
-      title: 'Business basics',
+      title: 'forms.enterprise.sections.business-basics.title',
       fields: [
-        { name: 'businessName', label: 'Business name', type: 'text', required: true },
+        { name: 'businessName', label: 'forms.enterprise.businessName.label', type: 'text', required: true },
         {
           name: 'vertical',
-          label: 'Business vertical',
+          label: 'forms.enterprise.vertical.label',
           type: 'select',
           required: true,
           analytics: { dimension: 'vertical', kind: 'categorical' },
           options: [
-            { value: 'ecommerce', label: 'E-Commerce / Online Store' },
-            { value: 'fashion-apparel', label: 'Fashion & Apparel' },
-            { value: 'beauty-wellness', label: 'Beauty, Wellness & Personal Care' },
-            { value: 'food-beverages', label: 'Food & Beverages / Home-Based Food Business' },
-            { value: 'handicrafts', label: 'Handicrafts / Artisanal Products' },
-            { value: 'education-training', label: 'Education & Training' },
-            { value: 'health-wellness', label: 'Health & Wellness' },
-            { value: 'creative-industries', label: 'Creative Industries' },
-            { value: 'services', label: 'Services' },
-            { value: 'others', label: 'Others' },
+            { value: 'ecommerce', label: 'forms.enterprise.vertical.options.ecommerce' },
+            { value: 'fashion-apparel', label: 'forms.enterprise.vertical.options.fashion-apparel' },
+            { value: 'beauty-wellness', label: 'forms.enterprise.vertical.options.beauty-wellness' },
+            { value: 'food-beverages', label: 'forms.enterprise.vertical.options.food-beverages' },
+            { value: 'handicrafts', label: 'forms.enterprise.vertical.options.handicrafts' },
+            { value: 'education-training', label: 'forms.enterprise.vertical.options.education-training' },
+            { value: 'health-wellness', label: 'forms.enterprise.vertical.options.health-wellness' },
+            { value: 'creative-industries', label: 'forms.enterprise.vertical.options.creative-industries' },
+            { value: 'services', label: 'forms.enterprise.vertical.options.services' },
+            { value: 'others', label: 'forms.enterprise.vertical.options.others' },
           ],
         },
         {
           name: 'yearsOperating',
-          label: 'Years in operation',
+          label: 'forms.enterprise.yearsOperating.label',
           type: 'number',
           required: true,
         },
         {
           name: 'businessDescription',
-          label: 'What does your business do?',
+          label: 'forms.enterprise.businessDescription.label',
           type: 'textarea',
           required: true,
         },
         {
           name: 'trainingNeeds',
-          label: 'What training or support are you looking for?',
+          label: 'forms.enterprise.trainingNeeds.label',
           type: 'textarea',
           required: true,
-          helpText: 'Business planning, financial literacy, branding, pricing, digital marketing, e-commerce, etc.',
+          helpText: 'forms.enterprise.trainingNeeds.helpText',
         },
       ],
     },
     {
       id: 'contact-information',
-      title: 'Contact information',
+      title: 'forms.enterprise.sections.contact-information.title',
       fields: [
-        { name: 'primaryContactName', label: 'Primary contact name', type: 'text', required: true },
-        { name: 'contactNumber', label: 'Contact number', type: 'tel', required: true },
+        { name: 'primaryContactName', label: 'forms.enterprise.primaryContactName.label', type: 'text', required: true },
+        { name: 'contactNumber', label: 'forms.enterprise.contactNumber.label', type: 'tel', required: true },
         {
           name: 'email',
-          label: 'Email',
+          label: 'forms.enterprise.email.label',
           type: 'email',
           required: true,
           pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-          patternMessage: 'Please enter a valid email.',
+          patternMessage: 'forms.enterprise.email.patternMessage',
         },
         {
           name: 'cityProvince',
-          label: 'City / Province',
+          label: 'forms.enterprise.cityProvince.label',
           type: 'text',
           required: true,
           analytics: { dimension: 'city', kind: 'categorical' },
         },
         {
           name: 'gender',
-          label: 'Gender',
+          label: 'forms.enterprise.gender.label',
           type: 'select',
           required: true,
           analytics: { dimension: 'gender', kind: 'categorical' },
           options: [
-            { value: 'female', label: 'Female' },
-            { value: 'male', label: 'Male' },
-            { value: 'other', label: 'Other' },
-            { value: 'prefer-not-to-say', label: 'Prefer not to say' },
+            { value: 'female', label: 'forms.enterprise.gender.options.female' },
+            { value: 'male', label: 'forms.enterprise.gender.options.male' },
+            { value: 'other', label: 'forms.enterprise.gender.options.other' },
+            { value: 'prefer-not-to-say', label: 'forms.enterprise.gender.options.prefer-not-to-say' },
           ],
         },
       ],
     },
     {
       id: 'how-did-you-hear',
-      title: 'How did you hear about WISE Lab',
+      title: 'forms.enterprise.sections.how-did-you-hear.title',
       fields: [
         {
           name: 'referralSource',
-          label: 'How did you hear about WISE Lab?',
+          label: 'forms.enterprise.referralSource.label',
           type: 'select',
           required: true,
           analytics: { dimension: 'source', kind: 'categorical' },
           options: [
-            { value: 'social-media', label: 'Social Media' },
-            { value: 'peer-referral', label: 'Peer Referral' },
-            { value: 'email', label: 'Email' },
-            { value: 'print-electronic-media', label: 'Print / Electronic Media' },
-            { value: 'others', label: 'Others' },
+            { value: 'social-media', label: 'forms.enterprise.referralSource.options.social-media' },
+            { value: 'peer-referral', label: 'forms.enterprise.referralSource.options.peer-referral' },
+            { value: 'email', label: 'forms.enterprise.referralSource.options.email' },
+            { value: 'print-electronic-media', label: 'forms.enterprise.referralSource.options.print-electronic-media' },
+            { value: 'others', label: 'forms.enterprise.referralSource.options.others' },
           ],
         },
       ],
     },
     {
       id: 'commitment',
-      title: 'Commitment statement',
+      title: 'forms.enterprise.sections.commitment.title',
       fields: [
         {
           name: 'commitmentConsent',
-          label:
-            'I confirm my commitment to actively participate and contribute to the growth of Pakistan’s women entrepreneurship ecosystem.',
+          label: 'forms.enterprise.commitmentConsent.label',
           type: 'consent',
           required: true,
         },
