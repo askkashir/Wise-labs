@@ -374,3 +374,72 @@ and Supabase provisioning still deferred per `TODO_FOR_HUMAN.md`.
 
 **Commits on `fix/wiselab-follow-ups`**: `05f09b0` (forms i18n + locales), `f5f12ba` (Apply Now),
 `f04469d` (admin auth + dead links). PR opened against `main` — not merged.
+
+## Phase 13 — End-to-end verification, cohesion, and feature-completeness pass
+Resumed on `fix/wiselab-follow-ups` with a clean tree and re-ran the full baseline gate first:
+`npm install`, `npm run build`, `npm run lint` all green (same 4 known fast-refresh warnings only).
+
+**Deterministic/static fixes landed**
+- `src/i18n/locales/en.json`: added `_meta.reviewStatus` so EN/UR/PS/PA now have exact key parity.
+  Re-ran the key-diff script: **0 missing / 0 extra** in `ur`, `ps`, `pa` vs `en`.
+- `src/AppRouter.tsx`: added `/apply` -> `/` redirect so the bare `/apply` route is no longer a
+  blank no-match page; kept `/apply/:track` redirecting invalid tracks back to `/`.
+- `src/AppRouter.tsx`: removed the old `/apply/*` exclusion from `GlobalChrome`, so `ApplyNowButton`
+  is now mounted on **all public routes**, hidden only on `/admin/*`, matching the owner's
+  "always there everywhere" requirement.
+- `src/components/ApplyNowButton.tsx`: removed the delayed entrance animation so the launcher
+  appears immediately instead of a second late (important for both perceived prominence and
+  browser-based verification).
+
+**Public-surface i18n completion**
+- `src/pages/BlogListPage.tsx`, `src/pages/BlogPostPage.tsx`, `src/pages/admin/AdminLoginPage.tsx`,
+  `src/pages/admin/AdminLayout.tsx`: converted remaining public/admin-login hardcoded strings to `t(...)`.
+- Locale keys added across `src/i18n/locales/{en,ur,ps,pa}.json` for:
+  - `blogPage.*`
+  - `blogPostPage.backToJournal`
+  - `admin.common.*`, `admin.nav.*`, `admin.login.*`
+- `src/components/Hero3D/TrackToggle.tsx`: removed the last landing-page hardcoded English strings
+  (`Startup Incubation`, `MSME Training`, `Scalable, tech-enabled ventures`, `Small & home-based businesses`)
+  and wired them to existing `buildTracks.*` keys; added `hero.trackToggleAria` in all locales.
+- `src/components/Nav.tsx`, `src/sections/BehindTheWings.tsx`, `src/sections/WiseConnect.tsx`:
+  localized menu button aria labels, the director LinkedIn aria label, and social-link
+  "opens in a new tab" accessible names so non-English routes no longer leak English through
+  assistive text.
+
+**Live route/browser verification**
+- HTTP smoke (`curl`) returns `200` for `/`, `/blog`, `/blog/not-a-real-post`, `/apply`,
+  `/apply/founder`, `/apply/enterprise`, `/apply/mentor`, `/apply/partner`,
+  `/apply/does-not-exist`, `/admin/login`, `/admin`.
+- Browser-verified:
+  - `/apply` now redirects to `/` instead of rendering a blank route shell.
+  - `/apply/does-not-exist` redirects to `/`.
+  - `/blog/not-a-real-post` resolves gracefully back to `/blog`.
+  - `/admin` redirects to `/admin/login` with no data exposure.
+  - `Apply Now` is visible on `/`, `/blog`, `/blog/:slug` fallback, and `/apply/founder`;
+    `WhatsApp` remains bottom-right and `Apply Now` bottom-left.
+  - PM banner remains at the top above nav.
+  - Urdu route sweep confirmed translated landing page, translated founder form, translated blog page,
+    translated admin login, translated Apply Now button, and translated mobile-nav labels.
+- Mobile snapshot at `375px` confirmed no corner collision between `Apply Now` and WhatsApp on `/`,
+  and founder/apply-page global chrome remains present.
+
+**Backend/static verification by reading (no live infra available)**
+- Verified `src/lib/forms/submitApplication.ts` still inserts into `submissions(track, values,
+  analytics, submitted_at, meta)` — exactly matching `supabase/migrations/0001_init.sql`.
+- Verified `src/lib/admin/submissions.ts`, `src/lib/blog/api.ts`, `src/lib/stats.ts`, and
+  `supabase/functions/notify-submission/index.ts` all reference real table/column names from
+  the migrations (`submissions`, `blog_posts`, `admin_profiles`; `track`, `values`, `analytics`,
+  `submitted_at`, `meta`, `slug`, `status`, `published_at`, etc.).
+- Verified RLS intent is consistent by inspection:
+  - public can `insert` into `submissions` but cannot read them;
+  - only authenticated users with an `admin_profiles` row can read `submissions`;
+  - public can read only `blog_posts.status = 'published'`;
+  - admins can read/write all `blog_posts`.
+- `useAdminAuth.tsx` already matched this model from Phase 12 (`session` + `admin_profiles`
+  membership check), so no further auth change was needed in this pass.
+
+**Boundary / still deferred**
+- Supabase provisioning is still absent, so DB writes, RLS enforcement, and the notify-submission
+  edge function were verified statically only, not exercised live.
+- The WhatsApp placeholder (`wa.me/923000000000` in dev fallback), native-speaker translation review,
+  and real partner-logo assets remain intentionally deferred per `TODO_FOR_HUMAN.md`.
