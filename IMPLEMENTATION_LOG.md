@@ -130,3 +130,33 @@ conceptual phase.
   `useTrackState.tsx` warnings — a hook file exporting both a Provider component and a hook).
   Smoke-tested via `npm run preview`: `/` and `/apply/founder` both return 200 and serve the SPA
   shell correctly (client-side routing resolves `/apply/founder`'s title/content in-browser).
+
+## Phase 5 — Backend (Supabase migrations, RLS, edge function)
+- `supabase/migrations/0001_init.sql`: `admin_profiles` (keyed to `auth.users`, no public
+  sign-up — rows inserted manually per TODO_FOR_HUMAN.md), `submissions` (jsonb `values` +
+  `analytics` columns matching the Phase 3 `SubmissionPayload` shape exactly, GIN index on
+  `analytics` for dashboard filtering), `blog_posts` (slug/title/excerpt/content/cover/author/
+  status/published_at/tags, `updated_at` trigger). RLS enabled on all three tables:
+  - `submissions`: anon+authenticated can INSERT (public form submission), only rows in
+    `admin_profiles` can SELECT (admin dashboard) — no public read of other people's applications.
+  - `blog_posts`: anon+authenticated can SELECT where `status = 'published'` (public blog),
+    admins can SELECT/INSERT/UPDATE/DELETE everything (drafts included).
+  - `admin_profiles`: self-read only (used client-side to confirm admin status).
+- `supabase/migrations/0002_submission_notify_trigger.sql`: optional `pg_net`-based Postgres
+  trigger that POSTs to the notify-submission edge function on every new submission row. URL
+  contains a `<PROJECT_REF>` placeholder to fill in after provisioning — documented inline as an
+  alternative to using Supabase's Database Webhooks UI instead (functionally equivalent, easier
+  to manage without hand-editing SQL, noted as the simpler option).
+- `supabase/functions/notify-submission/index.ts`: Deno edge function stub that emails the WISE
+  Lab team via Resend on new submissions. Reads `RESEND_API_KEY` / `NOTIFY_EMAIL_TO` as function
+  secrets (never committed). Marked `@ts-nocheck` since Deno globals (`Deno.serve`, `Deno.env`)
+  aren't typed under this repo's Node/Vite tsconfig — confirmed this file is outside `tsconfig`'s
+  `include: ["src"]` so it can't break `npm run build`/`tsc -b` (verified via force rebuild).
+- **Nothing here was applied to a live database.** No Supabase project exists in this environment
+  and the Supabase MCP server is unauthenticated, per the task's explicit instruction not to
+  attempt `mcp__supabase__apply_migration` or similar. These are file-only artifacts for a human
+  to run via `supabase db push` or the SQL editor once a project is provisioned — see
+  TODO_FOR_HUMAN.md items 1–4.
+- Verified: migrations are plain SQL (no live execution to verify against); confirmed via
+  `npx tsc -b --force` and `npm run build` that adding the `supabase/` directory doesn't affect
+  the frontend build at all (it's outside `src/`, excluded by `tsconfig.app.json`'s `include`).

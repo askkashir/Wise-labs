@@ -25,7 +25,7 @@ Ambiguous/unspecified inputs are never blockers. Default sensibly, ship, and rec
 - [x] Phase 2 — Founder track retheme (blue -> teal #2E7D7B) in src/lib/theme.ts + index.css + EnterTheLab/BuildTracks/TrackToggle founder color
 - [x] Phase 3 — Form architecture: FieldDef/FormSchema types, Founder/Enterprise/Mentor/Partner schemas, DynamicForm component
 - [x] Phase 4 — Routing: react-router-dom, /apply/:track, /blog, /blog/:slug, /admin/*, vercel.json, CTA wiring in EnterTheLab
-- [ ] Phase 5 — Backend: Supabase SQL migrations (submissions/blog_posts/admin_profiles), RLS policies, env var docs, edge function stub
+- [x] Phase 5 — Backend: Supabase SQL migrations (submissions/blog_posts/admin_profiles), RLS policies, env var docs, edge function stub
 - [x] Phase 6 — Admin portal (auth-gated, submissions table, blog CRUD) — built alongside Phase 4 routing since routes/pages are one unit of work; see log
 - [x] Phase 7 — Blog management (public list/detail pages + admin CRUD wired to schema) — built alongside Phase 4/6 for the same reason
 - [ ] Phase 8 — Become-a-Mentor section/page + floating WhatsApp button
