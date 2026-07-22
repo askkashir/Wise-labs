@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { WiseMark } from '@/components/WiseLabLogo'
 import { useAdminAuth } from '@/lib/auth/useAdminAuth'
+import { DEMO_CREDENTIALS, DEMO_MODE } from '@/lib/demo/config'
 
 export function AdminLoginPage() {
   const { t } = useTranslation()
@@ -37,6 +38,17 @@ export function AdminLoginPage() {
           <h1 className="mt-6 text-center font-display text-2xl font-bold text-plum">
             {t('admin.login.title')}
           </h1>
+
+          {DEMO_MODE && (
+            <div className="mt-5 rounded-xl border border-amber-300 bg-amber-50 p-4 text-center text-[13px] text-amber-800">
+              <p className="font-semibold uppercase tracking-wide">Demo mode</p>
+              <p className="mt-1">
+                {DEMO_CREDENTIALS.email}
+                <br />
+                {DEMO_CREDENTIALS.password}
+              </p>
+            </div>
+          )}
 
           {!configured ? (
             <p className="mt-6 rounded-xl bg-plum/5 p-4 text-center text-sm text-plum/60">

@@ -652,5 +652,25 @@
     "cta": "ہُنے درخواست دیو",
     "close": "بند کرو",
     "chooseTrack": "آپݨا ٹریک چُنو"
+  },
+  "admin": {
+    "nav": {
+      "title": "وائز لیب ایڈمن",
+      "dashboard": "ڈیش بورڈ",
+      "submissions": "درخواستاں",
+      "blog": "بلاگ"
+    },
+    "common": {
+      "signOut": "سائن آؤٹ",
+      "loading": "لوڈ ہو رہیا اے…"
+    },
+    "login": {
+      "title": "ایڈمن سائن ان",
+      "unconfigured": "بیک اینڈ ہجے کنفیگر نئيں ہویا۔ VITE_SUPABASE_URL تے VITE_SUPABASE_ANON_KEY سیٹ کرو، یا نمونہ ڈیٹا نال ویکھݨ لئی VITE_DEMO_MODE فعال کرو۔",
+      "email": "ای میل",
+      "password": "پاس ورڈ",
+      "signIn": "سائن ان",
+      "signingIn": "سائن ان ہو رہیا اے…"
+    }
   }
 }

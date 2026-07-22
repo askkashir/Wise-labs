@@ -1,4 +1,6 @@
 import { getSupabase } from '@/lib/supabase'
+import { DEMO_MODE } from '@/lib/demo/config'
+import { getDemoSubmissions } from '@/lib/demo/store'
 import type { ApplicationTrack, SubmissionPayload } from '@/lib/forms/types'
 
 export interface StoredSubmission extends SubmissionPayload {
@@ -27,6 +29,8 @@ function fromRow(row: DbRow): StoredSubmission {
 
 /** Admin-only: all submissions, newest first. Relies on RLS to gate access. */
 export async function listSubmissions(): Promise<StoredSubmission[]> {
+  if (DEMO_MODE) return getDemoSubmissions()
+
   const supabase = getSupabase()
   if (!supabase) return []
 

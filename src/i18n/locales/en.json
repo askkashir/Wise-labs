@@ -649,5 +649,25 @@
     "cta": "Apply Now",
     "close": "Close",
     "chooseTrack": "Choose your track"
+  },
+  "admin": {
+    "nav": {
+      "title": "WISE Lab Admin",
+      "dashboard": "Dashboard",
+      "submissions": "Submissions",
+      "blog": "Blog"
+    },
+    "common": {
+      "signOut": "Sign out",
+      "loading": "Loading…"
+    },
+    "login": {
+      "title": "Admin sign in",
+      "unconfigured": "The backend is not configured yet. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY, or enable VITE_DEMO_MODE to explore with sample data.",
+      "email": "Email",
+      "password": "Password",
+      "signIn": "Sign in",
+      "signingIn": "Signing in…"
+    }
   }
 }

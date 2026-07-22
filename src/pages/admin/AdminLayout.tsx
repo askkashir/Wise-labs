@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils'
 
 export function AdminLayout() {
   const { t } = useTranslation()
-  const { session, loading, isAdmin, signOut } = useAdminAuth()
+  const { session, loading, isAdmin, isDemo, signOut } = useAdminAuth()
   const location = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
   const nav = [
@@ -54,7 +54,12 @@ export function AdminLayout() {
   )
 
   return (
-    <div className="flex min-h-screen flex-col bg-beige lg:flex-row">
+    <div className={cn('flex min-h-screen flex-col bg-beige lg:flex-row', isDemo && 'pt-9')}>
+      {isDemo && (
+        <div className="fixed inset-x-0 top-0 z-[70] bg-amber-400 py-2 text-center text-[12px] font-bold uppercase tracking-wide text-amber-950">
+          Demo mode — showing sample data, not real submissions
+        </div>
+      )}
       {/* Mobile top bar */}
       <div className="flex items-center justify-between border-b border-plum/10 bg-white p-4 lg:hidden">
         <div className="flex items-center gap-2.5">

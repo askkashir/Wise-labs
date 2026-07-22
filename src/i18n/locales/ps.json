@@ -652,5 +652,25 @@
     "cta": "همدا اوس غوښتنه وکړئ",
     "close": "بندول",
     "chooseTrack": "خپله لاره وټاکئ"
+  },
+  "admin": {
+    "nav": {
+      "title": "وائز لیب اډمین",
+      "dashboard": "ډشبورډ",
+      "submissions": "غوښتنلیکونه",
+      "blog": "بلاګ"
+    },
+    "common": {
+      "signOut": "وتون",
+      "loading": "بارېږي…"
+    },
+    "login": {
+      "title": "د اډمین ننوتل",
+      "unconfigured": "بیک اېنډ لا تر اوسه تنظیم شوی نه دی. VITE_SUPABASE_URL او VITE_SUPABASE_ANON_KEY وټاکئ، یا د نمونې معلوماتو لپاره VITE_DEMO_MODE فعال کړئ۔",
+      "email": "بریښنالیک",
+      "password": "پټنوم",
+      "signIn": "ننوتل",
+      "signingIn": "ننوځي…"
+    }
   }
 }

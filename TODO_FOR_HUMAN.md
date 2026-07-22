@@ -63,6 +63,19 @@ native-speaker/design/legal review pass before this ships to production.
     a live fetch from an external source, since no partner logo API/CMS was specified. Populate real
     partner logo URLs there.
 
+12. **Admin demo mode** (`src/lib/demo/`): a hardcoded admin login + realistic fake submissions/blog
+    posts, gated behind `VITE_DEMO_MODE=true`, so the admin portal can be demoed to stakeholders
+    before a real Supabase project exists. Demo credentials: `demo@wiselab.org.pk` /
+    `WiseLabDemo2026!` (see `src/lib/demo/config.ts`). A bright "Demo mode" banner appears on every
+    admin page whenever this is on, and the login page prints the credentials directly, so it's
+    unmissable and self-serve. **Set `VITE_DEMO_MODE=false` (or leave it unset) in the real
+    production Vercel environment** — this flag is a genuine auth bypass by design, meant only for
+    a local run or a throwaway preview deployment used for a demo, never for the live site once
+    real submissions start coming in.
+
 ## Secrets handling note
 This is a **public repo**. No real secrets, API keys, or the real WhatsApp number were committed
 anywhere, including in `.env.example` (placeholders only). Do not commit `.env` (already gitignored).
+The demo admin credentials above ARE committed in plain sight (`src/lib/demo/config.ts`) — that is
+intentional (it's a demo login, not a real secret) but is exactly why demo mode must stay off in
+production: those credentials are public.

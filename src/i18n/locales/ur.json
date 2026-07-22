@@ -652,5 +652,25 @@
     "cta": "ابھی درخواست دیں",
     "close": "بند کریں",
     "chooseTrack": "اپنا ٹریک منتخب کریں"
+  },
+  "admin": {
+    "nav": {
+      "title": "وائز لیب ایڈمن",
+      "dashboard": "ڈیش بورڈ",
+      "submissions": "درخواستیں",
+      "blog": "بلاگ"
+    },
+    "common": {
+      "signOut": "سائن آؤٹ",
+      "loading": "لوڈ ہو رہا ہے…"
+    },
+    "login": {
+      "title": "ایڈمن سائن اِن",
+      "unconfigured": "بیک اینڈ ابھی کنفیگر نہیں ہوا۔ VITE_SUPABASE_URL اور VITE_SUPABASE_ANON_KEY سیٹ کریں، یا نمونہ ڈیٹا کے ساتھ دیکھنے کے لیے VITE_DEMO_MODE فعال کریں۔",
+      "email": "ای میل",
+      "password": "پاس ورڈ",
+      "signIn": "سائن اِن",
+      "signingIn": "سائن اِن ہو رہا ہے…"
+    }
   }
 }

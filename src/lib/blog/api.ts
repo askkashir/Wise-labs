@@ -1,4 +1,12 @@
 import { getSupabase } from '@/lib/supabase'
+import { DEMO_MODE } from '@/lib/demo/config'
+import {
+  deleteDemoPost,
+  getDemoBlogPosts,
+  getDemoPostBySlug,
+  getDemoPublishedPosts,
+  upsertDemoPost,
+} from '@/lib/demo/store'
 import type { BlogPost } from './types'
 
 interface DbRow {
@@ -31,6 +39,8 @@ function fromRow(row: DbRow): BlogPost {
 
 /** Published posts, newest first. Returns [] (never throws) when Supabase isn't configured. */
 export async function listPublishedPosts(): Promise<BlogPost[]> {
+  if (DEMO_MODE) return getDemoPublishedPosts()
+
   const supabase = getSupabase()
   if (!supabase) return []
 
@@ -45,6 +55,8 @@ export async function listPublishedPosts(): Promise<BlogPost[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  if (DEMO_MODE) return getDemoPostBySlug(slug)
+
   const supabase = getSupabase()
   if (!supabase) return null
 
@@ -61,6 +73,8 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 
 /** All posts including drafts — admin only, relies on RLS to restrict access. */
 export async function listAllPostsForAdmin(): Promise<BlogPost[]> {
+  if (DEMO_MODE) return getDemoBlogPosts()
+
   const supabase = getSupabase()
   if (!supabase) return []
 
@@ -74,6 +88,8 @@ export async function listAllPostsForAdmin(): Promise<BlogPost[]> {
 }
 
 export async function upsertPost(post: Partial<BlogPost> & { slug: string }): Promise<void> {
+  if (DEMO_MODE) return upsertDemoPost(post)
+
   const supabase = getSupabase()
   if (!supabase) throw new Error('Supabase is not configured.')
 
@@ -93,6 +109,8 @@ export async function upsertPost(post: Partial<BlogPost> & { slug: string }): Pr
 }
 
 export async function deletePost(id: string): Promise<void> {
+  if (DEMO_MODE) return deleteDemoPost(id)
+
   const supabase = getSupabase()
   if (!supabase) throw new Error('Supabase is not configured.')
   const { error } = await supabase.from('blog_posts').delete().eq('id', id)

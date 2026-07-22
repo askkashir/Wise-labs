@@ -443,3 +443,42 @@ Resumed on `fix/wiselab-follow-ups` with a clean tree and re-ran the full baseli
   edge function were verified statically only, not exercised live.
 - The WhatsApp placeholder (`wa.me/923000000000` in dev fallback), native-speaker translation review,
   and real partner-logo assets remain intentionally deferred per `TODO_FOR_HUMAN.md`.
+
+## Admin demo mode (post-launch follow-up)
+
+Added `src/lib/demo/` — a gated demo mode for the admin portal so it can be shown to
+stakeholders before a real Supabase project is provisioned:
+
+- `config.ts` — `DEMO_MODE` flag (`VITE_DEMO_MODE=true`, off by default) and hardcoded demo
+  credentials (`demo@wiselab.org.pk` / `WiseLabDemo2026!`).
+- `seedData.ts` — realistic fake submissions across all 4 tracks (varied verticals, cities,
+  genders, stages so dashboard charts look populated) and 3 fake blog posts (2 published, 1 draft).
+- `store.ts` — in-memory mutable store so blog create/edit/delete feels interactive within a demo
+  session (resets on reload — acceptable, nothing here is meant to persist).
+- `useAdminAuth.tsx` — `signIn` checks demo credentials first when `DEMO_MODE` is on; a successful
+  demo login sets `session: 'demo'` and persists a flag to `sessionStorage` (not `localStorage`, so
+  it clears when the tab closes) so the session survives a page reload or direct URL navigation,
+  matching how a real Supabase session behaves.
+- `src/lib/admin/submissions.ts` and `src/lib/blog/api.ts` — each read/write function checks
+  `DEMO_MODE` first and routes to the demo store instead of Supabase.
+- `AdminLayout.tsx` — a bright, unmissable "Demo mode" banner renders on every admin page whenever
+  the active session is the demo login, specifically so an accidental production enablement could
+  never be silently exploited.
+- `AdminLoginPage.tsx` — prints the demo credentials directly on the login form when demo mode is
+  active, since the user needs to know them to log in and demo it to others.
+
+**Real bugs found and fixed in the same pass** (not demo-mode-specific):
+- The entire `admin.*` i18n namespace (`admin.login.title`, `admin.nav.dashboard`, etc. — 12 keys
+  referenced via `t()` with no fallback string) was missing from all 4 locale files, so the admin
+  login page and sidebar nav were rendering raw translation keys instead of text, in every
+  language including English. Added real translations across en/ur/ps/pa, parity restored.
+
+**Verified live** via Playwright against the dev server with `VITE_DEMO_MODE=true`: login with demo
+credentials → dashboard shows correct aggregate counts and a populated by-vertical chart →
+submissions list shows all 13 seeded entries with working track filter → blog list shows 3 seeded
+posts with correct published/draft states → session survives a full-page direct navigation to
+`/admin/submissions`. Build and lint clean; `VITE_DEMO_MODE` unset (default) also builds clean.
+
+**Deferred**: demo mode does not persist blog edits across a reload (by design — it's not meant to);
+does not affect the public-facing site at all (only `/admin/*`); must stay off in the real
+production environment (documented in `TODO_FOR_HUMAN.md`).
