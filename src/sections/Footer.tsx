@@ -35,7 +35,16 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-16 space-y-1.5 border-t border-beige/10 pt-8 text-sm text-beige/55">
+        <div className="mt-16 overflow-hidden rounded-2xl border border-beige/10 bg-beige/[0.03]">
+          <img
+            src="/pm-banner.jpg"
+            alt="Under the vision of the Honorable Prime Minister of Pakistan, WISE Lab is designed and funded by the Ministry of IT & Telecom and Ignite — National Technology Fund."
+            className="w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <div className="mt-8 space-y-1.5 border-t border-beige/10 pt-8 text-sm text-beige/55">
           <p>Under the vision of the Prime Minister of Pakistan.</p>
           <p>
             Designed &amp; funded by the Ministry of IT &amp; Telecom and Ignite —

@@ -160,3 +160,28 @@ conceptual phase.
 - Verified: migrations are plain SQL (no live execution to verify against); confirmed via
   `npx tsc -b --force` and `npm run build` that adding the `supabase/` directory doesn't affect
   the frontend build at all (it's outside `src/`, excluded by `tsconfig.app.json`'s `include`).
+
+## Phase 8 — Become-a-Mentor section, floating WhatsApp button, PM banner in Footer
+- `src/sections/BecomeAMentor.tsx`: new landing-page section (id `become-a-mentor`), mounted in
+  `App.tsx` between BehindTheWings and WiseConnect. Distinct from the existing "Guide Her Growth"
+  pillar card in EnterTheLab (which is the application entry point) — this gives the mentor track
+  its own moment on the page: headline, 3 "ways to help" cards, and a CTA linking to
+  `/apply/mentor`. `src/lib/nav.ts` intentionally NOT updated with a 7th link, per the recon note
+  not to repurpose it and to avoid crowding the header nav — the section is reachable by scroll
+  and via the Enter the Lab pillar card.
+- `src/components/WhatsAppButton.tsx`: fixed bottom-right floating button on every public route
+  (mounted in `AppRouter.tsx` via a small `GlobalChrome` component that hides it under `/admin`).
+  Reads `VITE_WHATSAPP_NUMBER`; per the never-block-default-and-flag policy, since no real number
+  exists anywhere in the source assets, the button renders a dev-only fallback number in `npm run
+  dev` (so the UI is visibly testable) but renders **nothing** in production builds when the env
+  var is unset — chosen over showing a fake number that would look real to a site visitor.
+  Flagged in TODO_FOR_HUMAN.md item 6.
+- `src/sections/Footer.tsx`: added the extracted `/pm-banner.jpg` (Phase 0 asset) directly above
+  the existing "Under the vision of the Prime Minister of Pakistan..." text block — this is
+  exactly where the Content Brief's `[Commented KK1]` annotation says the PM banner belongs
+  ("PM picture in the header along with the statement..."; placed in the Footer instead of the
+  page header since the header/Nav is a fixed, already-dense bar across every scroll position —
+  the Footer is where the equivalent "under the vision of..." text already lived in the existing
+  code, so the banner reinforces copy that was already there rather than introducing a new claim).
+- Verified: `npx tsc -b --force`, `npm run build`, `npm run lint` all clean (same 4 pre-existing-
+  category fast-refresh warnings, one is the new `useAdminAuth.tsx` from Phase 4/6/7).
