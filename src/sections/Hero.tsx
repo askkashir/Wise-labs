@@ -6,11 +6,17 @@ import { Button } from '@/components/ui/button'
 import { MagneticButton } from '@/components/MagneticButton'
 import { useTrack } from '@/lib/useTrackState'
 import { TRACK_THEME } from '@/lib/theme'
+import { isRtl } from '@/i18n'
+import { cn } from '@/lib/utils'
 
 export function Hero() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { track } = useTrack()
   const dark = track !== 'neutral'
+  // LTR (English): figure right, text left (default reading order).
+  // RTL (Urdu/Pashto/Punjabi): mirrored — figure left, text right — so the
+  // text sits on the side reading naturally starts from.
+  const rtl = isRtl(i18n.language)
 
   // Split on spaces so the line-reveal animation works for any translated
   // headline, not just the hardcoded English word count.
@@ -25,15 +31,14 @@ export function Hero() {
       <div
         className="absolute inset-0 -z-10 transition-[background] duration-700"
         style={{
-          background:
-            'radial-gradient(120% 120% at 28% 30%, var(--hero-bg-b) 0%, var(--hero-bg-a) 62%)',
+          background: `radial-gradient(120% 120% at ${rtl ? '28%' : '72%'} 30%, var(--hero-bg-b) 0%, var(--hero-bg-a) 62%)`,
         }}
       />
       {/* accent glow */}
       <div
         className="pointer-events-none absolute -z-10 h-[60vh] w-[60vh] rounded-full blur-[120px] transition-all duration-700"
         style={{
-          left: '14%',
+          [rtl ? 'left' : 'right']: '14%',
           top: '18%',
           background: 'var(--track-glow)',
           opacity: dark ? 0.7 : 0.35,
@@ -41,8 +46,8 @@ export function Hero() {
       />
       <div className="grain -z-10" />
 
-      {/* 3D figure — occupies the left on desktop, full-bleed behind on mobile */}
-      <div className="absolute inset-0 lg:right-[42%]">
+      {/* 3D figure — occupies the side opposite the text on desktop, full-bleed behind on mobile */}
+      <div className={cn('absolute inset-0', rtl ? 'lg:right-[42%]' : 'lg:left-[42%]')}>
         <Hero3D />
       </div>
       {/* legibility scrim on small screens */}
@@ -55,7 +60,7 @@ export function Hero() {
         }}
       />
 
-      <div className="container-wise relative z-10 flex flex-1 flex-col justify-center pt-28 pb-40 md:pt-32 lg:items-end">
+      <div className="container-wise relative z-10 flex flex-1 flex-col justify-center pt-28 pb-40 md:pt-32 lg:items-start">
         <div className="max-w-xl">
           <motion.p
             initial={{ opacity: 0, y: 14 }}
