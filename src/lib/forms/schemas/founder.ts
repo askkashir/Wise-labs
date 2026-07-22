@@ -11,9 +11,9 @@ import type { FormSchema } from '../types'
  */
 export const founderFormSchema: FormSchema = {
   track: 'founder',
-  title: 'Founder Flightpath — Incubation Application',
+  title: 'WISE Lab Application Form',
   subtitle:
-    'For women founders and startup teams ready for incubation, validation, mentorship, pitch development, and investor readiness.',
+    'For women founders, startup teams, and small business owners ready for incubation, validation, mentorship, and growth support.',
   themeTrack: 'founder',
   submitLabel: 'Submit application',
   successTitle: 'Thank you, {firstName}.',

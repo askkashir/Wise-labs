@@ -482,3 +482,24 @@ posts with correct published/draft states → session survives a full-page direc
 **Deferred**: demo mode does not persist blog edits across a reload (by design — it's not meant to);
 does not affect the public-facing site at all (only `/admin/*`); must stay off in the real
 production environment (documented in `TODO_FOR_HUMAN.md`).
+
+## Client-review follow-ups: form rename, self-configuring demo mode, halo removal
+
+- **Renamed the shared application form**: title changed from "Founder Flightpath — Incubation
+  Application" to "WISE Lab Application Form" (schema + all 4 locales), since the Enterprise
+  Flightpath card was already pointed at this same form — the old title read as founder-only to
+  small-business applicants landing on it. Subtitle now names both audiences explicitly.
+- **Demo mode now self-activates**: `DEMO_MODE` is true whenever Supabase isn't configured (no
+  `VITE_DEMO_MODE` env var or Vercel dashboard step required) and automatically stands down the
+  moment real `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY` are added later. Login simplified from
+  email+password to a single access code (`wiselab2026`, see `src/lib/demo/config.ts`), shown
+  directly on the login screen. Chosen deliberately for the pre-launch client-demo phase; the
+  "Demo mode" banner and off-when-real-Supabase-is-configured behavior are the safety net.
+- **Removed the glow/halo shadow** from the `track` button variant (`src/components/ui/button.tsx`)
+  — only used by the Hero's "Enter the Lab" CTA — replaced with the same flat `shadow-card` /
+  `shadow-card-hover` treatment used elsewhere on the site.
+
+Verified live via Playwright with zero env files present (matching actual current production
+state): login page shows the single access-code field automatically, sign-in works, dashboard/
+submissions/blog all render sample data, and `/apply/founder` shows the renamed title/subtitle.
+Build, lint, and locale parity (373/373) all clean.

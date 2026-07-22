@@ -6,8 +6,8 @@ import {
   type ReactNode,
 } from 'react'
 import type { Session } from '@supabase/supabase-js'
-import { getSupabase, isSupabaseConfigured } from '@/lib/supabase'
-import { DEMO_CREDENTIALS, DEMO_MODE } from '@/lib/demo/config'
+import { getSupabase } from '@/lib/supabase'
+import { DEMO_ACCESS_CODE, DEMO_MODE } from '@/lib/demo/config'
 
 /** Real Supabase sessions carry full session objects; a demo login is just the string 'demo'. */
 type AdminSession = Session | 'demo'
@@ -21,6 +21,8 @@ interface AdminAuthValue {
   /** true when the current session is the hardcoded demo login, not a real Supabase account. */
   isDemo: boolean
   signIn: (email: string, password: string) => Promise<{ error: string | null }>
+  /** Demo mode's single-field login — checks one access code, no email. */
+  signInDemo: (code: string) => { error: string | null }
   signOut: () => Promise<void>
 }
 
@@ -95,25 +97,18 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const signIn = async (email: string, password: string) => {
-    if (
-      DEMO_MODE &&
-      email.trim().toLowerCase() === DEMO_CREDENTIALS.email &&
-      password === DEMO_CREDENTIALS.password
-    ) {
-      sessionStorage.setItem(DEMO_SESSION_KEY, 'true')
-      setSession('demo')
-      setIsAdmin(true)
-      return { error: null }
-    }
+  const signInDemo = (code: string) => {
+    if (code !== DEMO_ACCESS_CODE) return { error: 'Incorrect access code.' }
+    sessionStorage.setItem(DEMO_SESSION_KEY, 'true')
+    setSession('demo')
+    setIsAdmin(true)
+    return { error: null }
+  }
 
+  const signIn = async (email: string, password: string) => {
     const supabase = getSupabase()
     if (!supabase) {
-      return {
-        error: DEMO_MODE
-          ? 'Incorrect demo credentials.'
-          : 'Backend is not configured yet.',
-      }
+      return { error: 'Backend is not configured yet.' }
     }
 
     const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
@@ -155,9 +150,12 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
         session,
         loading,
         isAdmin,
-        configured: isSupabaseConfigured || DEMO_MODE,
+        // Always true now: demo mode auto-activates whenever Supabase isn't
+        // configured, so there's always a way to sign in (demo or real).
+        configured: true,
         isDemo,
         signIn,
+        signInDemo,
         signOut,
       }}
     >

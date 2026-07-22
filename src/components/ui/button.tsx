@@ -10,8 +10,7 @@ const buttonVariants = cva(
       variant: {
         default:
           'bg-[var(--track-primary)] text-[var(--track-ink)] shadow-card hover:shadow-card-hover',
-        track:
-          'text-[var(--track-ink)] shadow-[0_10px_30px_-8px_var(--track-glow)] hover:shadow-[0_16px_44px_-10px_var(--track-glow)]',
+        track: 'text-[var(--track-ink)] shadow-card hover:shadow-card-hover',
         outline:
           'border border-[var(--track-accent)] bg-transparent text-[var(--track-primary)] hover:bg-[var(--track-soft)]',
         ghost: 'hover:bg-[var(--track-soft)] text-[var(--track-primary)]',

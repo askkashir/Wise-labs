@@ -7,19 +7,27 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { WiseMark } from '@/components/WiseLabLogo'
 import { useAdminAuth } from '@/lib/auth/useAdminAuth'
-import { DEMO_CREDENTIALS, DEMO_MODE } from '@/lib/demo/config'
+import { DEMO_ACCESS_CODE, DEMO_MODE } from '@/lib/demo/config'
 
 export function AdminLoginPage() {
   const { t } = useTranslation()
-  const { session, configured, signIn } = useAdminAuth()
+  const { session, signIn, signInDemo } = useAdminAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [code, setCode] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
 
   if (session) return <Navigate to="/admin" replace />
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const onSubmitDemo = (e: React.FormEvent) => {
+    e.preventDefault()
+    setError(null)
+    const { error } = signInDemo(code)
+    if (error) setError(error)
+  }
+
+  const onSubmitReal = async (e: React.FormEvent) => {
     e.preventDefault()
     setSubmitting(true)
     setError(null)
@@ -39,23 +47,34 @@ export function AdminLoginPage() {
             {t('admin.login.title')}
           </h1>
 
-          {DEMO_MODE && (
-            <div className="mt-5 rounded-xl border border-amber-300 bg-amber-50 p-4 text-center text-[13px] text-amber-800">
-              <p className="font-semibold uppercase tracking-wide">Demo mode</p>
-              <p className="mt-1">
-                {DEMO_CREDENTIALS.email}
-                <br />
-                {DEMO_CREDENTIALS.password}
-              </p>
-            </div>
-          )}
-
-          {!configured ? (
-            <p className="mt-6 rounded-xl bg-plum/5 p-4 text-center text-sm text-plum/60">
-              {t('admin.login.unconfigured')}
-            </p>
+          {DEMO_MODE ? (
+            <>
+              <div className="mt-5 rounded-xl border border-amber-300 bg-amber-50 p-4 text-center text-[13px] text-amber-800">
+                <p className="font-semibold uppercase tracking-wide">Demo mode</p>
+                <p className="mt-1">
+                  Access code: <span className="font-semibold">{DEMO_ACCESS_CODE}</span>
+                </p>
+              </div>
+              <form onSubmit={onSubmitDemo} className="mt-8 space-y-5">
+                <div className="space-y-2">
+                  <Label htmlFor="admin-code">Access code</Label>
+                  <Input
+                    id="admin-code"
+                    type="text"
+                    autoComplete="off"
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)}
+                    required
+                  />
+                </div>
+                {error && <p className="text-[13px] font-medium text-destructive">{error}</p>}
+                <Button type="submit" className="w-full">
+                  {t('admin.login.signIn')}
+                </Button>
+              </form>
+            </>
           ) : (
-            <form onSubmit={onSubmit} className="mt-8 space-y-5">
+            <form onSubmit={onSubmitReal} className="mt-8 space-y-5">
               <div className="space-y-2">
                 <Label htmlFor="admin-email">{t('admin.login.email')}</Label>
                 <Input
