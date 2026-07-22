@@ -11,12 +11,22 @@ import { AdminSubmissionsPage } from '@/pages/admin/AdminSubmissionsPage'
 import { AdminBlogPage } from '@/pages/admin/AdminBlogPage'
 import { AdminBlogEditorPage } from '@/pages/admin/AdminBlogEditorPage'
 import { WhatsAppButton } from '@/components/WhatsAppButton'
+import { ApplyNowButton } from '@/components/ApplyNowButton'
 
-/** Floating WhatsApp button on every public-facing route; hidden on /admin. */
+/**
+ * Floating WhatsApp + Apply Now buttons on every public-facing route; hidden
+ * on /admin. Apply Now is also hidden while already on an /apply/:track page
+ * — no need to prompt someone to apply while they're mid-application.
+ */
 function GlobalChrome() {
   const { pathname } = useLocation()
   if (pathname.startsWith('/admin')) return null
-  return <WhatsAppButton />
+  return (
+    <>
+      {!pathname.startsWith('/apply') && <ApplyNowButton />}
+      <WhatsAppButton />
+    </>
+  )
 }
 
 /**
