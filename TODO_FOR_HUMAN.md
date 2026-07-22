@@ -26,10 +26,12 @@ native-speaker/design/legal review pass before this ships to production.
 5. **Teal retheme hex**: used `#2E7D7B` per the explicit instruction in the master prompt. Confirm
    this matches brand guidelines before shipping (Phase 2, `src/lib/theme.ts` `TRACK_THEME.founder`).
 6. **WhatsApp number**: no real number was provided anywhere in the assets or brief. The floating
-   WhatsApp button reads from `VITE_WHATSAPP_NUMBER` (see `.env.example`), defaulting to a clearly
-   fake placeholder (`+92 300 0000000`) if unset, and the button is not rendered at all when the
-   env var is empty in production builds... (see Phase 8 log for exact behavior). **Set the real
-   WISE Lab WhatsApp number before launch.**
+   WhatsApp button (`src/components/WhatsAppButton.tsx`) reads `VITE_WHATSAPP_NUMBER` (see
+   `.env.example`). In production builds, if that var is unset the button renders **nothing at
+   all** (chosen over showing a fake number that would look real to a site visitor); in `npm run
+   dev` only, it falls back to an obviously-fake placeholder so the button is visibly testable
+   during development. **Set the real WISE Lab WhatsApp number in production before launch,
+   otherwise the floating button simply won't appear.**
 7. **PM banner asset**: `public/pm-banner.jpg` was extracted from `SHAHABZBANNER.jpeg`, downscaled
    from 11801x3485 to 2400px wide and recompressed to JPEG q85 for web performance. Please confirm
    image rights/usage clearance for the Prime Minister's photo are in place — this is government/PM

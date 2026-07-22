@@ -237,3 +237,25 @@ conceptual phase.
   category warnings). Validated all 4 locale JSON files parse correctly. Confirmed via grep that
   `LiveStats`/`partners.ts` are intentionally not wired into `App.tsx`/`PowerCircle.tsx` (dead
   code by design, not by accident) so a reviewer doesn't mistake this for an incomplete wire-up.
+
+## Phase 10 — Finalize
+- **Secrets scan**: ran a manual `git diff main | grep -iE "api[_-]?key|secret|password|token|
+  bearer"` across the entire feature branch diff. All matches are either documentation text
+  (env var names, comments about where secrets go) or legitimate `password`-typed form fields in
+  the admin login UI — no real secret values anywhere in the diff.
+- **Found and fixed a real gap**: `.gitignore` had no `.env` pattern at all (pre-existing, not
+  introduced by this work, but this feature branch is the first thing in the repo that actually
+  creates a documented `.env` workflow via `.env.example`). Added `.env` / `.env.*` /
+  `!.env.example` to `.gitignore` so a future `cp .env.example .env` with real Supabase keys
+  can't be accidentally committed to this public repo.
+- **Final verification pass**: `npm run build` and `npm run lint` clean (same 4 pre-existing-
+  category fast-refresh warnings as every prior phase, none new). Smoke-tested via
+  `npm run preview`: `/`, `/apply/{founder,enterprise,mentor,partner}`, `/blog`, `/admin`,
+  `/admin/login` all return HTTP 200 and serve the SPA shell (client-side routing resolves them
+  correctly in-browser; `vercel.json`'s rewrite rule replicates this on Vercel's static hosting).
+- PLAN.md checklist: all 11 phase lines marked done (Phase 4/6/7 landed together as one commit,
+  documented at the top of that phase's log entry; every other phase is 1:1 with a commit).
+- Pushed `feat/wiselab-platform-v1` to the `fork` remote (T361/Wise-labs) — never pushed to
+  `origin` (askkashir/Wise-labs), per the task's access constraints.
+- Opened the PR cross-repo via `gh pr create --repo askkashir/Wise-labs --head T361:feat/wiselab-
+  platform-v1`. Not merged, per instruction.
