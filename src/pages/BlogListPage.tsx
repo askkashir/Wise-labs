@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
 import { listPublishedPosts } from '@/lib/blog/api'
 import type { BlogPost } from '@/lib/blog/types'
 import { isSupabaseConfigured } from '@/lib/supabase'
+
+const MotionLink = motion(Link)
 
 export function BlogListPage() {
   const [posts, setPosts] = useState<BlogPost[]>([])
@@ -30,9 +33,10 @@ export function BlogListPage() {
         <Reveal>
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-plum/60 transition-colors hover:text-plum"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-plum/60 transition-colors hover:text-plum"
           >
-            <ArrowLeft className="h-4 w-4" /> Back to WISE Lab
+            <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-0.5" />
+            Back to WISE Lab
           </Link>
           <p className="eyebrow mt-8">WISE Lab Journal</p>
           <h1 className="mt-3 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-plum">
@@ -61,8 +65,10 @@ export function BlogListPage() {
           <RevealGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
               <RevealItem key={post.id}>
-                <Link
+                <MotionLink
                   to={`/blog/${post.slug}`}
+                  whileHover={{ y: -5 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 24 }}
                   className="group flex h-full flex-col overflow-hidden rounded-3xl border border-plum/10 bg-white shadow-card transition-shadow duration-500 hover:shadow-card-hover"
                 >
                   {post.coverImageUrl && (
@@ -86,7 +92,7 @@ export function BlogListPage() {
                       <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </span>
                   </div>
-                </Link>
+                </MotionLink>
               </RevealItem>
             ))}
           </RevealGroup>

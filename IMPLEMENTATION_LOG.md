@@ -259,3 +259,78 @@ conceptual phase.
   `origin` (askkashir/Wise-labs), per the task's access constraints.
 - Opened the PR cross-repo via `gh pr create --repo askkashir/Wise-labs --head T361:feat/wiselab-
   platform-v1`. Not merged, per instruction.
+
+## Phase 11 — Mobile responsiveness audit + tasteful polish pass
+Additive-only pass: no redesign, no palette/typography/hero changes. Read `src/index.css` and
+`tailwind.config.js` first to confirm existing tokens (plum/teal/coral/beige, `shadow-card` /
+`shadow-card-hover`, `rounded-3xl` card vocabulary, Reveal/RevealGroup/RevealItem spring
+patterns) before writing anything, per the task brief.
+
+**Audit method**: read every section in `src/sections/*.tsx`, every page in `src/pages/**/*.tsx`,
+`DynamicForm.tsx`, `Nav.tsx`, `LanguageSwitcher.tsx`, `WhatsAppButton.tsx`, and `Footer.tsx` in
+full. Ran `npm run dev` and used the Playwright MCP browser to resize to 375/390/413(428
+viewport, DPR-adjusted)/768px and check `document.documentElement.scrollWidth >
+document.documentElement.clientWidth` (the definitive horizontal-overflow test) plus screenshots,
+across `/`, `/blog`, `/apply/{founder,enterprise,mentor,partner}`, `/admin/login`. The admin
+dashboard/submissions/blog pages sit behind Supabase auth with no project provisioned in this
+environment, so those three were verified by careful JSX/Tailwind reading rather than live
+screenshots, per the task's fallback instruction.
+
+**Finding — the landing page, blog, and apply pages were already solid.** Every section
+(`Hero`, `WiseJourney`, `BuildTracks`, `EnterTheLab`, `PowerCircle`, `BehindTheWings`,
+`BecomeAMentor`, `WiseConnect`, `Footer`), `Nav.tsx` (including its mobile slide-in drawer,
+`LanguageSwitcher`, and interplay with `WhatsAppButton`'s z-40 vs. the drawer's z-60), `ApplyPage`,
+`BlogListPage`/`BlogPostPage`, and `DynamicForm.tsx` (including the team-member "table"/repeater
+field, which already collapses to `grid-cols-1` below the `sm:` breakpoint) all measured zero
+horizontal overflow at every tested width and use the existing `sm:`/`md:`/`lg:` convention
+correctly. No changes were needed to any of these for mobile correctness.
+
+**Real bug found and fixed**: `src/pages/admin/AdminLayout.tsx` had a fixed `w-64 shrink-0`
+(256px) sidebar with **no mobile handling at all** — on a 375px viewport that leaves ~119px for
+all dashboard/submissions/blog-admin content, unusable and with no way to collapse it. Rebuilt as
+a responsive layout: sidebar nav is now hidden below `lg:` and replaced with a mobile top bar
+(logo + hamburger, 44px touch target) that opens a slide-in drawer (same spring/backdrop-blur
+pattern as `Nav.tsx`'s mobile menu, `AnimatePresence` + `type: 'spring', stiffness: 320, damping:
+34`), auto-closing on route change. Desktop `lg:` and above keeps the original always-visible
+sidebar unchanged.
+
+**Smaller mobile fixes** (all in `src/pages/admin/*.tsx`, found by reading JSX for
+overflow/cramping risk since the live dashboard isn't reachable without Supabase):
+- `AdminSubmissionsPage.tsx`: track-filter `<select>` was `h-10` (40px, under the 44px touch
+  baseline) and a fixed inline width that could crowd the "Submissions" heading on narrow
+  screens — now `h-11 w-full sm:w-auto`. Applicant name row: added `min-w-0`/`truncate` so a long
+  name can't push the "View"/"Hide" toggle off-screen.
+- `AdminBlogPage.tsx`: post-title row same `min-w-0`/`truncate` + `flex-wrap` fix so a long blog
+  title doesn't crush the Edit/Delete actions at 375px.
+- `AdminDashboardPage.tsx`: the "by vertical" bar-chart row's label column was a fixed `w-40`
+  (160px) — at 375px that alone is nearly half the viewport before the bar even starts. Now
+  `w-24 truncate sm:w-40`.
+- All admin page `<h1>`s: `text-3xl` → `text-2xl sm:text-3xl` for less cramped headings on
+  narrow screens, matching the `clamp()`/responsive-size convention used elsewhere in the app.
+
+**Polish pass** (within the existing plum/teal/coral/beige system — no new colors, no dark theme):
+brought the five admin pages and `AdminLoginPage` up to the same animation quality as the
+original landing-page sections, since they were built fast in the prior session and had zero
+`Reveal`/`RevealGroup` usage. Added `Reveal`/`RevealGroup`/`RevealItem` (existing component,
+untouched) to `AdminLoginPage`, `AdminDashboardPage`, `AdminSubmissionsPage`, `AdminBlogPage`,
+`AdminBlogEditorPage` — same stagger/spring values already used on the landing page, nothing
+new invented. Added `hover:shadow-card-hover` (existing Tailwind token) to admin stat cards,
+submission rows, and blog-post rows so hovering them reads consistently with the rest of the
+site's card vocabulary. Converted `BlogListPage`'s post cards from a plain CSS-transition `Link`
+to the same `motion(Link)` + `whileHover={{ y: -5 }}` + `spring stiffness: 300, damping: 24`
+pattern `EnterTheLab.tsx` already uses for its pillar cards. Added a matching subtle
+arrow-nudge-on-hover (`group-hover:-translate-x-0.5`) to the "Back to WISE Lab" / "Back to the
+Journal" links on `ApplyPage`, `BlogListPage`, and `BlogPostPage`. Nav's sticky-header glass
+treatment (`bg-beige/80 backdrop-blur-xl` on scroll) was already in place from the prior session
+and needed no change — it's the same glassmorphism vocabulary the task brief asked to extend.
+
+**Explicitly not touched**: `TRACK_THEME` in `src/lib/theme.ts`, fonts in
+`tailwind.config.js`/`index.css`, the Hero3D particle system, the WhatsApp number placeholder,
+Supabase provisioning, and i18n translation review — all out of scope per the task and
+`TODO_FOR_HUMAN.md`.
+
+**Verification**: `npm run build`, `npx tsc --noEmit -p .`, and `npm run lint` all clean (same 4
+pre-existing fast-refresh-category warnings as every prior phase, none new, zero new errors).
+Playwright-driven `scrollWidth`/`clientWidth` checks confirmed zero horizontal overflow at
+375/390/413/428/768px across `/`, `/blog`, `/apply/{founder,enterprise,mentor,partner}`, and
+`/admin/login` both before and after the changes in this phase.

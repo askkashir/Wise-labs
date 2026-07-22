@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { Reveal } from '@/components/Reveal'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
@@ -59,8 +60,8 @@ export function AdminBlogEditorPage() {
   if (loading) return <p className="text-plum/50">Loading…</p>
 
   return (
-    <div className="max-w-2xl">
-      <h1 className="font-display text-3xl font-bold text-plum">
+    <Reveal className="max-w-2xl">
+      <h1 className="font-display text-2xl font-bold text-plum sm:text-3xl">
         {isNew ? 'New post' : 'Edit post'}
       </h1>
 
@@ -125,6 +126,6 @@ export function AdminBlogEditorPage() {
           </Button>
         </div>
       </div>
-    </div>
+    </Reveal>
   )
 }

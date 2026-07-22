@@ -29,9 +29,10 @@ export function BlogPostPage() {
         <Reveal>
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-plum/60 transition-colors hover:text-plum"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-plum/60 transition-colors hover:text-plum"
           >
-            <ArrowLeft className="h-4 w-4" /> Back to the Journal
+            <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-0.5" />
+            Back to the Journal
           </Link>
         </Reveal>
 
