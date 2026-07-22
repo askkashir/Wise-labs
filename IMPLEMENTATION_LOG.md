@@ -80,3 +80,53 @@
   `supabase secrets set`, not in this file). No real values anywhere — public repo.
 - Verified: `npx tsc -b --force` (full rebuild, strict `noUnusedLocals`/`noUnusedParameters`) and
   `npm run build` both clean; `npm run lint` shows only the same 3 pre-existing warnings.
+
+## Phase 4 — Routing (combined with Phase 6 admin portal + Phase 7 blog pages)
+Note on ordering: the master prompt lists Admin (6) and Blog (7) as separate phases from Routing
+(4), but a route with no page behind it is dead weight to commit, and a page with no route is
+unreachable — so all three landed together as one coherent unit. Each still gets its own
+checklist line above marked done, and the breakdown below documents what belongs to which
+conceptual phase.
+
+- `src/AppRouter.tsx`: new top-level component wrapping `BrowserRouter` + `AdminAuthProvider`
+  around a `<Routes>` tree. `App.tsx` (the landing page) is mounted unmodified at `/` — its
+  internal structure (MotionConfig > TrackProvider > SmoothScroll > Nav/main/Footer) and hash-scroll
+  nav behavior are completely untouched. `src/main.tsx` now renders `<AppRouter />` instead of
+  `<App />` directly; StrictMode remains omitted (existing note about the hero R3F scene).
+- Routes added: `/apply/:track` (ApplyPage), `/blog` (BlogListPage), `/blog/:slug` (BlogPostPage),
+  `/admin/login` (AdminLoginPage), `/admin` + nested `submissions` / `blog` / `blog/:id`
+  (AdminLayout wrapping AdminDashboardPage / AdminSubmissionsPage / AdminBlogPage /
+  AdminBlogEditorPage via `<Outlet />`).
+- `src/pages/ApplyPage.tsx`: reads `:track` from the URL, looks up the FormSchema via
+  `getFormSchema`, sets `data-track` on `<html>` (same mechanism TrackProvider uses on the
+  landing page) so the whole page picks up the right teal/orange/neutral CSS variables, and
+  renders `DynamicForm`. Unknown track params redirect to `/`.
+- `src/sections/EnterTheLab.tsx`: all 4 pillar cards now `Link` (via `motion(Link)`) to
+  `/apply/founder|enterprise|mentor|partner` instead of `href="#wise-connect"`. WiseConnect
+  itself (the general contact form) is untouched — it's still reachable via in-page hash nav
+  for general inquiries, only the 4 specific application CTAs were redirected, per spec.
+  `Nav.tsx`'s own "Enter the Lab" button still points at `#enter-the-lab` (in-page hash) — that
+  wasn't in scope, it scrolls to the pillar section where the user then picks a track.
+- Blog (Phase 7): `src/lib/blog/{types,api}.ts` define `BlogPost` and CRUD functions against a
+  `blog_posts` table (list published / get by slug / list all for admin / upsert / delete), all
+  degrading to safe empty/no-op behavior when Supabase isn't configured rather than throwing.
+  `src/pages/BlogListPage.tsx` and `BlogPostPage.tsx` are public-facing, styled to match the site
+  (Reveal, rounded-3xl cards, same container/eyebrow/heading classes as other sections). Show an
+  explicit "not connected to a backend yet" message when Supabase isn't configured, instead of a
+  silent empty state, so this isn't mistaken for "no posts."
+- Admin (Phase 6): `src/lib/auth/useAdminAuth.tsx` wraps Supabase auth (email/password only — no
+  public sign-up, admin accounts are provisioned directly in the `admin_profiles` table per
+  TODO_FOR_HUMAN.md). `AdminLoginPage` / `AdminLayout` (sidebar nav + route guard, redirects to
+  `/admin/login` if no session) / `AdminDashboardPage` (submission counts by track + a simple bar
+  breakdown by founder vertical, using the `analytics` map every submission carries) /
+  `AdminSubmissionsPage` (filterable, expandable list of every field submitted) /
+  `AdminBlogPage` + `AdminBlogEditorPage` (list/create/edit/delete/publish posts, auto-slugify).
+  `src/lib/admin/submissions.ts` provides `listSubmissions` + `aggregateByDimension`, reading the
+  same stable `SubmissionPayload` shape from Phase 3 — this is why that shape mattered.
+- `vercel.json` added: single SPA rewrite (`/(.*) -> /index.html`) so deep links like
+  `/apply/founder` or `/admin/submissions` don't 404 on Vercel's static hosting.
+- Verified: `npx tsc -b --force` clean, `npm run build` clean, `npm run lint` clean (one new
+  fast-refresh warning on `useAdminAuth.tsx`, same harmless category as the pre-existing
+  `useTrackState.tsx` warnings — a hook file exporting both a Provider component and a hook).
+  Smoke-tested via `npm run preview`: `/` and `/apply/founder` both return 200 and serve the SPA
+  shell correctly (client-side routing resolves `/apply/founder`'s title/content in-browser).
