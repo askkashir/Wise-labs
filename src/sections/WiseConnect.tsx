@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { CheckCircle2, Globe, Mail, MapPin, Send } from 'lucide-react'
-import { InstagramIcon, LinkedinIcon, XIcon } from '@/components/BrandIcons'
 import { Reveal } from '@/components/Reveal'
+import { SOCIAL_LINKS } from '@/lib/social'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -89,20 +89,17 @@ export function WiseConnect() {
               </ContactRow>
             </dl>
 
-            <div className="mt-8 flex items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-plum/45">
                 Follow
               </span>
-              {[
-                { Icon: LinkedinIcon, label: 'LinkedIn' },
-                { Icon: InstagramIcon, label: 'Instagram' },
-                { Icon: XIcon, label: 'X' },
-              ].map(({ Icon, label }) => (
+              {SOCIAL_LINKS.map(({ Icon, label, href }) => (
                 <a
                   key={label}
-                  href="#"
-                  aria-label={label}
-                  onClick={(e) => e.preventDefault()}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`WISE Lab on ${label} (opens in a new tab)`}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-plum/15 text-plum transition-colors hover:border-teal hover:bg-teal hover:text-white"
                 >
                   <Icon className="h-[18px] w-[18px]" />
