@@ -36,3 +36,47 @@
   No enterprise/neutral colors were touched in either file.
 - Verified: `npm run build` and `npm run lint` both clean (only pre-existing oxlint fast-refresh
   warnings, unrelated to this change).
+
+## Phase 3 — Form architecture
+- `src/lib/forms/types.ts`: `FieldDef`/`FormSchema`/`FormSection`/`SubmissionPayload` types per the
+  master prompt's spec, including `Chartable` analytics metadata and `ConditionalOn` for
+  show-if-Y/N fields (used for the docx's "if yes, details" pattern).
+- `src/lib/forms/schemas/founder.ts`: Founder Flightpath schema, field-for-field match to
+  "WISE Incubation Application Form.docx" — same section order, same questions, same options
+  list for Business/Innovation Vertical, same Team Details table columns (Name/Role/
+  Qualification/Skillset/City/Age), same conditional Y/N-then-details fields for previous
+  business, incubation experience, and funding. `commitmentConsent` implemented as a required
+  `type: 'consent'` checkbox rather than a signature field, per the master prompt's explicit
+  instruction. Analytics dimensions wired on vertical/stage/availability(boolean)/funded(boolean)/
+  city/gender/source, matching the master prompt's chartable-dimension list.
+- `src/lib/forms/schemas/{enterprise,mentor,partner}.ts`: schema outlines for the other three
+  tracks. No authoritative source document exists for these (unlike Founder), so they're drafted
+  from the Website Content Brief's descriptions of each track/partner category and shaped to
+  mirror the Founder schema's structure (basics -> contact -> how-heard where relevant ->
+  commitment consent) so all four forms feel like one system.
+- `src/lib/forms/submission.ts`: `buildSubmissionPayload` (raw values -> stable
+  `SubmissionPayload` envelope + flattened analytics map) and `isFieldVisible` (conditional
+  field logic), shared by DynamicForm and reusable by admin/reporting code later.
+- `src/lib/forms/submitApplication.ts` + `src/lib/supabase.ts`: lazy Supabase client that returns
+  `null` (never throws) when `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY` are unset — which is the
+  case in this environment (no live project). Submissions fall back to a localStorage queue so
+  the form UX completes end-to-end even without a backend; once a real project + env vars exist,
+  it writes straight to the `submissions` table (Phase 5 migration).
+- `src/components/DynamicForm.tsx`: renders any `FormSchema` — sections as sub-headed groups,
+  fields via a `FormField` switch (text/email/tel/number/url -> Input, textarea -> Textarea,
+  select -> Select, radio -> new RadioGroup, consent -> new Checkbox, table -> repeatable
+  row editor with add/remove). Matches WiseConnect's exact visual language: same card
+  (`rounded-3xl border border-plum/10 bg-white shadow-card`), same `Reveal` wrapper, same
+  `AnimatePresence` success-state swap to a centered checkmark + thank-you copy, same themed
+  submit button (`style={{ background: 'var(--track-primary)', color: 'var(--track-ink)' }}`).
+- New shadcn-style primitives added (didn't exist before): `src/components/ui/checkbox.tsx`,
+  `src/components/ui/radio-group.tsx`, built on `@radix-ui/react-checkbox` and
+  `@radix-ui/react-radio-group` (newly installed, matching the existing Radix-based pattern used
+  by select/label). Also installed `@supabase/supabase-js` and `react-router-dom` (the latter
+  needed imminently for Phase 4, installed together to avoid a second install pass).
+- `src/vite-env.d.ts` added (didn't exist) to type `import.meta.env` for the new Vite env vars.
+- `.env.example` added documenting `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`,
+  `VITE_WHATSAPP_NUMBER`, `VITE_FEATURE_LIVE_STATS`, and the edge-function secret names (set via
+  `supabase secrets set`, not in this file). No real values anywhere — public repo.
+- Verified: `npx tsc -b --force` (full rebuild, strict `noUnusedLocals`/`noUnusedParameters`) and
+  `npm run build` both clean; `npm run lint` shows only the same 3 pre-existing warnings.
