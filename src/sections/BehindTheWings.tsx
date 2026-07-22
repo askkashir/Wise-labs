@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
 import { WiseMark } from '@/components/WiseLabLogo'
 import { LinkedinIcon } from '@/components/BrandIcons'
 
 export function BehindTheWings() {
+  const { t } = useTranslation()
   return (
     <section
       id="behind-the-wings"
@@ -12,19 +14,16 @@ export function BehindTheWings() {
       <div className="container-wise relative">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <Reveal className="lg:col-span-7">
-            <p className="eyebrow">Behind the Wings</p>
+            <p className="eyebrow">{t('behindTheWings.eyebrow')}</p>
             <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-plum">
-              The women helping
+              {t('behindTheWings.title1')}
               <br />
-              her take flight
+              {t('behindTheWings.title2')}
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-5">
             <p className="text-pretty leading-relaxed text-plum/70">
-              WISE Lab is led by a multidisciplinary team across incubation,
-              entrepreneurship development, partnerships, communications,
-              training, technology, and ecosystem engagement — building the space
-              where she can become a founder.
+              {t('behindTheWings.intro')}
             </p>
           </Reveal>
         </div>
@@ -60,10 +59,10 @@ export function BehindTheWings() {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <h3 className="font-display text-2xl font-bold text-plum">
-                    Ms. Muneaza Jamil Durrani
+                    {t('behindTheWings.director.name')}
                   </h3>
                   <p className="mt-1 text-sm font-semibold uppercase tracking-[0.14em] text-teal">
-                    Programme Director
+                    {t('behindTheWings.director.title')}
                   </p>
                 </div>
                 <a
@@ -76,11 +75,7 @@ export function BehindTheWings() {
                 </a>
               </div>
               <p className="mt-5 leading-relaxed text-plum/70">
-                Leads WISE Lab's programme direction — setting the vision,
-                standards, and day-to-day execution that help women entrepreneurs
-                access mentorship, markets, capital readiness, and the right room
-                to grow. She is the founding member of the team building the
-                platform.
+                {t('behindTheWings.director.bio')}
               </p>
             </div>
           </motion.div>
@@ -104,8 +99,7 @@ export function BehindTheWings() {
               ))}
             </div>
             <p className="max-w-md text-center text-[15px] text-plum/60 sm:text-right">
-              More of the crew is joining soon. Every flight needs wings — this is
-              the team building them.
+              {t('behindTheWings.moreComingSoon')}
             </p>
           </div>
         </Reveal>

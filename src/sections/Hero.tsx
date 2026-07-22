@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { Hero3D } from '@/components/Hero3D'
 import { TrackToggle } from '@/components/Hero3D/TrackToggle'
 import { Button } from '@/components/ui/button'
@@ -6,11 +7,11 @@ import { MagneticButton } from '@/components/MagneticButton'
 import { useTrack } from '@/lib/useTrackState'
 import { TRACK_THEME } from '@/lib/theme'
 
-const words = ['Her', 'idea.', 'Her', 'enterprise.']
-
 export function Hero() {
+  const { t } = useTranslation()
   const { track } = useTrack()
   const dark = track !== 'neutral'
+  const words = t('hero.headlineWords', { returnObjects: true }) as string[]
 
   return (
     <section
@@ -60,7 +61,7 @@ export function Hero() {
             className="eyebrow theme-shift"
             style={{ color: dark ? TRACK_THEME[track].accent : undefined }}
           >
-            Women Innovation &amp; Startup Empowerment Lab
+            {t('hero.eyebrow')}
           </motion.p>
 
           <h1
@@ -92,7 +93,7 @@ export function Hero() {
             className="mt-6 max-w-md text-lg leading-relaxed theme-shift"
             style={{ color: dark ? 'rgba(255,255,255,0.78)' : 'rgba(74,46,61,0.72)' }}
           >
-            Where women-led ideas move from quiet potential to visible enterprise.
+            {t('hero.subheadline')}
           </motion.p>
 
           <motion.div
@@ -108,14 +109,14 @@ export function Hero() {
                 size="lg"
                 style={{ background: 'var(--track-primary)' }}
               >
-                <a href="#enter-the-lab">Enter the Lab</a>
+                <a href="#enter-the-lab">{t('hero.cta')}</a>
               </Button>
             </MagneticButton>
             <span
               className="text-sm theme-shift"
               style={{ color: dark ? 'rgba(255,255,255,0.6)' : 'rgba(74,46,61,0.55)' }}
             >
-              or preview a flight path ↓
+              {t('hero.orPreview')}
             </span>
           </motion.div>
 
@@ -144,16 +145,14 @@ export function Hero() {
             className="max-w-2xl text-[13px] leading-relaxed theme-shift"
             style={{ color: dark ? 'rgba(255,255,255,0.62)' : 'rgba(74,46,61,0.6)' }}
           >
-            Under the vision of the Honorable Prime Minister of Pakistan, WISE Lab
-            is designed &amp; funded by the Ministry of IT &amp; Telecom &amp;
-            Ignite&nbsp;-&nbsp;National Technology Fund.
+            {t('hero.credibilityLine')}
           </p>
           <div
             className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-medium theme-shift"
             style={{ color: dark ? 'rgba(255,255,255,0.7)' : 'rgba(74,46,61,0.7)' }}
           >
             <span className="text-[11px] uppercase tracking-[0.14em] opacity-60">
-              Trusted by
+              {t('hero.trustedBy')}
             </span>
             <span>Jazz World</span>
             <span className="opacity-40">·</span>

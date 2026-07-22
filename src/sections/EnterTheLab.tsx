@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { ArrowUpRight, Rocket, Store, Compass, Network } from 'lucide-react'
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
 
@@ -7,66 +8,56 @@ const MotionLink = motion(Link)
 
 const PILLARS = [
   {
-    title: 'Founder Flightpath',
-    body: 'For women founders and startup teams ready for incubation, validation, mentorship, pitch development, and investor readiness.',
-    cta: 'Take Flight',
+    i18nKey: 'founder',
     color: '#2E7D7B',
     href: '/apply/founder',
     Icon: Rocket,
   },
   {
-    title: 'Enterprise Flightpath',
-    body: 'For women-led small businesses and home-based entrepreneurs seeking business training, digital skills, visibility, and market access.',
-    cta: 'Grow Your Enterprise',
+    i18nKey: 'enterprise',
     color: '#E8823C',
     href: '/apply/enterprise',
     Icon: Store,
   },
   {
-    title: 'Guide Her Growth',
-    body: 'For experts, founders, investors, trainers, and professionals who want to guide women entrepreneurs through practical support.',
-    cta: 'Become a Mentor',
+    i18nKey: 'mentor',
     color: '#2C7A70',
     href: '/apply/mentor',
     Icon: Compass,
   },
   {
-    title: 'Open the Ecosystem',
-    body: 'For organizations ready to collaborate on women-led innovation, enterprise, access, and inclusive growth.',
-    cta: 'Partner with WISE',
+    i18nKey: 'partner',
     color: '#E38470',
     href: '/apply/partner',
     Icon: Network,
   },
-]
+] as const
 
 export function EnterTheLab() {
+  const { t } = useTranslation()
   return (
     <section id="enter-the-lab" className="relative overflow-hidden py-28 md:py-36">
       <div className="grain" />
       <div className="container-wise relative">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <Reveal className="lg:col-span-7">
-            <p className="eyebrow">Enter the Lab</p>
+            <p className="eyebrow">{t('enterTheLab.eyebrow')}</p>
             <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-plum">
-              Your idea deserves
+              {t('enterTheLab.title1')}
               <br />
-              the right room
+              {t('enterTheLab.title2')}
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-5">
             <p className="text-pretty leading-relaxed text-plum/70">
-              Building a startup, growing a small business, mentoring founders, or
-              partnering for impact — your WISE journey starts here. If your idea
-              has felt too early, too quiet, too small, or too unseen, this is your
-              invitation to bring it into the room.
+              {t('enterTheLab.intro')}
             </p>
           </Reveal>
         </div>
 
         <RevealGroup className="mt-14 grid gap-5 sm:grid-cols-2">
           {PILLARS.map((p) => (
-            <RevealItem key={p.title}>
+            <RevealItem key={p.i18nKey}>
               <MotionLink
                 to={p.href}
                 whileHover={{ y: -5 }}
@@ -91,16 +82,16 @@ export function EnterTheLab() {
                   />
                 </div>
                 <h3 className="mt-6 font-display text-2xl font-semibold text-plum">
-                  {p.title}
+                  {t(`enterTheLab.pillars.${p.i18nKey}.title`)}
                 </h3>
                 <p className="mt-3 flex-1 text-[15px] leading-relaxed text-plum/65">
-                  {p.body}
+                  {t(`enterTheLab.pillars.${p.i18nKey}.body`)}
                 </p>
                 <span
                   className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
                   style={{ color: p.color }}
                 >
-                  {p.cta}
+                  {t(`enterTheLab.pillars.${p.i18nKey}.cta`)}
                   <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </span>
               </MotionLink>
@@ -110,7 +101,7 @@ export function EnterTheLab() {
 
         <Reveal delay={0.1}>
           <p className="mt-12 text-center font-display text-xl font-medium italic text-plum/70">
-            Your next chapter starts inside the Lab.
+            {t('enterTheLab.closing')}
           </p>
         </Reveal>
       </div>

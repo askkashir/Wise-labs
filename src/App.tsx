@@ -2,6 +2,7 @@ import { MotionConfig } from 'framer-motion'
 import { TrackProvider } from '@/lib/useTrackState'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { Nav } from '@/components/Nav'
+import { PMBanner } from '@/components/PMBanner'
 import { Hero } from '@/sections/Hero'
 import { WiseJourney } from '@/sections/WiseJourney'
 import { BuildTracks } from '@/sections/BuildTracks'
@@ -17,6 +18,7 @@ function App() {
     <MotionConfig reducedMotion="user">
       <TrackProvider>
         <SmoothScroll>
+          <PMBanner />
           <Nav />
           <main>
             <Hero />

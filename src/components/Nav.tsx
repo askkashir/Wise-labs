@@ -6,6 +6,7 @@ import { WiseMark } from './WiseLabLogo'
 import { Button } from './ui/button'
 import { MagneticButton } from './MagneticButton'
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { PM_BANNER_HEIGHT } from './PMBanner'
 import { NAV_LINKS } from '@/lib/nav'
 import { useTrack } from '@/lib/useTrackState'
 import { cn } from '@/lib/utils'
@@ -59,8 +60,9 @@ export function Nav() {
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        style={{ top: PM_BANNER_HEIGHT }}
         className={cn(
-          'fixed inset-x-0 top-0 z-50 transition-colors duration-500',
+          'fixed inset-x-0 z-50 transition-colors duration-500',
           scrolled
             ? 'border-b border-plum/10 bg-beige/80 backdrop-blur-xl'
             : 'border-b border-transparent'
