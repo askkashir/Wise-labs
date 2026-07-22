@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Check, Rocket, Sprout } from 'lucide-react'
+import type { TFunction } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
 import { useTrack, type Track } from '@/lib/useTrackState'
 import { cn } from '@/lib/utils'
@@ -19,39 +21,55 @@ interface TrackCard {
   Icon: typeof Rocket
 }
 
-const CARDS: TrackCard[] = [
-  {
-    id: 'founder',
-    index: '01',
-    kicker: 'Startup Incubation',
-    title: 'Founder Flightpath',
-    lead: 'For women building scalable startups, tech-enabled ventures, and innovation-driven businesses.',
-    body: 'For women-led startups ready to move from idea, MVP, or early traction into structured growth — with business-model refinement, product validation, mentorship, pitch development, investor readiness, legal & financial guidance, market access, and ecosystem linkages.',
-    motto: 'From idea to investor-ready — unseen to undeniable.',
-    cta: 'Take Flight',
-    primary: '#0F3D3B',
-    accent: '#2E7D7B',
-    soft: 'rgba(46,125,123,0.10)',
-    Icon: Rocket,
-  },
-  {
-    id: 'enterprise',
-    index: '02',
-    kicker: 'MSME Training',
-    title: 'Enterprise Flightpath',
-    lead: 'For women-led small businesses, home-based entrepreneurs, and micro-enterprises ready to grow.',
-    body: 'For women already building — from home-based setups and craft producers to food, beauty, fashion, education, and digital sellers. Practical skills in business planning, financial literacy, branding, pricing, customer management, digital marketing, and market access.',
-    motto: 'From skill to income — cocoon to flight.',
-    cta: 'Grow Your Enterprise',
-    primary: '#B85C1A',
-    accent: '#E8823C',
-    soft: 'rgba(232,130,60,0.10)',
-    Icon: Sprout,
-  },
-]
+function getCards(t: TFunction): TrackCard[] {
+  return [
+    {
+      id: 'founder',
+      index: '01',
+      kicker: t('buildTracks.founder.kicker', 'Startup Incubation'),
+      title: t('buildTracks.founder.title', 'Founder Flightpath'),
+      lead: t(
+        'buildTracks.founder.lead',
+        'For women building scalable startups, tech-enabled ventures, and innovation-driven businesses.'
+      ),
+      body: t(
+        'buildTracks.founder.body',
+        'For women-led startups ready to move from idea, MVP, or early traction into structured growth — with business-model refinement, product validation, mentorship, pitch development, investor readiness, legal & financial guidance, market access, and ecosystem linkages.'
+      ),
+      motto: t('buildTracks.founder.motto', 'From idea to investor-ready — unseen to undeniable.'),
+      cta: t('buildTracks.founder.cta', 'Take Flight'),
+      primary: '#0F3D3B',
+      accent: '#2E7D7B',
+      soft: 'rgba(46,125,123,0.10)',
+      Icon: Rocket,
+    },
+    {
+      id: 'enterprise',
+      index: '02',
+      kicker: t('buildTracks.enterprise.kicker', 'MSME Training'),
+      title: t('buildTracks.enterprise.title', 'Enterprise Flightpath'),
+      lead: t(
+        'buildTracks.enterprise.lead',
+        'For women-led small businesses, home-based entrepreneurs, and micro-enterprises ready to grow.'
+      ),
+      body: t(
+        'buildTracks.enterprise.body',
+        'For women already building — from home-based setups and craft producers to food, beauty, fashion, education, and digital sellers. Practical skills in business planning, financial literacy, branding, pricing, customer management, digital marketing, and market access.'
+      ),
+      motto: t('buildTracks.enterprise.motto', 'From skill to income — cocoon to flight.'),
+      cta: t('buildTracks.enterprise.cta', 'Grow Your Enterprise'),
+      primary: '#B85C1A',
+      accent: '#E8823C',
+      soft: 'rgba(232,130,60,0.10)',
+      Icon: Sprout,
+    },
+  ]
+}
 
 export function BuildTracks() {
+  const { t } = useTranslation()
   const { track, selectTrack } = useTrack()
+  const CARDS = getCards(t)
 
   return (
     <section
@@ -60,16 +78,18 @@ export function BuildTracks() {
     >
       <div className="container-wise relative">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow">Build Tracks</p>
+          <p className="eyebrow">{t('nav.links.build-tracks', 'Build Tracks')}</p>
           <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-plum">
-            Choose your flight path
+            {t('buildTracks.title', 'Choose your flight path')}
           </h2>
           <p className="mt-4 text-lg text-plum/70">
-            Two tracks. One destination: women-led enterprise growth.
+            {t('buildTracks.subtitle', 'Two tracks. One destination: women-led enterprise growth.')}
           </p>
           <p className="mt-3 text-sm text-plum/50">
-            Select a track to preview it in the scene above — the whole page
-            responds to your choice.
+            {t(
+              'buildTracks.hint',
+              'Select a track to preview it in the scene above — the whole page responds to your choice.'
+            )}
           </p>
         </Reveal>
 
@@ -160,7 +180,7 @@ export function BuildTracks() {
                       className="text-xs font-medium transition-opacity duration-300"
                       style={{ color: c.accent, opacity: active ? 1 : 0 }}
                     >
-                      Previewing above ↑
+                      {t('buildTracks.previewingAbove', 'Previewing above ↑')}
                     </span>
                   </div>
                 </motion.div>
@@ -174,6 +194,7 @@ export function BuildTracks() {
 }
 
 function AnimatedBadge({ active, accent }: { active: boolean; accent: string }) {
+  const { t } = useTranslation()
   return (
     <motion.span
       initial={false}
@@ -182,7 +203,7 @@ function AnimatedBadge({ active, accent }: { active: boolean; accent: string }) 
       className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold"
       style={{ background: accent, color: '#fff' }}
     >
-      <Check className="h-3.5 w-3.5" /> Selected
+      <Check className="h-3.5 w-3.5" /> {t('buildTracks.selected', 'Selected')}
     </motion.span>
   )
 }

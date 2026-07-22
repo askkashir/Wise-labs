@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { Hero3D } from '@/components/Hero3D'
 import { TrackToggle } from '@/components/Hero3D/TrackToggle'
 import { Button } from '@/components/ui/button'
@@ -6,11 +7,14 @@ import { MagneticButton } from '@/components/MagneticButton'
 import { useTrack } from '@/lib/useTrackState'
 import { TRACK_THEME } from '@/lib/theme'
 
-const words = ['Her', 'idea.', 'Her', 'enterprise.']
-
 export function Hero() {
+  const { t } = useTranslation()
   const { track } = useTrack()
   const dark = track !== 'neutral'
+
+  // Split on spaces so the line-reveal animation works for any translated
+  // headline, not just the hardcoded English word count.
+  const words = t('hero.headline', 'Her idea. Her enterprise.').split(' ')
 
   return (
     <section
@@ -22,14 +26,14 @@ export function Hero() {
         className="absolute inset-0 -z-10 transition-[background] duration-700"
         style={{
           background:
-            'radial-gradient(120% 120% at 72% 30%, var(--hero-bg-b) 0%, var(--hero-bg-a) 62%)',
+            'radial-gradient(120% 120% at 28% 30%, var(--hero-bg-b) 0%, var(--hero-bg-a) 62%)',
         }}
       />
       {/* accent glow */}
       <div
         className="pointer-events-none absolute -z-10 h-[60vh] w-[60vh] rounded-full blur-[120px] transition-all duration-700"
         style={{
-          right: '14%',
+          left: '14%',
           top: '18%',
           background: 'var(--track-glow)',
           opacity: dark ? 0.7 : 0.35,
@@ -37,8 +41,8 @@ export function Hero() {
       />
       <div className="grain -z-10" />
 
-      {/* 3D figure — occupies the right on desktop, full-bleed behind on mobile */}
-      <div className="absolute inset-0 lg:left-[42%]">
+      {/* 3D figure — occupies the left on desktop, full-bleed behind on mobile */}
+      <div className="absolute inset-0 lg:right-[42%]">
         <Hero3D />
       </div>
       {/* legibility scrim on small screens */}
@@ -51,7 +55,7 @@ export function Hero() {
         }}
       />
 
-      <div className="container-wise relative z-10 flex flex-1 flex-col justify-center pt-28 pb-40 md:pt-32">
+      <div className="container-wise relative z-10 flex flex-1 flex-col justify-center pt-28 pb-40 md:pt-32 lg:items-end">
         <div className="max-w-xl">
           <motion.p
             initial={{ opacity: 0, y: 14 }}
@@ -60,7 +64,7 @@ export function Hero() {
             className="eyebrow theme-shift"
             style={{ color: dark ? TRACK_THEME[track].accent : undefined }}
           >
-            Women Innovation &amp; Startup Empowerment Lab
+            {t('hero.eyebrow', 'Women Innovation & Startup Empowerment Lab')}
           </motion.p>
 
           <h1
@@ -92,7 +96,10 @@ export function Hero() {
             className="mt-6 max-w-md text-lg leading-relaxed theme-shift"
             style={{ color: dark ? 'rgba(255,255,255,0.78)' : 'rgba(74,46,61,0.72)' }}
           >
-            Where women-led ideas move from quiet potential to visible enterprise.
+            {t(
+              'hero.subheadline',
+              'Where women-led ideas move from quiet potential to visible enterprise.'
+            )}
           </motion.p>
 
           <motion.div
@@ -108,14 +115,14 @@ export function Hero() {
                 size="lg"
                 style={{ background: 'var(--track-primary)' }}
               >
-                <a href="#enter-the-lab">Enter the Lab</a>
+                <a href="#enter-the-lab">{t('nav.cta', 'Enter the Lab')}</a>
               </Button>
             </MagneticButton>
             <span
               className="text-sm theme-shift"
               style={{ color: dark ? 'rgba(255,255,255,0.6)' : 'rgba(74,46,61,0.55)' }}
             >
-              or preview a flight path ↓
+              {t('hero.previewHint', 'or preview a flight path ↓')}
             </span>
           </motion.div>
 
@@ -144,16 +151,17 @@ export function Hero() {
             className="max-w-2xl text-[13px] leading-relaxed theme-shift"
             style={{ color: dark ? 'rgba(255,255,255,0.62)' : 'rgba(74,46,61,0.6)' }}
           >
-            Under the vision of the Honorable Prime Minister of Pakistan, WISE Lab
-            is designed &amp; funded by the Ministry of IT &amp; Telecom &amp;
-            Ignite&nbsp;-&nbsp;National Technology Fund.
+            {t(
+              'hero.credibility',
+              'Under the vision of the Honorable Prime Minister of Pakistan, WISE Lab is designed & funded by the Ministry of IT & Telecom & Ignite - National Technology Fund.'
+            )}
           </p>
           <div
             className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-medium theme-shift"
             style={{ color: dark ? 'rgba(255,255,255,0.7)' : 'rgba(74,46,61,0.7)' }}
           >
             <span className="text-[11px] uppercase tracking-[0.14em] opacity-60">
-              Trusted by
+              {t('hero.trustedBy', 'Trusted by')}
             </span>
             <span>Jazz World</span>
             <span className="opacity-40">·</span>
