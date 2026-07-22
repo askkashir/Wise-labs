@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
-import { WiseMark } from '@/components/WiseLabLogo'
 
 export function WiseJourney() {
   const { t } = useTranslation()
@@ -30,13 +29,17 @@ export function WiseJourney() {
             </Reveal>
             <Reveal delay={0.15}>
               <motion.div
-                className="mt-10 hidden lg:block"
-                initial={{ opacity: 0, scale: 0.9, rotate: -6 }}
-                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                className="mt-12 hidden lg:block"
+                initial={{ opacity: 0, scale: 0.92, y: 16 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               >
-                <WiseMark variant="color" className="h-24 w-auto opacity-90" />
+                <img
+                  src="/wise-lab-logo.png"
+                  alt="WISE Lab — Her idea. Her enterprise."
+                  className="h-72 w-auto max-w-full object-contain xl:h-80"
+                />
               </motion.div>
             </Reveal>
           </div>

@@ -6,12 +6,36 @@ import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
 
 function getPartners(t: TFunction) {
   return [
-    { name: 'JazzWorld', role: t('powerCircle.partners.jazz', 'Consortium Lead') },
+    {
+      name: 'JazzWorld',
+      role: t('powerCircle.partners.jazz', 'Consortium Lead'),
+      logo: '/partners/jazz.png',
+    },
     {
       name: 'Mobilink Microfinance Bank',
       role: t('powerCircle.partners.mobilink', 'Co-Lead Partner'),
+      logo: '/partners/mobilink-mmbl.webp',
     },
-    { name: 'Change Mechanics', role: t('powerCircle.partners.changeMechanics', 'Managing Partner') },
+    {
+      name: 'Change Mechanics',
+      role: t('powerCircle.partners.changeMechanics', 'Managing Partner'),
+      logo: '/partners/change-mechanics.png',
+    },
+  ]
+}
+
+function getFunders(t: TFunction) {
+  return [
+    {
+      name: 'Ministry of IT & Telecom',
+      role: t('powerCircle.funders.moitt', 'Designed & Funded by'),
+      logo: '/partners/moitt.png',
+    },
+    {
+      name: 'Ignite — National Technology Fund',
+      role: t('powerCircle.funders.ignite', 'Designed & Funded by'),
+      logo: '/partners/ignite.webp',
+    },
   ]
 }
 
@@ -32,7 +56,9 @@ function getChips(t: TFunction): string[] {
 export function PowerCircle() {
   const { t } = useTranslation()
   const PARTNERS = getPartners(t)
+  const FUNDERS = getFunders(t)
   const CHIPS = getChips(t)
+  const ALL_LOGOS = [...PARTNERS, ...FUNDERS]
 
   return (
     <section
@@ -77,47 +103,38 @@ export function PowerCircle() {
           </p>
         </Reveal>
 
-        <div className="mt-6 grid gap-5 md:grid-cols-3">
-          {PARTNERS.map((p, i) => (
-            <Reveal key={p.name} delay={i * 0.08}>
+        {/* Unified partner + funder logo grid */}
+        <RevealGroup
+          className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-5 lg:grid-cols-5"
+          stagger={0.06}
+        >
+          {ALL_LOGOS.map((p) => (
+            <RevealItem key={p.name}>
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 24 }}
-                className="glass group flex h-full flex-col justify-between rounded-3xl p-8"
+                className="group flex h-full flex-col items-center gap-4 rounded-2xl bg-beige/[0.06] p-5 text-center ring-1 ring-beige/10 transition-colors duration-500 hover:bg-beige/10 md:p-6"
               >
+                <div className="flex h-16 w-full items-center justify-center rounded-xl bg-white/95 p-3 md:h-20">
+                  <img
+                    src={p.logo}
+                    alt={`${p.name} logo`}
+                    className="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
                 <div>
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-coral">
-                    {p.role}
-                  </div>
-                  <div className="mt-4 font-display text-2xl font-bold text-beige">
+                  <div className="text-[15px] font-semibold leading-tight text-beige">
                     {p.name}
                   </div>
-                </div>
-                <div className="mt-8 h-px w-full bg-beige/10">
-                  <div className="h-px w-0 bg-coral transition-all duration-500 group-hover:w-full" />
+                  <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-coral">
+                    {p.role}
+                  </div>
                 </div>
               </motion.div>
-            </Reveal>
+            </RevealItem>
           ))}
-        </div>
-
-        {/* Funders */}
-        <Reveal delay={0.1}>
-          <div className="mt-6 flex flex-col gap-4 rounded-3xl border border-beige/10 bg-beige/[0.03] p-8 md:flex-row md:items-center md:justify-between">
-            <span className="text-sm italic text-beige/55">
-              {t('powerCircle.designedFundedBy', 'Designed & funded by')}
-            </span>
-            <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-              <span className="font-display text-xl font-semibold text-beige">
-                Ministry of IT &amp; Telecom
-              </span>
-              <span className="h-1.5 w-1.5 rounded-full bg-coral" />
-              <span className="font-display text-xl font-semibold text-beige">
-                Ignite — National Technology Fund
-              </span>
-            </div>
-          </div>
-        </Reveal>
+        </RevealGroup>
 
         {/* Ecosystem chips */}
         <RevealGroup className="mt-12 flex flex-wrap gap-3" stagger={0.04}>

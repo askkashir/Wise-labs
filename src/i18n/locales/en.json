@@ -178,6 +178,10 @@
     "intro": "A premier alliance committed to women-led innovation, access, enterprise, and inclusive growth — because when the right rooms open, women-led businesses don't just enter them. They transform them.",
     "consortiumLabel": "Built by a consortium of change-makers",
     "designedFundedBy": "Designed & funded by",
+    "funders": {
+      "moitt": "Designed & Funded by",
+      "ignite": "Designed & Funded by"
+    },
     "closingLine": "Her idea was never small. The ecosystem around it needed to expand.",
     "cta": "Join the Power Circle"
   },

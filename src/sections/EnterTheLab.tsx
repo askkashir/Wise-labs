@@ -37,7 +37,7 @@ function getPillars(t: TFunction): Pillar[] {
       ),
       cta: t('buildTracks.enterprise.cta', 'Grow Your Enterprise'),
       color: '#E8823C',
-      href: '/apply/founder',
+      href: '/apply/enterprise',
       Icon: Store,
     },
     {
@@ -99,7 +99,7 @@ export function EnterTheLab() {
                 to={p.href}
                 whileHover={{ y: -5 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 24 }}
-                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-plum/10 bg-white p-8 shadow-card transition-shadow duration-500 hover:shadow-card-hover"
+                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-plum/10 bg-white p-8 shadow-card transition-shadow duration-500 hover:shadow-card-hover md:p-9"
               >
                 {/* top accent rail */}
                 <span
@@ -113,10 +113,6 @@ export function EnterTheLab() {
                   >
                     <p.Icon className="h-7 w-7" strokeWidth={1.4} />
                   </span>
-                  <ArrowUpRight
-                    className="h-5 w-5 text-plum/25 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                    style={{ color: undefined }}
-                  />
                 </div>
                 <h3 className="mt-6 font-display text-2xl font-semibold text-plum">
                   {p.title}
@@ -125,11 +121,11 @@ export function EnterTheLab() {
                   {p.body}
                 </p>
                 <span
-                  className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
-                  style={{ color: p.color }}
+                  className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-base font-semibold text-white transition-transform duration-300 group-hover:scale-[1.02]"
+                  style={{ background: p.color, boxShadow: `0 14px 32px -14px ${p.color}` }}
                 >
                   {p.cta}
-                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  <ArrowUpRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </MotionLink>
             </RevealItem>

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
-import { WiseMark } from '@/components/WiseLabLogo'
 import { LinkedinIcon } from '@/components/BrandIcons'
 
 export function BehindTheWings() {
@@ -38,23 +37,13 @@ export function BehindTheWings() {
             transition={{ type: 'spring', stiffness: 300, damping: 26 }}
             className="mt-14 grid overflow-hidden rounded-3xl border border-plum/10 shadow-card md:grid-cols-[minmax(0,340px)_1fr]"
           >
-            {/* monogram panel */}
-            <div
-              className="relative flex min-h-[240px] items-center justify-center overflow-hidden p-10"
-              style={{
-                background:
-                  'radial-gradient(120% 120% at 30% 20%, #4a2e3d 0%, #33212b 100%)',
-              }}
-            >
-              <div className="pointer-events-none absolute inset-0 grain opacity-10" />
-              <div className="pointer-events-none absolute -right-6 -top-6 opacity-20">
-                <WiseMark variant="white" className="h-28 w-auto" />
-              </div>
-              <div className="relative flex h-32 w-32 items-center justify-center rounded-full border border-beige/20 bg-beige/5">
-                <span className="font-display text-4xl font-bold tracking-tight text-beige">
-                  MJD
-                </span>
-              </div>
+            {/* Image panel */}
+            <div className="relative flex min-h-[240px] overflow-hidden bg-plum/5 md:min-h-full">
+              <img
+                src="/team/munneaza-durrani.jpeg"
+                alt="Ms. Muneaza Jamil Durrani"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
             </div>
 
             {/* details */}
@@ -90,31 +79,56 @@ export function BehindTheWings() {
           </motion.div>
         </Reveal>
 
-        {/* Coming soon crew */}
-        <Reveal delay={0.15}>
-          <div className="mt-10 flex flex-col items-center gap-6 rounded-3xl border border-dashed border-plum/15 bg-beige/40 p-8 sm:flex-row sm:justify-between">
-            <div className="flex -space-x-3">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white bg-gradient-to-br from-plum/10 to-teal/10"
-                  style={{ opacity: 1 - i * 0.13 }}
-                >
-                  <svg viewBox="0 0 24 24" className="h-6 w-6 text-plum/25" fill="currentColor">
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M4 20c0-4 3.6-6 8-6s8 2 8 6" />
-                  </svg>
+        {/* Team Grid */}
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              name: 'Kashmala Shahid',
+              role: 'Communications & Partnerships Manager',
+              image: '/team/kashmala-shahid.png',
+            },
+            {
+              name: 'Fatima Shah',
+              role: 'Growth & Monitoring Specialist',
+              image: '/team/fatima-shah.png',
+            },
+            {
+              name: 'Esha Mubashir',
+              role: 'Graphics Designer',
+              image: '/team/esha-mubashir.jpeg',
+            },
+            {
+              name: 'Abeeha Widad',
+              role: 'Video Editor',
+              image: '/team/abeeha-widad.png',
+            },
+          ].map((member, i) => (
+            <Reveal key={member.name} delay={0.15 + i * 0.05}>
+              <motion.div
+                whileHover={{ y: -4 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-plum/10 shadow-card"
+              >
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-plum/5">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
                 </div>
-              ))}
-            </div>
-            <p className="max-w-md text-center text-[15px] text-plum/60 sm:text-right">
-              {t(
-                'behindTheWings.comingSoon',
-                'More of the crew is joining soon. Every flight needs wings — this is the team building them.'
-              )}
-            </p>
-          </div>
-        </Reveal>
+                <div className="flex flex-1 flex-col justify-center bg-white p-6">
+                  <h3 className="font-display text-xl font-bold text-plum">
+                    {member.name}
+                  </h3>
+                  <p className="mt-1 text-[11px] font-semibold uppercase leading-relaxed tracking-[0.14em] text-teal">
+                    {member.role}
+                  </p>
+                </div>
+              </motion.div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   )

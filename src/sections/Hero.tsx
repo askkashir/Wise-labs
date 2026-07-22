@@ -142,40 +142,6 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
-
-      {/* Credibility strip */}
-      <div className="container-wise relative z-10 pb-8">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.6 }}
-          className="border-t pt-5 theme-shift"
-          style={{ borderColor: dark ? 'rgba(255,255,255,0.14)' : 'rgba(74,46,61,0.14)' }}
-        >
-          <p
-            className="max-w-2xl text-[13px] leading-relaxed theme-shift"
-            style={{ color: dark ? 'rgba(255,255,255,0.62)' : 'rgba(74,46,61,0.6)' }}
-          >
-            {t(
-              'hero.credibility',
-              'Under the vision of the Honorable Prime Minister of Pakistan, WISE Lab is designed & funded by the Ministry of IT & Telecom & Ignite - National Technology Fund.'
-            )}
-          </p>
-          <div
-            className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-medium theme-shift"
-            style={{ color: dark ? 'rgba(255,255,255,0.7)' : 'rgba(74,46,61,0.7)' }}
-          >
-            <span className="text-[11px] uppercase tracking-[0.14em] opacity-60">
-              {t('hero.trustedBy', 'Trusted by')}
-            </span>
-            <span>Jazz World</span>
-            <span className="opacity-40">·</span>
-            <span>Mobilink Bank</span>
-            <span className="opacity-40">·</span>
-            <span>Change Mechanics</span>
-          </div>
-        </motion.div>
-      </div>
     </section>
   )
 }
