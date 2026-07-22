@@ -13,7 +13,7 @@ const NAV = [
 ]
 
 export function AdminLayout() {
-  const { session, loading, signOut } = useAdminAuth()
+  const { session, loading, isAdmin, signOut } = useAdminAuth()
   const location = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -25,7 +25,7 @@ export function AdminLayout() {
   if (loading) {
     return <div className="flex min-h-screen items-center justify-center bg-beige text-plum/50">Loading…</div>
   }
-  if (!session) return <Navigate to="/admin/login" replace />
+  if (!session || !isAdmin) return <Navigate to="/admin/login" replace />
 
   const navLinks = (
     <>

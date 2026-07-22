@@ -41,7 +41,12 @@ export function Footer() {
           <p>{t('footer.underVision')}</p>
           <p>{t('footer.fundedBy')}</p>
           <p className="pt-1">
-            <a href="#" onClick={(e) => e.preventDefault()} className="link-underline text-coral">
+            <a
+              href="https://wiselab.org.pk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline text-coral"
+            >
               wiselab.org.pk
             </a>
           </p>
