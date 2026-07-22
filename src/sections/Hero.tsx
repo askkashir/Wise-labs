@@ -52,7 +52,7 @@ export function Hero() {
         }}
       />
 
-      <div className="container-wise relative z-10 flex flex-1 flex-col justify-center pt-28 pb-40 md:pt-32">
+      <div className="container-wise relative z-10 flex flex-1 flex-col justify-center pt-20 pb-40 md:pt-24">
         <div className="max-w-xl">
           <motion.p
             initial={{ opacity: 0, y: 14 }}
