@@ -334,3 +334,43 @@ pre-existing fast-refresh-category warnings as every prior phase, none new, zero
 Playwright-driven `scrollWidth`/`clientWidth` checks confirmed zero horizontal overflow at
 375/390/413/428/768px across `/`, `/blog`, `/apply/{founder,enterprise,mentor,partner}`, and
 `/admin/login` both before and after the changes in this phase.
+
+## Phase 12 — i18n application forms, full UR/PS/PA coverage, Apply Now launcher, worktree reconcile
+Resumed uncommitted work from a prior session on branch `fix/wiselab-follow-ups` (base commit
+`d3836c6`). No palette/font/hero changes.
+
+**Application forms → i18n keys**: `src/lib/forms/schemas/{founder,enterprise,mentor,partner}.ts`
+now store i18n key paths (e.g. `forms.founder.startupName.label`) instead of hardcoded English.
+`DynamicForm.tsx` and `ApplyPage.tsx` call `t(...)` on titles, subtitles, section headings,
+field labels/placeholders/help, option labels, table column headers, consent text, and success
+copy — including `t(schema.successTitle, { name })` with real `{{name}}` interpolation. Stable
+analytics `dimension` / field `name` / `column.key` values were left untouched.
+
+**Translations**: filled `en.json` (source) and completed `ur.json`, `ps.json`, `pa.json`
+(machine-drafted, `_meta.reviewStatus` kept). Coverage script reports **0 missing keys** in
+UR/PS/PA vs EN (each has one extra `_meta.reviewStatus` key EN lacks — benign). All four locale
+files parse cleanly.
+
+**Persistent Apply Now launcher**: new `ApplyNowButton.tsx` — fixed bottom-left floating button
+(mirrors `WhatsAppButton`) opening a menu of all four `/apply/*` routes, reusing
+`enterTheLab.pillars.*` i18n keys. Wired in `AppRouter.tsx` `GlobalChrome`: visible on every
+public route except `/admin` and while already on `/apply/*`.
+
+**Worktree reconcile** (`.claude/worktrees/agent-*`): no extra commits ahead of this branch;
+picked uncommitted fixes only:
+- `useAdminAuth.tsx`: null-session safety, `isAdmin` gate via `admin_profiles` lookup (matches
+  RLS), sign-in rejects non-provisioned users and signs them out; `AdminLayout.tsx` now requires
+  `session && isAdmin`.
+- `Footer.tsx`: `wiselab.org.pk` → `https://wiselab.org.pk` (was `href="#"` stub).
+- `BehindTheWings.tsx`: director LinkedIn → real profile URL (was `href="#"` stub).
+Worktrees removed after merge (`git worktree remove` ×3, `git worktree prune`).
+
+**Verification**: `npm run build` + `npm run lint` clean (same 4 pre-existing fast-refresh
+warnings). Dev-server smoke: `/`, `/apply/{founder,enterprise,mentor,partner}`, `/admin/login`
+all HTTP 200. Browser pass on `/`: PM banner text at top, "Become a Mentor" in nav + footer,
+Apply Now menu shows all four tracks, social icons + footer site link are real URLs, founder
+form at `/apply/founder` renders all sections/fields. WhatsApp placeholder (`wa.me/923000000000`)
+and Supabase provisioning still deferred per `TODO_FOR_HUMAN.md`.
+
+**Commits on `fix/wiselab-follow-ups`**: `05f09b0` (forms i18n + locales), `f5f12ba` (Apply Now),
+`f04469d` (admin auth + dead links). PR opened against `main` — not merged.
