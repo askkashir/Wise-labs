@@ -18,8 +18,8 @@ function App() {
     <MotionConfig reducedMotion="user">
       <TrackProvider>
         <SmoothScroll>
-          <PMBanner />
           <Nav />
+          <PMBanner />
           <main>
             <Hero />
             <WiseJourney />

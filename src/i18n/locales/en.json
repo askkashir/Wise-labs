@@ -10,7 +10,9 @@
       "become-a-mentor": "Become a Mentor"
     },
     "cta": "Enter the Lab",
-    "home": "WISE Lab home"
+    "home": "WISE Lab home",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "language": {
     "label": "Language",

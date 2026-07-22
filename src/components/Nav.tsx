@@ -66,7 +66,7 @@ export function Nav() {
             : 'border-b border-transparent'
         )}
       >
-        <nav className="container-wise flex h-[68px] items-center justify-between gap-6">
+        <nav className="mx-auto flex h-[68px] w-full max-w-[1440px] items-center justify-between gap-6 px-6 md:px-10">
           <a
             href="#hero"
             aria-label={t('nav.home')}
@@ -89,14 +89,14 @@ export function Nav() {
           </a>
 
           {/* Desktop links */}
-          <div className="hidden items-center gap-7 lg:flex">
+          <div className="hidden items-center gap-6 2xl:flex 2xl:gap-9">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.id}
                 href={`#${l.id}`}
                 data-active={active === l.id}
                 className={cn(
-                  'link-underline text-[13px] font-medium transition-colors',
+                  'link-underline whitespace-nowrap text-sm font-medium transition-colors',
                   lightText
                     ? 'text-white/85 hover:text-white'
                     : 'text-plum/75 hover:text-plum',
@@ -126,7 +126,7 @@ export function Nav() {
               onClick={() => setMenuOpen(true)}
               aria-label={t('nav.openMenu')}
               className={cn(
-                'flex h-10 w-10 items-center justify-center rounded-full transition-colors lg:hidden',
+                'flex h-10 w-10 items-center justify-center rounded-full transition-colors 2xl:hidden',
                 lightText ? 'text-white hover:bg-white/10' : 'text-plum hover:bg-plum/10'
               )}
             >
@@ -140,7 +140,7 @@ export function Nav() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-[60] lg:hidden"
+            className="fixed inset-0 z-[60] 2xl:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

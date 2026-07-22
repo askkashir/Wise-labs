@@ -13,7 +13,9 @@
       "become-a-mentor": "لارښود شئ"
     },
     "cta": "لابراتوار ته ننوځئ",
-    "home": "د WISE لابراتوار کور"
+    "home": "د WISE لابراتوار کور",
+    "openMenu": "مینو خلاص کړئ",
+    "closeMenu": "مینو بندول"
   },
   "language": {
     "label": "ژبه",
