@@ -69,7 +69,7 @@ export function BehindTheWings() {
                   href="https://www.linkedin.com/in/muneaza-j-durrani-35a85810"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Muneaza Jamil Durrani on LinkedIn (opens in a new tab)"
+                  aria-label={t('behindTheWings.director.linkedinAria')}
                   className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-plum/15 text-plum transition-colors hover:border-teal hover:bg-teal hover:text-white"
                 >
                   <LinkedinIcon className="h-5 w-5" />

@@ -126,7 +126,7 @@ export function Nav() {
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
-              aria-label="Open menu"
+              aria-label={t('nav.openMenu')}
               className={cn(
                 'flex h-10 w-10 items-center justify-center rounded-full transition-colors lg:hidden',
                 lightText ? 'text-white hover:bg-white/10' : 'text-plum hover:bg-plum/10'
@@ -163,7 +163,7 @@ export function Nav() {
                 <button
                   type="button"
                   onClick={() => setMenuOpen(false)}
-                  aria-label="Close menu"
+                  aria-label={t('nav.closeMenu')}
                   className="flex h-10 w-10 items-center justify-center rounded-full text-plum hover:bg-plum/10"
                 >
                   <X className="h-5 w-5" />

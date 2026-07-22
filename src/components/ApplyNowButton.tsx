@@ -74,7 +74,7 @@ export function ApplyNowButton() {
         aria-label={open ? t('applyNow.close') : t('applyNow.cta')}
         initial={reduce ? false : { scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 1.1 }}
+        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
         className="flex h-14 items-center gap-2.5 rounded-full px-5 text-sm font-semibold text-white shadow-[0_10px_30px_-6px_rgba(74,46,61,0.45)]"

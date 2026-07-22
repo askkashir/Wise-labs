@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
 import { getPostBySlug } from '@/lib/blog/api'
 import type { BlogPost } from '@/lib/blog/types'
 
 export function BlogPostPage() {
+  const { t } = useTranslation()
   const { slug } = useParams<{ slug: string }>()
   const [post, setPost] = useState<BlogPost | null | undefined>(undefined)
 
@@ -32,7 +34,7 @@ export function BlogPostPage() {
             className="group inline-flex items-center gap-2 text-sm font-semibold text-plum/60 transition-colors hover:text-plum"
           >
             <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-0.5" />
-            Back to the Journal
+            {t('blogPostPage.backToJournal')}
           </Link>
         </Reveal>
 

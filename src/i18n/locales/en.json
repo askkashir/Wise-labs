@@ -1,4 +1,7 @@
 {
+  "_meta": {
+    "reviewStatus": "machine-drafted source copy used for parity across locales — shipping without native-speaker review per TODO_FOR_HUMAN.md item 9"
+  },
   "nav": {
     "links": {
       "wise-journey": "The WISE Journey",
@@ -10,7 +13,9 @@
       "wise-connect": "WISE Connect"
     },
     "cta": "Enter the Lab",
-    "home": "WISE Lab home"
+    "home": "WISE Lab home",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "pmBanner": {
     "text": "Under the vision of the Honorable Prime Minister of Pakistan, WISE Lab is designed & funded by the Ministry of IT & Telecom & Ignite - National Technology Fund."
@@ -26,6 +31,7 @@
     "subheadline": "Where women-led ideas move from quiet potential to visible enterprise.",
     "cta": "Enter the Lab",
     "orPreview": "or preview a flight path ↓",
+    "trackToggleAria": "Choose a flight path to preview",
     "credibilityLine": "Under the vision of the Honorable Prime Minister of Pakistan, WISE Lab is designed & funded by the Ministry of IT & Telecom & Ignite - National Technology Fund.",
     "trustedBy": "Trusted by"
   },
@@ -139,7 +145,8 @@
     "director": {
       "name": "Ms. Muneaza Jamil Durrani",
       "title": "Programme Director",
-      "bio": "Leads WISE Lab's programme direction — setting the vision, standards, and day-to-day execution that help women entrepreneurs access mentorship, markets, capital readiness, and the right room to grow. She is the founding member of the team building the platform."
+      "bio": "Leads WISE Lab's programme direction — setting the vision, standards, and day-to-day execution that help women entrepreneurs access mentorship, markets, capital readiness, and the right room to grow. She is the founding member of the team building the platform.",
+      "linkedinAria": "Muneaza Jamil Durrani on LinkedIn (opens in a new tab)"
     },
     "moreComingSoon": "More of the crew is joining soon. Every flight needs wings — this is the team building them."
   },
@@ -151,6 +158,7 @@
     "email": { "label": "Email" },
     "web": { "label": "Web" },
     "follow": "Follow",
+    "socialAria": "WISE Lab on {{label}} (opens in a new tab)",
     "fields": {
       "fullName": "Full name",
       "fullNamePlaceholder": "Your name",
@@ -238,6 +246,38 @@
   },
   "applyPage": {
     "backToWiseLab": "Back to WISE Lab"
+  },
+  "blogPage": {
+    "backToWiseLab": "Back to WISE Lab",
+    "eyebrow": "WISE Lab Journal",
+    "title": "Stories from the Lab",
+    "intro": "Founder journeys, ecosystem news, and updates from Pakistan's women-led innovation and enterprise movement.",
+    "unconfigured": "The blog isn't connected to a live backend yet. Once Supabase is provisioned (see TODO_FOR_HUMAN.md) and posts are published, they'll appear here.",
+    "empty": "No posts published yet — check back soon.",
+    "readMore": "Read more"
+  },
+  "blogPostPage": {
+    "backToJournal": "Back to the Journal"
+  },
+  "admin": {
+    "common": {
+      "loading": "Loading…",
+      "signOut": "Sign out"
+    },
+    "nav": {
+      "title": "Admin",
+      "dashboard": "Dashboard",
+      "submissions": "Submissions",
+      "blog": "Blog"
+    },
+    "login": {
+      "title": "WISE Lab Admin",
+      "unconfigured": "The admin backend isn't configured yet. Provision Supabase and set env vars (see TODO_FOR_HUMAN.md) before signing in.",
+      "email": "Email",
+      "password": "Password",
+      "signIn": "Sign in",
+      "signingIn": "Signing in…"
+    }
   },
   "liveStats": {
     "eyebrow": "WISE Lab, in numbers",

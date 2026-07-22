@@ -99,7 +99,7 @@ export function WiseConnect() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`WISE Lab on ${label} (opens in a new tab)`}
+                  aria-label={t('wiseConnect.socialAria', { label })}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-plum/15 text-plum transition-colors hover:border-teal hover:bg-teal hover:text-white"
                 >
                   <Icon className="h-[18px] w-[18px]" />

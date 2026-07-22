@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
 import { listPublishedPosts } from '@/lib/blog/api'
 import type { BlogPost } from '@/lib/blog/types'
@@ -10,6 +11,7 @@ import { isSupabaseConfigured } from '@/lib/supabase'
 const MotionLink = motion(Link)
 
 export function BlogListPage() {
+  const { t } = useTranslation()
   const [posts, setPosts] = useState<BlogPost[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -36,29 +38,27 @@ export function BlogListPage() {
             className="group inline-flex items-center gap-2 text-sm font-semibold text-plum/60 transition-colors hover:text-plum"
           >
             <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-0.5" />
-            Back to WISE Lab
+            {t('blogPage.backToWiseLab')}
           </Link>
-          <p className="eyebrow mt-8">WISE Lab Journal</p>
+          <p className="eyebrow mt-8">{t('blogPage.eyebrow')}</p>
           <h1 className="mt-3 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-plum">
-            Stories from the Lab
+            {t('blogPage.title')}
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-plum/70">
-            Founder journeys, ecosystem news, and updates from Pakistan's women-led
-            innovation and enterprise movement.
+            {t('blogPage.intro')}
           </p>
         </Reveal>
 
         <div className="mt-16">
           {!isSupabaseConfigured && (
             <p className="rounded-2xl border border-plum/10 bg-white/60 p-6 text-sm text-plum/60">
-              The blog isn't connected to a live backend yet. Once Supabase is provisioned
-              (see TODO_FOR_HUMAN.md) and posts are published, they'll appear here.
+              {t('blogPage.unconfigured')}
             </p>
           )}
 
           {isSupabaseConfigured && !loading && posts.length === 0 && (
             <p className="rounded-2xl border border-plum/10 bg-white/60 p-6 text-sm text-plum/60">
-              No posts published yet — check back soon.
+              {t('blogPage.empty')}
             </p>
           )}
 
@@ -88,7 +88,7 @@ export function BlogListPage() {
                       {post.excerpt}
                     </p>
                     <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-teal">
-                      Read more
+                      {t('blogPage.readMore')}
                       <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </span>
                   </div>

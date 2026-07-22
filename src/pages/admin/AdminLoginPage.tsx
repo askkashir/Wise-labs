@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Navigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -8,6 +9,7 @@ import { WiseMark } from '@/components/WiseLabLogo'
 import { useAdminAuth } from '@/lib/auth/useAdminAuth'
 
 export function AdminLoginPage() {
+  const { t } = useTranslation()
   const { session, configured, signIn } = useAdminAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -33,18 +35,17 @@ export function AdminLoginPage() {
             <WiseMark className="h-12 w-auto" />
           </div>
           <h1 className="mt-6 text-center font-display text-2xl font-bold text-plum">
-            WISE Lab Admin
+            {t('admin.login.title')}
           </h1>
 
           {!configured ? (
             <p className="mt-6 rounded-xl bg-plum/5 p-4 text-center text-sm text-plum/60">
-              The admin backend isn't configured yet. Provision Supabase and set env vars
-              (see TODO_FOR_HUMAN.md) before signing in.
+              {t('admin.login.unconfigured')}
             </p>
           ) : (
             <form onSubmit={onSubmit} className="mt-8 space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="admin-email">Email</Label>
+                <Label htmlFor="admin-email">{t('admin.login.email')}</Label>
                 <Input
                   id="admin-email"
                   type="email"
@@ -54,7 +55,7 @@ export function AdminLoginPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="admin-password">Password</Label>
+                <Label htmlFor="admin-password">{t('admin.login.password')}</Label>
                 <Input
                   id="admin-password"
                   type="password"
@@ -65,7 +66,7 @@ export function AdminLoginPage() {
               </div>
               {error && <p className="text-[13px] font-medium text-destructive">{error}</p>}
               <Button type="submit" className="w-full" disabled={submitting}>
-                {submitting ? 'Signing in…' : 'Sign in'}
+                {submitting ? t('admin.login.signingIn') : t('admin.login.signIn')}
               </Button>
             </form>
           )}

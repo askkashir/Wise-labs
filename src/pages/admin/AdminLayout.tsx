@@ -2,20 +2,21 @@ import { useEffect, useState } from 'react'
 import { Navigate, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { FileText, LayoutDashboard, LogOut, Menu, Newspaper, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { WiseMark } from '@/components/WiseLabLogo'
 import { useAdminAuth } from '@/lib/auth/useAdminAuth'
 import { cn } from '@/lib/utils'
 
-const NAV = [
-  { to: '/admin', label: 'Dashboard', Icon: LayoutDashboard, end: true },
-  { to: '/admin/submissions', label: 'Submissions', Icon: FileText },
-  { to: '/admin/blog', label: 'Blog', Icon: Newspaper },
-]
-
 export function AdminLayout() {
+  const { t } = useTranslation()
   const { session, loading, isAdmin, signOut } = useAdminAuth()
   const location = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
+  const nav = [
+    { to: '/admin', label: t('admin.nav.dashboard'), Icon: LayoutDashboard, end: true },
+    { to: '/admin/submissions', label: t('admin.nav.submissions'), Icon: FileText },
+    { to: '/admin/blog', label: t('admin.nav.blog'), Icon: Newspaper },
+  ]
 
   // Close the mobile drawer whenever the route changes.
   useEffect(() => {
@@ -23,13 +24,17 @@ export function AdminLayout() {
   }, [location.pathname])
 
   if (loading) {
-    return <div className="flex min-h-screen items-center justify-center bg-beige text-plum/50">Loading…</div>
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-beige text-plum/50">
+        {t('admin.common.loading')}
+      </div>
+    )
   }
   if (!session || !isAdmin) return <Navigate to="/admin/login" replace />
 
   const navLinks = (
     <>
-      {NAV.map(({ to, label, Icon, end }) => (
+      {nav.map(({ to, label, Icon, end }) => (
         <NavLink
           key={to}
           to={to}
@@ -54,7 +59,7 @@ export function AdminLayout() {
       <div className="flex items-center justify-between border-b border-plum/10 bg-white p-4 lg:hidden">
         <div className="flex items-center gap-2.5">
           <WiseMark className="h-7 w-auto" />
-          <span className="font-display text-base font-bold text-plum">Admin</span>
+          <span className="font-display text-base font-bold text-plum">{t('admin.nav.title')}</span>
         </div>
         <button
           type="button"
@@ -89,7 +94,7 @@ export function AdminLayout() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <WiseMark className="h-8 w-auto" />
-                  <span className="font-display text-lg font-bold text-plum">Admin</span>
+                <span className="font-display text-lg font-bold text-plum">{t('admin.nav.title')}</span>
                 </div>
                 <button
                   type="button"
@@ -107,7 +112,7 @@ export function AdminLayout() {
                 className="flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-medium text-plum/60 transition-colors hover:bg-plum/5 hover:text-plum"
               >
                 <LogOut className="h-4 w-4" />
-                Sign out
+                {t('admin.common.signOut')}
               </button>
             </motion.aside>
           </motion.div>
@@ -118,7 +123,7 @@ export function AdminLayout() {
       <aside className="hidden w-64 shrink-0 flex-col border-r border-plum/10 bg-white p-6 lg:flex">
         <div className="flex items-center gap-2.5">
           <WiseMark className="h-8 w-auto" />
-          <span className="font-display text-lg font-bold text-plum">Admin</span>
+          <span className="font-display text-lg font-bold text-plum">{t('admin.nav.title')}</span>
         </div>
         <nav className="mt-10 flex flex-1 flex-col gap-1">{navLinks}</nav>
         <button
@@ -127,7 +132,7 @@ export function AdminLayout() {
           className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-plum/60 transition-colors hover:bg-plum/5 hover:text-plum"
         >
           <LogOut className="h-4 w-4" />
-          Sign out
+          {t('admin.common.signOut')}
         </button>
       </aside>
       <main className="flex-1 overflow-x-hidden p-5 sm:p-8 md:p-12">

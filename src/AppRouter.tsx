@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import App from './App'
 import { ApplyPage } from '@/pages/ApplyPage'
 import { BlogListPage } from '@/pages/BlogListPage'
@@ -15,15 +15,15 @@ import { ApplyNowButton } from '@/components/ApplyNowButton'
 
 /**
  * Floating WhatsApp + Apply Now buttons on every public-facing route; hidden
- * on /admin. Apply Now is also hidden while already on an /apply/:track page
- * — no need to prompt someone to apply while they're mid-application.
+ * only on /admin. Apply Now stays visible on /apply/* as a track switcher so
+ * visitors can jump between application flows from anywhere.
  */
 function GlobalChrome() {
   const { pathname } = useLocation()
   if (pathname.startsWith('/admin')) return null
   return (
     <>
-      {!pathname.startsWith('/apply') && <ApplyNowButton />}
+      <ApplyNowButton />
       <WhatsAppButton />
     </>
   )
@@ -42,6 +42,7 @@ export function AppRouter() {
       <AdminAuthProvider>
         <Routes>
           <Route path="/" element={<App />} />
+          <Route path="/apply" element={<Navigate to="/" replace />} />
           <Route path="/apply/:track" element={<ApplyPage />} />
           <Route path="/blog" element={<BlogListPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
