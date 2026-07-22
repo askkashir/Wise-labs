@@ -22,7 +22,7 @@ Ambiguous/unspecified inputs are never blockers. Default sensibly, ship, and rec
 
 - [x] Phase 0 — Recon + asset extraction (logo from PDF, banner processed, content brief read)
 - [x] Phase 1 — Logo swap + favicon + PM banner asset landed in public/
-- [ ] Phase 2 — Founder track retheme (blue -> teal #2E7D7B) in src/lib/theme.ts + EnterTheLab founder card color
+- [x] Phase 2 — Founder track retheme (blue -> teal #2E7D7B) in src/lib/theme.ts + index.css + EnterTheLab/BuildTracks/TrackToggle founder color
 - [ ] Phase 3 — Form architecture: FieldDef/FormSchema types, Founder/Enterprise/Mentor/Partner schemas, DynamicForm component
 - [ ] Phase 4 — Routing: react-router-dom, /apply/:track, /blog, /blog/:slug, /admin/*, vercel.json, CTA wiring in EnterTheLab
 - [ ] Phase 5 — Backend: Supabase SQL migrations (submissions/blog_posts/admin_profiles), RLS policies, env var docs, edge function stub

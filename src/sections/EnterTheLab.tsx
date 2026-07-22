@@ -7,7 +7,7 @@ const PILLARS = [
     title: 'Founder Flightpath',
     body: 'For women founders and startup teams ready for incubation, validation, mentorship, pitch development, and investor readiness.',
     cta: 'Take Flight',
-    color: '#3B82F6',
+    color: '#2E7D7B',
     Icon: Rocket,
   },
   {

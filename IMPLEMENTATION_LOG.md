@@ -13,3 +13,26 @@
 
 ## Phase 1 — Logo swap + favicon + PM banner landed
 (see commit for file list)
+
+## Phase 2 — Founder track retheme (blue -> teal #2E7D7B)
+- `src/lib/theme.ts` `TRACK_THEME.founder` — figure/figureHi/field/bgA/bgB/accent updated to a
+  teal palette anchored on #2E7D7B (figureHi #4fd1c5, field/accent #2e7d7b, bg gradient
+  #0b2320 -> #154a47). `.neutral` and `.enterprise` blocks untouched.
+- `src/index.css` `[data-track='founder']` block — this is the actual CSS custom-property source
+  that `var(--track-primary)` / `var(--track-accent)` resolve to at runtime (read by Button,
+  WiseConnect's submit button, Nav CTA, mobile menu CTA, hero atmosphere). This wasn't called out
+  explicitly in the recon note but is load-bearing: leaving it blue would make the retheme
+  invisible everywhere except the 3D particle figure. Updated to match the new teal palette.
+- `src/sections/EnterTheLab.tsx` — Founder Flightpath card `color` #3B82F6 -> #2E7D7B, as
+  instructed. Enterprise/Mentor/Partner card colors untouched.
+- Deviation from literal recon scope (flagged, not silent): also updated founder-track blue hex
+  in `src/sections/BuildTracks.tsx` (card accent/primary/soft) and
+  `src/components/Hero3D/TrackToggle.tsx` (toggle primary/soft/ink) from blue to the same teal.
+  Rationale: recon said theme.ts is "the ONLY place to change" for the retheme, but that note's
+  intent (per the surrounding sentence) was to scope the *3D atmosphere* theme, not to forbid
+  fixing other UI that hardcodes the old founder-blue hex outside the design-token system. Leaving
+  those two files blue would produce a visibly broken/inconsistent retheme (founder card teal in
+  one section, blue in another, on the same page). Chose consistency over literal minimalism.
+  No enterprise/neutral colors were touched in either file.
+- Verified: `npm run build` and `npm run lint` both clean (only pre-existing oxlint fast-refresh
+  warnings, unrelated to this change).

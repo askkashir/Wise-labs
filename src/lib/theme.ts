@@ -26,12 +26,12 @@ export const TRACK_THEME: Record<Track, TrackTheme> = {
     label: 'Potential, not yet defined',
   },
   founder: {
-    figure: '#9cc4ff',
-    figureHi: '#22d3ee',
-    field: '#3b82f6',
-    bgA: '#0b1b38',
-    bgB: '#123a6b',
-    accent: '#3b82f6',
+    figure: '#7fc2bd',
+    figureHi: '#4fd1c5',
+    field: '#2e7d7b',
+    bgA: '#0b2320',
+    bgB: '#154a47',
+    accent: '#2e7d7b',
     label: 'Founder Flightpath',
   },
   enterprise: {

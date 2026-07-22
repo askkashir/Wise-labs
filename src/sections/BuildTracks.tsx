@@ -29,9 +29,9 @@ const CARDS: TrackCard[] = [
     body: 'For women-led startups ready to move from idea, MVP, or early traction into structured growth — with business-model refinement, product validation, mentorship, pitch development, investor readiness, legal & financial guidance, market access, and ecosystem linkages.',
     motto: 'From idea to investor-ready — unseen to undeniable.',
     cta: 'Take Flight',
-    primary: '#12294F',
-    accent: '#3B82F6',
-    soft: 'rgba(59,130,246,0.09)',
+    primary: '#0F3D3B',
+    accent: '#2E7D7B',
+    soft: 'rgba(46,125,123,0.10)',
     Icon: Rocket,
   },
   {
