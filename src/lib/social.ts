@@ -16,7 +16,7 @@ export interface SocialLink {
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/wise-women-innovation-and-startup-empowerment-lab-006501420/',
+    href: 'https://www.linkedin.com/company/women-innovation-and-startup-empowerment-lab/?viewAsMember=true',
     Icon: LinkedinIcon,
   },
   {

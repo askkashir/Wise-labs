@@ -98,6 +98,11 @@ export function BehindTheWings() {
               image: '/team/esha-mubashir.jpeg',
             },
             {
+              name: 'Iqra Shamshad',
+              role: 'Finance Manager',
+              image: '/team/iqra-shamshad.jpeg',
+            },
+            {
               name: 'Abeeha Widad',
               role: 'Video Editor',
               image: '/team/abeeha-widad.png',
@@ -113,7 +118,7 @@ export function BehindTheWings() {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>

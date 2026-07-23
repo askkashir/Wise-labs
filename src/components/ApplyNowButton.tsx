@@ -27,8 +27,7 @@ export function ApplyNowButton() {
       transition={{ type: 'spring', stiffness: 260, damping: 20 }}
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.97 }}
-      className="fixed bottom-6 left-6 z-40 flex h-14 items-center gap-2.5 rounded-full px-5 text-sm font-semibold text-white shadow-[0_10px_30px_-6px_rgba(74,46,61,0.45)]"
-      style={{ background: 'var(--track-primary, #4A2E3D)' }}
+      className="fixed bottom-6 left-6 z-40 flex h-14 items-center gap-2.5 rounded-full px-5 text-sm font-semibold text-plum bg-coral shadow-[0_10px_30px_-6px_rgba(227,132,112,0.45)]"
     >
       <Rocket className="h-5 w-5" />
       {t('applyNow.cta')}

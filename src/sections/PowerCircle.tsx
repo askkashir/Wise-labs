@@ -50,25 +50,10 @@ function getFunders(t: TFunction) {
   ]
 }
 
-function getChips(t: TFunction): string[] {
-  return [
-    t('powerCircle.chips.academic', 'Academic'),
-    t('powerCircle.chips.corporate', 'Corporate'),
-    t('powerCircle.chips.development', 'Development'),
-    t('powerCircle.chips.financial', 'Financial'),
-    t('powerCircle.chips.media', 'Media'),
-    t('powerCircle.chips.investorNetworks', 'Investor Networks'),
-    t('powerCircle.chips.training', 'Training'),
-    t('powerCircle.chips.marketAccess', 'Market Access'),
-    t('powerCircle.chips.community', 'Community'),
-  ]
-}
-
 export function PowerCircle() {
   const { t } = useTranslation()
   const PARTNERS = getPartners(t)
   const FUNDERS = getFunders(t)
-  const CHIPS = getChips(t)
 
   return (
     <section
@@ -189,16 +174,7 @@ export function PowerCircle() {
           ))}
         </RevealGroup>
 
-        {/* Ecosystem chips */}
-        <RevealGroup className="mt-12 flex flex-wrap gap-3" stagger={0.04}>
-          {CHIPS.map((chip) => (
-            <RevealItem key={chip}>
-              <span className="inline-flex rounded-full border border-beige/15 bg-beige/[0.04] px-4 py-2 text-sm font-medium text-beige/75 transition-colors hover:border-coral/50 hover:text-beige">
-                {chip}
-              </span>
-            </RevealItem>
-          ))}
-        </RevealGroup>
+        {/* Ecosystem chips removed as per instructions */}
 
         {/* Closing + CTA */}
         <Reveal delay={0.1}>

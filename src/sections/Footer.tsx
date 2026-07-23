@@ -6,7 +6,7 @@ export function Footer() {
   const { t } = useTranslation()
   return (
     <footer
-      className="relative overflow-hidden pt-20 pb-10 text-beige"
+      className="relative overflow-hidden pt-20 pb-28 text-beige"
       style={{
         background:
           'radial-gradient(120% 120% at 20% 0%, #33212b 0%, #241820 60%, #1b1219 100%)',
@@ -34,6 +34,12 @@ export function Footer() {
                 {t(`nav.links.${l.id}`, l.label)}
               </a>
             ))}
+            <a
+              href="#careers"
+              className="link-underline text-sm font-medium text-beige/70 transition-colors hover:text-beige"
+            >
+              Careers at WISE
+            </a>
           </nav>
         </div>
 
