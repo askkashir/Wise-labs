@@ -18,6 +18,13 @@ dist-ssr
 .env.*
 !.env.example
 
+# Setup scripts (contain service_role secrets)
+scripts/setup-database.mjs
+scripts/run-migration.mjs
+
+# Supabase CLI temp
+supabase/.temp/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
