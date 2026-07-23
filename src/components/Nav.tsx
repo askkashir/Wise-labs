@@ -59,9 +59,9 @@ export function Nav() {
         <a
           href="#hero"
           aria-label={t('nav.home')}
-          className="flex items-center gap-2.5"
+          className="flex items-center gap-3"
         >
-          <WiseMark variant={logoVariant} className="h-9 w-auto" />
+          <WiseMark variant={logoVariant} className="h-14 w-auto" />
           <span className="flex flex-col leading-none">
             <span
               className={cn(
@@ -77,15 +77,15 @@ export function Nav() {
           </span>
         </a>
 
-        {/* Links — wrap onto their own row on narrow screens instead of a drawer */}
-        <div className="order-3 flex w-full flex-wrap items-center gap-x-5 gap-y-2 lg:order-none lg:w-auto lg:gap-x-7">
+        {/* Links — moved inward (mx-auto to center them more) and increased font size to text-base */}
+        <div className="order-3 flex w-full flex-wrap items-center justify-center mx-auto gap-x-6 gap-y-2 lg:order-none lg:w-auto lg:gap-x-10">
           {NAV_LINKS.map((l) => (
             <a
               key={l.id}
               href={`#${l.id}`}
               data-active={active === l.id}
               className={cn(
-                'link-underline whitespace-nowrap text-sm font-medium transition-colors',
+                'link-underline whitespace-nowrap text-base font-medium transition-colors',
                 lightText
                   ? 'text-white/85 hover:text-white'
                   : 'text-plum/75 hover:text-plum',
@@ -97,7 +97,10 @@ export function Nav() {
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1 opacity-50 cursor-not-allowed">
+            <span className={cn('text-sm font-medium', lightText ? 'text-white' : 'text-plum')}>EN</span>
+          </div>
           <MagneticButton strength={0.4}>
             <Button
               asChild
