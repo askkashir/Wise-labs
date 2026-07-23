@@ -3,23 +3,30 @@ import { ArrowUpRight } from 'lucide-react'
 import type { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
+import { cn } from '@/lib/utils'
 
 function getPartners(t: TFunction) {
   return [
     {
-      name: 'JazzWorld',
+      name: 'Jazz',
       role: t('powerCircle.partners.jazz', 'Consortium Lead'),
       logo: '/partners/jazz.png',
+      description: "Pakistan’s leading digital connectivity company, bringing technological expertise, nationwide reach, and enterprise innovation to the WISE Lab consortium.",
+      invert: true,
     },
     {
-      name: 'Mobilink Microfinance Bank',
+      name: 'Mobilink Bank',
       role: t('powerCircle.partners.mobilink', 'Co-Lead Partner'),
-      logo: '/partners/mobilink-mmbl.webp',
+      logo: '/partners/mobilink-mmbl.png',
+      description: "Pakistan’s leading digital microfinance bank, advancing financial inclusion, digital banking, and growth opportunities for women entrepreneurs and MSMEs.",
+      invert: false,
     },
     {
       name: 'Change Mechanics',
       role: t('powerCircle.partners.changeMechanics', 'Managing Partner'),
       logo: '/partners/change-mechanics.png',
+      description: "An innovation and ecosystem-development organization bringing programme design, entrepreneurship support, and implementation expertise to WISE Lab.",
+      invert: true,
     },
   ]
 }
@@ -27,14 +34,18 @@ function getPartners(t: TFunction) {
 function getFunders(t: TFunction) {
   return [
     {
-      name: 'Ministry of IT & Telecom',
+      name: 'Ministry of IT & Telecommunication (MoITT)',
       role: t('powerCircle.funders.moitt', 'Designed & Funded by'),
       logo: '/partners/moitt.png',
+      description: "The Government of Pakistan’s lead ministry for shaping national technology policy, accelerating digital transformation, and enabling inclusive economic development.",
+      invert: true,
     },
     {
-      name: 'Ignite — National Technology Fund',
+      name: 'Ignite – National Technology Fund',
       role: t('powerCircle.funders.ignite', 'Designed & Funded by'),
-      logo: '/partners/ignite.webp',
+      logo: '/partners/ignite.png',
+      description: "The government-backed funding and innovation agency supporting technology startups, entrepreneurship, research, and incubation ecosystems across Pakistan.",
+      invert: false,
     },
   ]
 }
@@ -58,7 +69,6 @@ export function PowerCircle() {
   const PARTNERS = getPartners(t)
   const FUNDERS = getFunders(t)
   const CHIPS = getChips(t)
-  const ALL_LOGOS = [...PARTNERS, ...FUNDERS]
 
   return (
     <section
@@ -97,39 +107,82 @@ export function PowerCircle() {
           </Reveal>
         </div>
 
+        {/* Government / Funding Organizations */}
         <Reveal delay={0.15}>
-          <p className="mt-14 text-[11px] font-semibold uppercase tracking-[0.2em] text-beige/45">
-            {t('powerCircle.consortiumLabel', 'Built by a consortium of change-makers')}
-          </p>
+          <h3 className="mt-14 text-[13px] font-bold uppercase tracking-[0.2em] text-beige/50">
+            Government / Funding Organizations
+          </h3>
         </Reveal>
-
-        {/* Unified partner + funder logo grid */}
         <RevealGroup
-          className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-5 lg:grid-cols-5"
+          className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6"
           stagger={0.06}
         >
-          {ALL_LOGOS.map((p) => (
+          {FUNDERS.map((p) => (
             <RevealItem key={p.name}>
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 24 }}
-                className="group flex h-full flex-col items-center gap-4 rounded-2xl bg-beige/[0.06] p-5 text-center ring-1 ring-beige/10 transition-colors duration-500 hover:bg-beige/10 md:p-6"
+                className="group flex h-full flex-col items-center gap-5 rounded-2xl bg-beige/[0.06] p-6 text-center transition-colors duration-500 hover:bg-beige/10 md:p-8"
               >
-                <div className="flex h-16 w-full items-center justify-center rounded-xl bg-white/95 p-3 md:h-20">
+                <div className="flex h-16 w-full items-center justify-center p-2 md:h-20">
                   <img
                     src={p.logo}
                     alt={`${p.name} logo`}
-                    className="max-h-full max-w-full object-contain"
+                    className={cn("max-h-full max-w-[200px] object-contain", p.invert && "invert brightness-0")}
                     loading="lazy"
                   />
                 </div>
-                <div>
-                  <div className="text-[15px] font-semibold leading-tight text-beige">
+                <div className="flex flex-col flex-1">
+                  <div className="text-[17px] font-bold leading-tight text-beige">
                     {p.name}
                   </div>
-                  <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-coral">
+                  <div className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-coral">
                     {p.role}
                   </div>
+                  <p className="mt-4 text-[15px] leading-relaxed text-beige/80 text-justify">
+                    {p.description}
+                  </p>
+                </div>
+              </motion.div>
+            </RevealItem>
+          ))}
+        </RevealGroup>
+
+        {/* Consortium Partners */}
+        <Reveal delay={0.15}>
+          <h3 className="mt-16 text-[13px] font-bold uppercase tracking-[0.2em] text-beige/50">
+            Consortium Partners
+          </h3>
+        </Reveal>
+        <RevealGroup
+          className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 md:gap-6"
+          stagger={0.06}
+        >
+          {PARTNERS.map((p) => (
+            <RevealItem key={p.name}>
+              <motion.div
+                whileHover={{ y: -4 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+                className="group flex h-full flex-col items-center gap-5 rounded-2xl bg-beige/[0.06] p-6 text-center transition-colors duration-500 hover:bg-beige/10 md:p-8"
+              >
+                <div className="flex h-16 w-full items-center justify-center p-2 md:h-20">
+                  <img
+                    src={p.logo}
+                    alt={`${p.name} logo`}
+                    className={cn("max-h-full max-w-[200px] object-contain", p.invert && "invert brightness-0")}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="flex flex-col flex-1">
+                  <div className="text-[17px] font-bold leading-tight text-beige">
+                    {p.name}
+                  </div>
+                  <div className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-coral">
+                    {p.role}
+                  </div>
+                  <p className="mt-4 text-[15px] leading-relaxed text-beige/80 text-justify">
+                    {p.description}
+                  </p>
                 </div>
               </motion.div>
             </RevealItem>
