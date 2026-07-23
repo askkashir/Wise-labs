@@ -15,6 +15,7 @@ let client: SupabaseClient | null | undefined
 export function getSupabase(): SupabaseClient | null {
   if (client !== undefined) return client
   if (!url || !anonKey) {
+    console.error('Supabase credentials missing. Forms and Blog will not work with a live backend.')
     client = null
     return client
   }
