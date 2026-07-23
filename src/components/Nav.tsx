@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { WiseMark } from './WiseLabLogo'
 import { Button } from './ui/button'
 import { MagneticButton } from './MagneticButton'
-import { LanguageSwitcher } from './LanguageSwitcher'
 import { NAV_LINKS } from '@/lib/nav'
 import { useTrack } from '@/lib/useTrackState'
 import { cn } from '@/lib/utils'
@@ -99,7 +98,6 @@ export function Nav() {
         </div>
 
         <div className="flex items-center gap-2">
-          <LanguageSwitcher light={lightText} />
           <MagneticButton strength={0.4}>
             <Button
               asChild
